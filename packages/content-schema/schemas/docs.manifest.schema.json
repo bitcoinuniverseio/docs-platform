@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://docs.bitcoinuniverse.io/schemas/docs.manifest.schema.json",
+  "title": "Bitcoin Universe documentation manifest",
+  "description": "Root-level docs.manifest.json declared by every public bitcoinuniverseio repository. The portal at docs.bitcoinuniverse.io ingests documentation only from repositories with a valid manifest, pinned to exact commits in sources.lock.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "name",
+    "classification",
+    "repository",
+    "documentationUrl",
+    "docsRoot",
+    "sourceRef",
+    "lifecycle",
+    "chains",
+    "audiences",
+    "owners",
+    "securityClassification",
+    "lastVerified"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1,
+      "description": "Manifest schema version. Currently 1."
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{1,63}$",
+      "description": "Stable documentation identifier, unique across the organization. Usually the repository name."
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Human product, protocol, or component name."
+    },
+    "classification": {
+      "enum": ["product", "product-docs", "protocol", "indexer", "implementation", "infrastructure", "ci", "archive"],
+      "description": "What kind of repository this is."
+    },
+    "repository": {
+      "type": "string",
+      "pattern": "^bitcoinuniverseio/[A-Za-z0-9_.-]+$",
+      "description": "GitHub owner/name of this repository."
+    },
+    "documentationUrl": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://",
+      "description": "The permanent home of this component's documentation on the portal."
+    },
+    "docsRoot": {
+      "type": "string",
+      "description": "Repository-relative directory holding the documentation content the portal may ingest. Use \".\" when README-level content is the documentation."
+    },
+    "sourceRef": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The branch the documentation content is maintained on, for example develop or main."
+    },
+    "releasedRef": {
+      "type": "string",
+      "description": "The tag or exact commit representing the current verified public release of this component. Omit only when lifecycle is experimental or archive."
+    },
+    "releaseVersion": {
+      "type": "string",
+      "description": "Current public release version string shown to readers. Omit only when lifecycle is experimental or archive."
+    },
+    "lifecycle": {
+      "enum": ["stable", "beta", "experimental", "deprecated", "archived"],
+      "description": "Lifecycle state using the shared terminology in bitcoinuniverseio/.github docs/lifecycle.md."
+    },
+    "chains": {
+      "type": "array",
+      "description": "Chains and networks this component supports. Empty array means chain-independent.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["chain", "networks"],
+        "properties": {
+          "chain": { "enum": ["bitcoin", "dogecoin", "zcash"] },
+          "networks": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "enum": ["mainnet", "testnet", "testnet4", "signet", "regtest"] }
+          }
+        }
+      }
+    },
+    "protocols": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+      "description": "Protocol ids this component implements, indexes, documents, or depends on."
+    },
+    "audiences": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "enum": ["user", "collector", "app-developer", "protocol-implementer", "indexer-operator", "infrastructure-operator", "security-verifier"]
+      }
+    },
+    "specifications": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Repository-relative paths of normative specification documents, when this repository holds any."
+    },
+    "contracts": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Machine-readable interface contracts this repository holds.",
+      "properties": {
+        "openapi": { "type": "array", "items": { "type": "string" } },
+        "asyncapi": { "type": "array", "items": { "type": "string" } },
+        "jsonSchema": { "type": "array", "items": { "type": "string" } },
+        "cli": { "type": "array", "items": { "type": "string" } },
+        "sdk": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "capabilityManifest": {
+      "type": "string",
+      "description": "Repository-relative path of the release-evidence capability manifest, when one exists."
+    },
+    "statusSources": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri", "pattern": "^https://" },
+      "description": "Public HTTPS endpoints the portal may poll for live status and freshness. Public endpoints only."
+    },
+    "owners": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" },
+      "description": "GitHub teams or accounts responsible for this documentation."
+    },
+    "upstream": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["project", "url", "license", "relationship"],
+      "description": "Present when this repository derives from an upstream project.",
+      "properties": {
+        "project": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "license": { "type": "string" },
+        "relationship": { "enum": ["fork", "port", "mirror", "derived"] },
+        "divergenceSummary": { "type": "string" }
+      }
+    },
+    "redirects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["from", "to"],
+        "properties": {
+          "from": { "type": "string", "pattern": "^/" },
+          "to": { "type": "string", "minLength": 1 }
+        }
+      },
+      "description": "Permanent redirects the portal must serve for this component's previous public routes."
+    },
+    "lastVerified": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["commit", "timestamp"],
+      "properties": {
+        "commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "description": "The exact commit at which a maintainer last verified this manifest against reality, and when."
+    },
+    "securityClassification": {
+      "const": "public",
+      "description": "Everything a manifest points at must be safe for public disclosure. The only allowed value is public."
+    },
+    "archived": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["date", "replacement"],
+      "properties": {
+        "date": { "type": "string", "format": "date" },
+        "reason": { "type": "string" },
+        "replacement": {
+          "type": ["string", "null"],
+          "description": "Replacement documentation URL or repository, or null when none exists."
+        }
+      },
+      "description": "Required when lifecycle is archived."
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "lifecycle": { "const": "archived" } } },
+      "then": { "required": ["archived"] }
+    },
+    {
+      "if": { "properties": { "lifecycle": { "enum": ["stable", "beta", "deprecated"] } } },
+      "then": { "required": ["releasedRef", "releaseVersion"] }
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+---
+title: Bitcoin Universe Docs
+description: Documentation for every Bitcoin Universe product, protocol, API, and indexer, with source provenance and live status behind every claim.
+template: splash
+hero:
+  title: Bitcoin Universe Docs
+  tagline: Every product, protocol, API, and indexer we run, documented with the source commit and release evidence behind each claim.
+  actions:
+    - text: Start here
+      link: /start/what-bitcoin-universe-is/
+      icon: right-arrow
+      variant: primary
+    - text: Browse products
+      link: /products/
+      variant: minimal
+    - text: Protocol Atlas
+      link: /protocols/
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid>
+  <Card title="Products" icon="rocket">
+    Core, Wallet, Inscribe, StampDEX, Zerdinals and Z-Runes, Forked Felines, and Drops: what each does, what it supports today, and how to use it safely.
+    [Product catalog](/products/)
+  </Card>
+  <Card title="Protocols" icon="document">
+    The protocols we author, implement, and index across Bitcoin, Dogecoin, and Zcash, each with its specification, examples, and indexer semantics.
+    [Protocol Atlas](/protocols/)
+  </Card>
+  <Card title="Developers" icon="setting">
+    APIs, schemas, and source repositories. Contracts come first; the documentation is generated from the same source the services run.
+    [Developer overview](/developers/)
+  </Card>
+  <Card title="Status and trust" icon="approve-check">
+    Availability states, freshness, release evidence, and how every page records the exact source commit it was built from.
+    [How to read our status](/status/)
+  </Card>
+</CardGrid>
+
+:::caution[Everything here is real]
+These chains are mainnets. Transactions are irreversible, fees are spent even when an action fails, and nobody can undo a mistake for you. Every task guide states its risks before its steps; read them.
+:::
