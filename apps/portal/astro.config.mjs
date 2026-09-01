@@ -7,11 +7,19 @@ import starlightLinksValidator from 'starlight-links-validator';
 import rehypeTableScroll from '@universe/docs-design-system/integrations/rehype-table-scroll';
 import { codeBlockAccessibility } from '@universe/docs-design-system/integrations/ec-code-block-a11y';
 
+// The production home is docs.bitcoinuniverse.io. That domain currently serves a
+// GitBook site, so until it is cut over the portal also publishes to GitHub Pages
+// under a project path. Both builds come from this one config: set SITE_URL and
+// BASE_PATH for the Pages build, and the defaults produce the production build.
+const SITE_URL = process.env.SITE_URL ?? 'https://docs.bitcoinuniverse.io';
+const BASE_PATH = process.env.BASE_PATH ?? undefined;
+
 export default defineConfig({
   markdown: {
     rehypePlugins: [rehypeTableScroll],
   },
-  site: 'https://docs.bitcoinuniverse.io',
+  site: SITE_URL,
+  base: BASE_PATH,
   trailingSlash: 'ignore',
   integrations: [
     starlight({
