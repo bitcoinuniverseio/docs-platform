@@ -33,3 +33,7 @@ jobs:
         run: test -f apps/portal/dist/pagefind/pagefind.js
       - name: Sitemap exists
         run: test -f apps/portal/dist/sitemap-index.xml
+      - name: Install a browser for the accessibility audit
+        run: npx playwright install --with-deps chromium
+      - name: Accessibility and sideways scroll, every page, both themes
+        run: node packages/docs-quality/bin/check-accessibility.mjs --dist apps/portal/dist
