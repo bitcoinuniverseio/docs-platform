@@ -1,0 +1,17 @@
+# Redirects for routes that existed on the documentation site this portal
+# replaces. Every legacy route points at the page that answers the same
+# question, never at the homepage.
+
+RewriteEngine On
+
+# The retired documentation site published exactly one page: the Universe
+# Wallet provider API. Both the bare route and its Markdown representation.
+RewriteRule ^universe-wallet-api\.md$ /developers/wallet-provider-api/ [R=301,L]
+RewriteRule ^universe-wallet-api/?$ /developers/wallet-provider-api/ [R=301,L]
+
+# Immutable hashed build assets.
+<IfModule mod_headers.c>
+  <FilesMatch "^.*\.[0-9a-zA-Z_-]{8,}\.(css|js|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+</IfModule>
