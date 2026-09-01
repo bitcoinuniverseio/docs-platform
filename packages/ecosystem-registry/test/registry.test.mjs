@@ -121,6 +121,34 @@ check('read-only protocols expose no trade action on their marketplace surface',
   }
 });
 
+// The manifest schema decides which protocol ids a repository is allowed to
+// declare, and the registry decides which ids the portal keys on. They drifted:
+// the schema forbade underscores while eight real ids contain one, so
+// op_return, tap_doge and six others could not be declared by any repository at
+// all. A repository documenting a protocol it cannot name is a silent gap.
+check('every registry protocol id is declarable in a manifest', async () => {
+  const { readFileSync } = await import('node:fs');
+  const { fileURLToPath } = await import('node:url');
+  const path = await import('node:path');
+  const here = path.dirname(fileURLToPath(import.meta.url));
+  const schemaPath = path.join(
+    here,
+    '..',
+    '..',
+    'content-schema',
+    'schemas',
+    'docs.manifest.schema.json',
+  );
+  const schema = JSON.parse(readFileSync(schemaPath, 'utf8'));
+  const pattern = new RegExp(schema.properties.protocols.items.pattern);
+  const rejected = protocols.map((p) => p.id).filter((id) => !pattern.test(id));
+  assert.deepEqual(
+    rejected,
+    [],
+    `the manifest schema rejects these registry ids: ${rejected.join(', ')}`,
+  );
+});
+
 if (failures > 0) {
   console.error(`\n${failures} registry check(s) failed.`);
   process.exit(1);
