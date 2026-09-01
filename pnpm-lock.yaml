@@ -67,6 +67,12 @@ importers:
         specifier: workspace:*
         version: link:../../packages/ecosystem-registry
 
+  tooling/acceptance:
+    dependencies:
+      '@universe/ecosystem-registry':
+        specifier: workspace:*
+        version: link:../../packages/ecosystem-registry
+
   tooling/sync: {}
 
 packages:
