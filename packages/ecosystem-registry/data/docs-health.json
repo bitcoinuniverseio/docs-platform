@@ -1,18 +1,107 @@
 {
   "description": "Standing documentation health across every repository in the portal source registry. A missing manifest is a finding, not an error: it records that a repository is not yet wired into the estate.",
   "generatedBy": "tooling/sync/bin/audit.mjs",
-  "generatedAt": "2026-09-01T11:56:52.474Z",
+  "generatedAt": "2026-09-01T12:28:12.089Z",
   "summary": {
-    "total": 38,
+    "total": 40,
     "ingestable": 38,
-    "notIngestable": 0
+    "notIngestable": 2
   },
   "repositories": [
     {
+      "repository": "bitcoinuniverseio/.github",
+      "sourceRef": "main",
+      "commit": "eeb86da822288033785b6a615845f9fad13ad26c",
+      "commitTimestamp": "2026-09-01T00:43:35Z",
+      "manifest": {
+        "present": false,
+        "valid": false,
+        "error": null
+      },
+      "lifecycle": null,
+      "classification": null,
+      "documentationUrl": null,
+      "releaseVersion": null,
+      "chains": [],
+      "audiences": [],
+      "contracts": {
+        "openapi": [],
+        "asyncapi": [],
+        "jsonSchema": [],
+        "cli": [],
+        "sdk": []
+      },
+      "specifications": [],
+      "statusSources": [],
+      "lastVerified": null,
+      "lastVerifiedAgeDays": null,
+      "releases": [],
+      "governance": {
+        "README.md": true,
+        "SECURITY.md": true,
+        "CONTRIBUTING.md": true,
+        "SUPPORT.md": true
+      },
+      "machineReadable": {
+        "llms.txt": false,
+        "robots.txt": false,
+        "sitemap.xml": false
+      },
+      "problems": [
+        "no docs.manifest.json, so the portal cannot ingest this repository"
+      ]
+    },
+    {
+      "repository": "bitcoinuniverseio/docs-platform",
+      "sourceRef": "main",
+      "commit": "7cc126cd8c117e82513828797fe0520528eb8849",
+      "commitTimestamp": "2026-09-01T12:13:01Z",
+      "manifest": {
+        "present": false,
+        "valid": false,
+        "error": null
+      },
+      "lifecycle": null,
+      "classification": null,
+      "documentationUrl": null,
+      "releaseVersion": null,
+      "chains": [],
+      "audiences": [],
+      "contracts": {
+        "openapi": [],
+        "asyncapi": [],
+        "jsonSchema": [],
+        "cli": [],
+        "sdk": []
+      },
+      "specifications": [],
+      "statusSources": [],
+      "lastVerified": null,
+      "lastVerifiedAgeDays": null,
+      "releases": [],
+      "governance": {
+        "README.md": true,
+        "SECURITY.md": false,
+        "CONTRIBUTING.md": false,
+        "SUPPORT.md": false
+      },
+      "machineReadable": {
+        "llms.txt": false,
+        "robots.txt": false,
+        "sitemap.xml": false
+      },
+      "problems": [
+        "no docs.manifest.json, so the portal cannot ingest this repository",
+        "missing SECURITY.md",
+        "missing CONTRIBUTING.md",
+        "missing SUPPORT.md"
+      ]
+    },
+    {
       "repository": "bitcoinuniverseio/docs-wallet",
       "sourceRef": "main",
-      "commit": "a736f81ed19bd8bdd4ee3ba785eb502cfff28545",
-      "commitTimestamp": "2026-09-01T11:27:18Z",
+      "commit": "8588aceaa0bdf1592a44dd9251081a9adde89633",
+      "commitTimestamp": "2026-09-01T12:09:48Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -63,7 +152,7 @@
       "specifications": [],
       "statusSources": [],
       "lastVerified": "2026-09-01T00:00:00Z",
-      "lastVerifiedAgeDays": 0,
+      "lastVerifiedAgeDays": 1,
       "releases": [],
       "governance": {
         "README.md": true,
@@ -81,8 +170,8 @@
     {
       "repository": "bitcoinuniverseio/docs-core",
       "sourceRef": "main",
-      "commit": "ae4b03a2e28bb3db72c54d14d64c8a6448df2eb7",
-      "commitTimestamp": "2026-09-01T11:43:22Z",
+      "commit": "750b4575c6d32c0e2970e4613091bfa05f979151",
+      "commitTimestamp": "2026-09-01T12:02:54Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -203,8 +292,8 @@
     {
       "repository": "bitcoinuniverseio/docs-stampdex",
       "sourceRef": "main",
-      "commit": "2443143044448d71f6a2f8f08d2e48e620ca0ff8",
-      "commitTimestamp": "2026-09-01T02:01:34Z",
+      "commit": "9fed5ac0f4074a1d88700e882f39278b1622ba53",
+      "commitTimestamp": "2026-09-01T12:11:54Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -212,7 +301,7 @@
       },
       "lifecycle": "stable",
       "classification": "product-docs",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/products/stampdex/",
+      "documentationUrl": "https://bitcoinuniverseio.github.io/docs-stampdex/",
       "releaseVersion": "continuous",
       "chains": [
         {
@@ -235,26 +324,26 @@
         "sdk": []
       },
       "specifications": [],
-      "statusSources": [],
-      "lastVerified": "2026-09-01T02:00:00Z",
+      "statusSources": [
+        "https://stamp.api.bitcoinuniverse.io/api/health",
+        "https://stamp.api.bitcoinuniverse.io/api/version",
+        "https://stamp.api.bitcoinuniverse.io/api/v1/indexer/status"
+      ],
+      "lastVerified": "2026-09-01T11:00:00Z",
       "lastVerifiedAgeDays": 0,
       "releases": [],
       "governance": {
         "README.md": true,
-        "SECURITY.md": false,
-        "CONTRIBUTING.md": false,
-        "SUPPORT.md": false
+        "SECURITY.md": true,
+        "CONTRIBUTING.md": true,
+        "SUPPORT.md": true
       },
       "machineReadable": {
         "llms.txt": false,
         "robots.txt": false,
         "sitemap.xml": false
       },
-      "problems": [
-        "missing SECURITY.md",
-        "missing CONTRIBUTING.md",
-        "missing SUPPORT.md"
-      ]
+      "problems": []
     },
     {
       "repository": "bitcoinuniverseio/docs-zerdinals-and-zrunes",
@@ -368,29 +457,35 @@
     {
       "repository": "bitcoinuniverseio/drops-protocol-docs",
       "sourceRef": "main",
-      "commit": "f7bd2a22b3f4ea9517fc8653f8ef431e478aba51",
-      "commitTimestamp": "2026-09-01T02:01:41Z",
+      "commit": "0bca9b49d0dfd0cc912221204475902a405898e6",
+      "commitTimestamp": "2026-09-01T12:22:18Z",
       "manifest": {
         "present": true,
         "valid": true,
         "error": null
       },
       "lifecycle": "stable",
-      "classification": "product-docs",
+      "classification": "protocol",
       "documentationUrl": "https://docs.bitcoinuniverse.io/products/drops/",
       "releaseVersion": "continuous",
       "chains": [
         {
           "chain": "bitcoin",
           "networks": [
-            "mainnet"
+            "mainnet",
+            "testnet",
+            "signet",
+            "regtest"
           ]
         }
       ],
       "audiences": [
         "user",
         "collector",
-        "protocol-implementer"
+        "app-developer",
+        "protocol-implementer",
+        "indexer-operator",
+        "security-verifier"
       ],
       "contracts": {
         "openapi": [],
@@ -399,27 +494,29 @@
         "cli": [],
         "sdk": []
       },
-      "specifications": [],
+      "specifications": [
+        "pages/drops-specification.html",
+        "pages/carriers.html",
+        "pages/pacts.html",
+        "pages/validation.html",
+        "pages/conformance.html"
+      ],
       "statusSources": [],
-      "lastVerified": "2026-09-01T02:00:00Z",
+      "lastVerified": "2026-09-01T12:00:00Z",
       "lastVerifiedAgeDays": 0,
       "releases": [],
       "governance": {
         "README.md": true,
-        "SECURITY.md": false,
-        "CONTRIBUTING.md": false,
-        "SUPPORT.md": false
+        "SECURITY.md": true,
+        "CONTRIBUTING.md": true,
+        "SUPPORT.md": true
       },
       "machineReadable": {
-        "llms.txt": false,
-        "robots.txt": false,
-        "sitemap.xml": false
+        "llms.txt": true,
+        "robots.txt": true,
+        "sitemap.xml": true
       },
-      "problems": [
-        "missing SECURITY.md",
-        "missing CONTRIBUTING.md",
-        "missing SUPPORT.md"
-      ]
+      "problems": []
     },
     {
       "repository": "bitcoinuniverseio/op-drop",
@@ -468,7 +565,7 @@
       ],
       "statusSources": [],
       "lastVerified": "2026-09-01T00:00:00Z",
-      "lastVerifiedAgeDays": 0,
+      "lastVerifiedAgeDays": 1,
       "releases": [],
       "governance": {
         "README.md": true,
@@ -650,8 +747,8 @@
     {
       "repository": "bitcoinuniverseio/alkanes",
       "sourceRef": "main",
-      "commit": "8e135bbd74fcc58eb554940e8df2f6fda2a30fe3",
-      "commitTimestamp": "2026-09-01T11:51:13Z",
+      "commit": "a3f0d26b29851ff7d06b49c9d34b1c36723b9c7f",
+      "commitTimestamp": "2026-09-01T12:14:43Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -659,7 +756,7 @@
       },
       "lifecycle": "experimental",
       "classification": "protocol",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/alkanes",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/alkanes/",
       "releaseVersion": null,
       "chains": [
         {
@@ -806,7 +903,7 @@
       ],
       "statusSources": [],
       "lastVerified": "2026-09-01T00:00:00Z",
-      "lastVerifiedAgeDays": 0,
+      "lastVerifiedAgeDays": 1,
       "releases": [],
       "governance": {
         "README.md": true,
@@ -862,7 +959,7 @@
       ],
       "statusSources": [],
       "lastVerified": "2026-09-01T00:00:00Z",
-      "lastVerifiedAgeDays": 0,
+      "lastVerifiedAgeDays": 1,
       "releases": [],
       "governance": {
         "README.md": true,
@@ -974,7 +1071,7 @@
       ],
       "statusSources": [],
       "lastVerified": "2026-09-01T00:00:00Z",
-      "lastVerifiedAgeDays": 0,
+      "lastVerifiedAgeDays": 1,
       "releases": [],
       "governance": {
         "README.md": true,
@@ -992,8 +1089,8 @@
     {
       "repository": "bitcoinuniverseio/op-return",
       "sourceRef": "main",
-      "commit": "72ab2cc75586ddab87dec6b51c7d627e08605fe6",
-      "commitTimestamp": "2026-09-01T11:27:13Z",
+      "commit": "cf30cd5a4ca42d5ba92b94e79fc4c51945563439",
+      "commitTimestamp": "2026-09-01T12:08:03Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -1013,8 +1110,10 @@
       ],
       "audiences": [
         "user",
+        "collector",
         "app-developer",
-        "protocol-implementer"
+        "protocol-implementer",
+        "indexer-operator"
       ],
       "contracts": {
         "openapi": [],
@@ -1023,33 +1122,31 @@
         "cli": [],
         "sdk": []
       },
-      "specifications": [],
+      "specifications": [
+        "spec.html"
+      ],
       "statusSources": [],
-      "lastVerified": "2026-09-01T02:00:00Z",
+      "lastVerified": "2026-09-01T12:00:00Z",
       "lastVerifiedAgeDays": 0,
       "releases": [],
       "governance": {
         "README.md": true,
-        "SECURITY.md": false,
-        "CONTRIBUTING.md": false,
-        "SUPPORT.md": false
+        "SECURITY.md": true,
+        "CONTRIBUTING.md": true,
+        "SUPPORT.md": true
       },
       "machineReadable": {
         "llms.txt": true,
-        "robots.txt": false,
-        "sitemap.xml": false
+        "robots.txt": true,
+        "sitemap.xml": true
       },
-      "problems": [
-        "missing SECURITY.md",
-        "missing CONTRIBUTING.md",
-        "missing SUPPORT.md"
-      ]
+      "problems": []
     },
     {
       "repository": "bitcoinuniverseio/src-101",
       "sourceRef": "main",
-      "commit": "2807b923e7ffc6ebc2f99f55a9c2f47d88e95094",
-      "commitTimestamp": "2026-09-01T11:27:06Z",
+      "commit": "88136564abde92338fb164393ddc6c2b5ebba166",
+      "commitTimestamp": "2026-09-01T12:14:10Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -1069,8 +1166,10 @@
       ],
       "audiences": [
         "user",
+        "collector",
         "app-developer",
-        "protocol-implementer"
+        "protocol-implementer",
+        "indexer-operator"
       ],
       "contracts": {
         "openapi": [],
@@ -1079,27 +1178,25 @@
         "cli": [],
         "sdk": []
       },
-      "specifications": [],
+      "specifications": [
+        "specification.html"
+      ],
       "statusSources": [],
-      "lastVerified": "2026-09-01T02:00:00Z",
+      "lastVerified": "2026-09-01T12:00:00Z",
       "lastVerifiedAgeDays": 0,
       "releases": [],
       "governance": {
         "README.md": true,
-        "SECURITY.md": false,
-        "CONTRIBUTING.md": false,
-        "SUPPORT.md": false
+        "SECURITY.md": true,
+        "CONTRIBUTING.md": true,
+        "SUPPORT.md": true
       },
       "machineReadable": {
         "llms.txt": true,
-        "robots.txt": false,
-        "sitemap.xml": false
+        "robots.txt": true,
+        "sitemap.xml": true
       },
-      "problems": [
-        "missing SECURITY.md",
-        "missing CONTRIBUTING.md",
-        "missing SUPPORT.md"
-      ]
+      "problems": []
     },
     {
       "repository": "bitcoinuniverseio/mezcal",
@@ -1222,8 +1319,8 @@
     {
       "repository": "bitcoinuniverseio/chainbloom",
       "sourceRef": "main",
-      "commit": "06b34a88495118c6a3455688e103829dd6eda42e",
-      "commitTimestamp": "2026-09-01T02:49:51Z",
+      "commit": "e15955d3bef2bfd47909aeaa801d849e6b8b044d",
+      "commitTimestamp": "2026-09-01T11:57:56Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -1276,8 +1373,8 @@
     {
       "repository": "bitcoinuniverseio/witness-circles",
       "sourceRef": "main",
-      "commit": "6507df3848c9f44959ae5e40afa7c75fb55605df",
-      "commitTimestamp": "2026-09-01T02:30:02Z",
+      "commit": "468a2d7ea9ddf8b89df4d46d64922c5acd9eb07b",
+      "commitTimestamp": "2026-09-01T12:15:48Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -1291,14 +1388,18 @@
         {
           "chain": "bitcoin",
           "networks": [
-            "mainnet"
+            "mainnet",
+            "testnet",
+            "signet",
+            "regtest"
           ]
         }
       ],
       "audiences": [
         "protocol-implementer",
         "app-developer",
-        "indexer-operator"
+        "indexer-operator",
+        "security-verifier"
       ],
       "contracts": {
         "openapi": [],
@@ -1312,30 +1413,32 @@
           "schemas/v1/state-lifecycle.schema.json",
           "schemas/v1/state-snapshot.schema.json"
         ],
-        "cli": [],
-        "sdk": []
+        "cli": [
+          "src/cli.ts"
+        ],
+        "sdk": [
+          "src/index.ts"
+        ]
       },
       "specifications": [
         "SPECIFICATION.md"
       ],
       "statusSources": [],
-      "lastVerified": "2026-09-01T02:00:00Z",
-      "lastVerifiedAgeDays": 0,
+      "lastVerified": "2026-09-01T00:00:00Z",
+      "lastVerifiedAgeDays": 1,
       "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": true,
         "CONTRIBUTING.md": true,
-        "SUPPORT.md": false
+        "SUPPORT.md": true
       },
       "machineReadable": {
-        "llms.txt": false,
-        "robots.txt": false,
-        "sitemap.xml": false
+        "llms.txt": true,
+        "robots.txt": true,
+        "sitemap.xml": true
       },
-      "problems": [
-        "missing SUPPORT.md"
-      ]
+      "problems": []
     },
     {
       "repository": "bitcoinuniverseio/tandem",
@@ -1402,8 +1505,8 @@
     {
       "repository": "bitcoinuniverseio/patina",
       "sourceRef": "main",
-      "commit": "9098c2d39f07aa4b4f2bab2470061b474a09211e",
-      "commitTimestamp": "2026-09-01T02:52:25Z",
+      "commit": "512ced660573a95423b70ce8c4c5f2aeb218b4fe",
+      "commitTimestamp": "2026-09-01T12:12:16Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -1581,8 +1684,8 @@
     {
       "repository": "bitcoinuniverseio/ord-dogecoin",
       "sourceRef": "develop",
-      "commit": "3b76bdb35be2329b731eb3f60b6fc2f8a4f456a2",
-      "commitTimestamp": "2026-09-01T11:29:28Z",
+      "commit": "6db7d23083f4e28df6469c51739748dae24751f2",
+      "commitTimestamp": "2026-09-01T12:03:16Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -1695,8 +1798,8 @@
     {
       "repository": "bitcoinuniverseio/mempool",
       "sourceRef": "develop",
-      "commit": "9936eb7a29e8aaa3857a86fe363d529df121b243",
-      "commitTimestamp": "2026-09-01T11:37:29Z",
+      "commit": "7624ca654a65ac3ea134115f3d6580eed844d220",
+      "commitTimestamp": "2026-09-01T12:00:32Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -1728,8 +1831,10 @@
       ],
       "audiences": [
         "user",
+        "collector",
         "app-developer",
-        "infrastructure-operator"
+        "infrastructure-operator",
+        "security-verifier"
       ],
       "contracts": {
         "openapi": [],
@@ -1738,9 +1843,19 @@
         "cli": [],
         "sdk": []
       },
-      "specifications": [],
-      "statusSources": [],
-      "lastVerified": "2026-09-01T02:00:00Z",
+      "specifications": [
+        "docs/data/ASSET-EVIDENCE.md",
+        "docs/data/CHECKPOINTS-AND-REORGS.md",
+        "docs/architecture/ADR-PROTOCOL-OVERLAY.md"
+      ],
+      "statusSources": [
+        "https://explorer.bitcoinuniverse.io/api/v1/backend-info",
+        "https://explorer.bitcoinuniverse.io/api/v1/capabilities",
+        "https://explorer.bitcoinuniverse.io/api/v1/chains",
+        "https://explorer.bitcoinuniverse.io/api/v1/universe/protocols",
+        "https://explorer.bitcoinuniverse.io/api/v1/universe/sources"
+      ],
+      "lastVerified": "2026-09-01T12:00:00Z",
       "lastVerifiedAgeDays": 0,
       "releases": [
         {
@@ -1762,16 +1877,14 @@
         "README.md": true,
         "SECURITY.md": true,
         "CONTRIBUTING.md": true,
-        "SUPPORT.md": false
+        "SUPPORT.md": true
       },
       "machineReadable": {
         "llms.txt": false,
         "robots.txt": false,
         "sitemap.xml": false
       },
-      "problems": [
-        "missing SUPPORT.md"
-      ]
+      "problems": []
     },
     {
       "repository": "bitcoinuniverseio/stampchain.io",
