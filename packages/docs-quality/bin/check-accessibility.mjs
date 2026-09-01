@@ -117,7 +117,10 @@ for (const colorScheme of SCHEMES) {
         await window.axe.run(document, { resultTypes: ["violations"] }));
       renders += 1;
       for (const v of result.violations) {
-        failures.push(`${colorScheme} ${width} ${route}: ${v.id} (${v.impact}) on ${v.nodes.length} element(s)\n      ${v.help}`);
+        const targets = v.nodes
+          .map((node) => node.target.join(' '))
+          .join(', ');
+        failures.push(`${colorScheme} ${width} ${route}: ${v.id} (${v.impact}) on ${v.nodes.length} element(s)\n      ${v.help}\n      ${targets}`);
       }
       const overflow = await page.evaluate(() =>
         document.documentElement.scrollWidth - document.documentElement.clientWidth);
