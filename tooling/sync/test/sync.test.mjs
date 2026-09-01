@@ -20,7 +20,18 @@ assert.equal(code, 2, "unknown command must exit 2");
 // Registry is valid and covers the complete public estate exactly once.
 const registry = JSON.parse(readFileSync(registryPath, "utf8"));
 assert.ok(Array.isArray(registry.sources), "sources must be an array");
-assert.equal(registry.sources.length, 38, "registry must pin all 38 public repositories");
+assert.equal(registry.sources.length, 40, "registry must pin all 40 public repositories");
+
+// The registry once covered 38 repositories and reported 38 of 38 ingestable,
+// which was true but incomplete: the two central repositories named in the
+// organization mandate were not in it at all, so the estate was not counting
+// itself. These two assertions are why that cannot happen again quietly.
+for (const central of ["bitcoinuniverseio/docs-platform", "bitcoinuniverseio/.github"]) {
+  assert.ok(
+    registry.sources.some((s) => s.repository === central),
+    `the registry must track the central repository ${central}`,
+  );
+}
 const names = registry.sources.map((s) => s.repository);
 assert.equal(new Set(names).size, names.length, "no duplicate repositories");
 for (const s of registry.sources) {
