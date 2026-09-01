@@ -51,7 +51,7 @@ function validate(m) {
     });
   }
 
-  if (m.protocols !== undefined && !(isStrArray(m.protocols) && m.protocols.every((p) => /^[a-z0-9][a-z0-9-]*$/.test(p)))) err("protocols must be an array of lowercase kebab-case ids");
+  if (m.protocols !== undefined && !(isStrArray(m.protocols) && m.protocols.every((p) => /^[a-z0-9][a-z0-9_-]*$/.test(p)))) err("protocols must be an array of lowercase registry ids (hyphens and underscores allowed)");
   if (m.audiences !== undefined && !(Array.isArray(m.audiences) && m.audiences.length >= 1 && m.audiences.every((a) => AUDIENCES.includes(a)))) err(`audiences must be a non-empty array of: ${AUDIENCES.join(", ")}`);
   if (m.specifications !== undefined && !isStrArray(m.specifications)) err("specifications must be an array of strings");
 

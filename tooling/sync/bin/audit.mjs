@@ -146,10 +146,18 @@ async function auditRepository(entry) {
   }
 
   // Presence checks only. A file existing is not a claim that it is good.
+  //
+  // An archived repository is exempt from CONTRIBUTING.md: the repository is
+  // frozen, so inviting contributions that cannot be accepted would be worse
+  // than the missing file. SECURITY.md and SUPPORT.md still apply, because a
+  // reader of frozen documentation may still need to report something.
+  const archived = record.lifecycle === 'archived';
   for (const file of GOVERNANCE) {
     const text = await rawFile(repository, record.commit, file).catch(() => null);
     record.governance[file] = text !== null;
-    if (text === null) record.problems.push(`missing ${file}`);
+    if (text === null && !(archived && file === 'CONTRIBUTING.md')) {
+      record.problems.push(`missing ${file}`);
+    }
   }
   for (const file of ['llms.txt', 'robots.txt', 'sitemap.xml']) {
     const text = await rawFile(repository, record.commit, file).catch(() => null);
