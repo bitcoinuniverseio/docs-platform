@@ -96,20 +96,44 @@ const monitored = products.filter((product) => product.statusEndpoints.length > 
 </StarlightPage>
 
 <script>
+  interface HealthRow {
+    lastSuccess?: unknown;
+    observedAt?: string;
+  }
+
+  interface HealthPayload {
+    ok?: boolean;
+    release?: string;
+    marketplaceProfile?: string;
+    readTraffic?: { ready?: boolean };
+    mutationTraffic?: { ready?: boolean; reasons?: string[] };
+    total?: number;
+    data?: HealthRow[];
+  }
+
   // Reads each declared public endpoint and renders what it says. Every failure
   // mode is rendered as a stated failure, never as a blank or a zero.
   const root = document.getElementById('status-root');
   if (root) {
-    const endpoints = JSON.parse(root.dataset.endpoints || '[]');
-    const pending = root.querySelector('.status-pending');
-    if (pending) pending.hidden = false;
+    const statusRoot = root;
+    const endpoints = JSON.parse(statusRoot.dataset.endpoints || '[]') as string[];
+    const pending = statusRoot.querySelector('.status-pending');
+    if (pending instanceof HTMLElement) pending.hidden = false;
 
-    const esc = (value) => String(value ?? '').replace(/[<>&"]/g, (c) =>
-      ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' })[c],
-    );
+    const htmlEscapes: Record<string, string> = {
+      '<': '&lt;',
+      '>': '&gt;',
+      '&': '&amp;',
+      '"': '&quot;',
+    };
+    const esc = (value: unknown) =>
+      String(value ?? '').replace(
+        /[<>&"]/g,
+        (character) => htmlEscapes[character] ?? character,
+      );
 
-    function renderHealth(url, data) {
-      const rows = [];
+    function renderHealth(data: HealthPayload): Array<[string, string]> {
+      const rows: Array<[string, string]> = [];
       if (typeof data.ok === 'boolean') {
         rows.push(['Service healthy', data.ok ? 'yes' : 'no']);
       }
@@ -124,7 +148,7 @@ const monitored = products.filter((product) => product.statusEndpoints.length > 
         }
       }
       if (typeof data.total === 'number' && Array.isArray(data.data)) {
-        const counts = data.data.reduce((acc, row) => {
+        const counts = data.data.reduce<Record<string, number>>((acc, row) => {
           const key = row.lastSuccess ? 'reporting' : 'not reporting';
           acc[key] = (acc[key] || 0) + 1;
           return acc;
@@ -139,14 +163,14 @@ const monitored = products.filter((product) => product.statusEndpoints.length > 
           .filter(Boolean)
           .sort();
         if (observed.length) {
-          rows.push(['Most recent index observation', observed[observed.length - 1]]);
+          rows.push(['Most recent index observation', observed.at(-1) ?? 'unknown']);
         }
       }
       return rows;
     }
 
-    async function load() {
-      const parts = [];
+    async function load(): Promise<void> {
+      const parts: string[] = [];
       for (const url of endpoints) {
         try {
           const response = await fetch(url, { headers: { accept: 'application/json' } });
@@ -156,23 +180,24 @@ const monitored = products.filter((product) => product.statusEndpoints.length > 
             );
             continue;
           }
-          const data = await response.json();
-          const rows = renderHealth(url, data);
+          const data = (await response.json()) as HealthPayload;
+          const rows = renderHealth(data);
           parts.push(
             `<h3><code>${esc(url)}</code></h3><div class="scroll-x"><table><tbody>${rows
               .map(([k, v]) => `<tr><th scope="row">${esc(k)}</th><td>${esc(v)}</td></tr>`)
               .join('')}</tbody></table></div>`,
           );
-        } catch (error) {
+        } catch (error: unknown) {
+          const message = error instanceof Error ? error.message : String(error);
           parts.push(
-            `<h3><code>${esc(url)}</code></h3><p class="status-bad">Could not be read from your browser: ${esc(error.message)}. This may be a network or CORS restriction rather than an outage. Open the endpoint directly to check.</p>`,
+            `<h3><code>${esc(url)}</code></h3><p class="status-bad">Could not be read from your browser: ${esc(message)}. This may be a network or CORS restriction rather than an outage. Open the endpoint directly to check.</p>`,
           );
         }
       }
-      root.innerHTML = parts.join('') || '<p>No public status endpoints are declared.</p>';
+      statusRoot.innerHTML = parts.join('') || '<p>No public status endpoints are declared.</p>';
     }
 
-    load();
+    void load();
   }
 </script>
 

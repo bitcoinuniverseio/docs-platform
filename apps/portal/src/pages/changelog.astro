@@ -29,7 +29,7 @@ const documentationMoves = repos
 
 const generated = new Date(health.generatedAt).toISOString().slice(0, 10);
 
-function day(value) {
+function day(value: string | null | undefined) {
   return value ? value.slice(0, 10) : 'unknown';
 }
 ---

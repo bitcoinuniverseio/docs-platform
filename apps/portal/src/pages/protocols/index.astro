@@ -4,6 +4,7 @@
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import { Aside } from '@astrojs/starlight/components';
 import { protocols, chains, provenance, AVAILABILITY_LABELS } from '@universe/ecosystem-registry';
+import type { Protocol } from '@universe/ecosystem-registry';
 import { withBase } from '../../lib/paths';
 
 const shortCommit = provenance.sourceCommit.slice(0, 12);
@@ -15,7 +16,7 @@ const byChain = chains.map((chain) => ({
     .sort((a, b) => a.name.localeCompare(b.name)),
 }));
 
-function supportCell(protocol) {
+function supportCell(protocol: Protocol) {
   if (!protocol.marketplace) {
     return protocol.universeImplementation ? 'Indexed, no trade path' : 'Documented only';
   }

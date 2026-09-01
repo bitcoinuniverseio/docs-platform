@@ -10,9 +10,11 @@ import { Aside } from '@astrojs/starlight/components';
 import health from '@universe/ecosystem-registry/data/docs-health.json' with { type: 'json' };
 import { withBase } from '../../lib/paths';
 
+type HealthRecord = (typeof health.repositories)[number];
+
 const repositories = [...health.repositories].sort((a, b) => {
   // Problems first: this page is a work list, not a scoreboard.
-  const score = (r) => (r.manifest.valid ? 2 : r.manifest.present ? 1 : 0);
+  const score = (r: HealthRecord) => (r.manifest.valid ? 2 : r.manifest.present ? 1 : 0);
   return score(a) - score(b) || a.repository.localeCompare(b.repository);
 });
 
@@ -20,7 +22,7 @@ const notIngestable = repositories.filter((r) => !r.manifest.valid);
 const ingestable = repositories.filter((r) => r.manifest.valid);
 const generated = new Date(health.generatedAt).toISOString().slice(0, 10);
 
-function governanceSummary(record) {
+function governanceSummary(record: HealthRecord) {
   const files = Object.entries(record.governance);
   const missing = files.filter(([, present]) => !present).map(([file]) => file);
   if (files.length === 0) return 'not checked';
