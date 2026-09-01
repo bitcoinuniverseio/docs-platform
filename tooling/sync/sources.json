@@ -1,43 +1,165 @@
 {
   "description": "Registry of every repository the portal ingests. sync.mjs lock resolves each sourceRef to an exact commit and validates its docs.manifest.json before anything is published.",
   "sources": [
-    { "repository": "bitcoinuniverseio/docs-wallet", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/docs-core", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/docs-inscribe", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/docs-stampdex", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/docs-zerdinals-and-zrunes", "sourceRef": "develop" },
-    { "repository": "bitcoinuniverseio/forked-felines-docs", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/drops-protocol-docs", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/op-drop", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/brc-20", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/runes", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/src-20", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/alkanes", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/atomicals-and-arc-20", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/tap", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/tap-on-doge", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/block-20", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/dust-20", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/op-return", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/src-101", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/mezcal", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/ordex", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/chainbloom", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/witness-circles", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/tandem", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/patina", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/sentry", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/bitcoin-indexer", "sourceRef": "develop" },
-    { "repository": "bitcoinuniverseio/ord-dogecoin", "sourceRef": "develop" },
-    { "repository": "bitcoinuniverseio/btc_stamps", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/mempool", "sourceRef": "develop" },
-    { "repository": "bitcoinuniverseio/stampchain.io", "sourceRef": "dev" },
-    { "repository": "bitcoinuniverseio/alkanes-rs", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/index-witness-circles", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/index-tandem", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/tandem-verifier-rs", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/index-patina", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/universe-ci-actions", "sourceRef": "main" },
-    { "repository": "bitcoinuniverseio/docs-index-doge-tap", "sourceRef": "main" }
+    {
+      "repository": "bitcoinuniverseio/.github",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/docs-platform",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/docs-wallet",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/docs-core",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/docs-inscribe",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/docs-stampdex",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/docs-zerdinals-and-zrunes",
+      "sourceRef": "develop"
+    },
+    {
+      "repository": "bitcoinuniverseio/forked-felines-docs",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/drops-protocol-docs",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/op-drop",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/brc-20",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/runes",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/src-20",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/alkanes",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/atomicals-and-arc-20",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/tap",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/tap-on-doge",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/block-20",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/dust-20",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/op-return",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/src-101",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/mezcal",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/ordex",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/chainbloom",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/witness-circles",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/tandem",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/patina",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/sentry",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/bitcoin-indexer",
+      "sourceRef": "develop"
+    },
+    {
+      "repository": "bitcoinuniverseio/ord-dogecoin",
+      "sourceRef": "develop"
+    },
+    {
+      "repository": "bitcoinuniverseio/btc_stamps",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/mempool",
+      "sourceRef": "develop"
+    },
+    {
+      "repository": "bitcoinuniverseio/stampchain.io",
+      "sourceRef": "dev"
+    },
+    {
+      "repository": "bitcoinuniverseio/alkanes-rs",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/index-witness-circles",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/index-tandem",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/tandem-verifier-rs",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/index-patina",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/universe-ci-actions",
+      "sourceRef": "main"
+    },
+    {
+      "repository": "bitcoinuniverseio/docs-index-doge-tap",
+      "sourceRef": "main"
+    }
   ]
 }

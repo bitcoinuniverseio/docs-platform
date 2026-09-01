@@ -682,6 +682,30 @@
       "universeImplementation": "bitcoinuniverseio/ord-dogecoin"
     },
     {
+      "id": "dunes",
+      "capabilityId": null,
+      "name": "Dunes",
+      "chain": "dogecoin",
+      "carrier": "OP_RETURN dunestone",
+      "family": "op-return",
+      "origin": {
+        "kind": "external",
+        "creator": "The Dogecoin dunes community",
+        "year": 2024,
+        "note": "The Runes design applied to Dogecoin. A dunestone carries the same shape as a runestone: edicts, an optional etching, an optional pointer, and a cenotaph flag for a malformed message."
+      },
+      "purpose": "UTXO-native fungible tokens on Dogecoin, encoded as a dunestone in an OP_RETURN output. Balances live in transaction outputs and move by ordinary spending, with etching, minting, and edicts in a single data output.",
+      "operations": [
+        "etch",
+        "mint",
+        "transfer"
+      ],
+      "repository": null,
+      "documentationSite": null,
+      "specificationHome": "bitcoinuniverseio/ord-dogecoin",
+      "universeImplementation": "bitcoinuniverseio/ord-dogecoin"
+    },
+    {
       "id": "cat20",
       "capabilityId": "cat20",
       "name": "CAT-20",
@@ -870,18 +894,20 @@
       "capabilityId": null,
       "name": "Tandem",
       "chain": "bitcoin",
-      "carrier": "Paired transaction commitments",
-      "family": "pairing",
+      "carrier": "An exact 20,000 satoshi native SegWit 2-of-2 P2WSH output",
+      "family": "joint-custody",
       "origin": {
         "kind": "universe-original",
         "creator": "Bitcoin Universe",
         "year": 2025
       },
-      "purpose": "Records whose validity depends on a matched pair of transactions, giving a two-sided commitment primitive with an independent verifier.",
+      "purpose": "An object two people create and hold together. The active object is an exact 2-of-2 output, so both current keys are required for any cooperative action: adding a chapter, rotating one or both keys, or closing. If collaboration stops, a recovery transaction prepared in advance becomes usable once its relative lock matures.",
       "operations": [
-        "propose",
-        "pair",
-        "verify"
+        "open",
+        "chapter",
+        "rotate",
+        "close",
+        "recover"
       ],
       "repository": "bitcoinuniverseio/tandem",
       "documentationSite": "https://bitcoinuniverseio.github.io/tandem/",
