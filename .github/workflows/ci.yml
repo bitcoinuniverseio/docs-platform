@@ -33,6 +33,10 @@ jobs:
       - name: Sitemap exists
         run: test -f apps/portal/dist/sitemap-index.xml
       - name: Install a browser for the accessibility audit
-        run: npx playwright install --with-deps chromium
+        # The approved Ultra image already carries Chromium's Linux libraries.
+        # Invoke the workspace-pinned Playwright package and download only the
+        # browser, so CI never asks for passwordless sudo or pulls an unpinned
+        # package through npx.
+        run: pnpm --filter @universe/docs-quality exec playwright install chromium
       - name: Accessibility and sideways scroll, every page, both themes
         run: node packages/docs-quality/bin/check-accessibility.mjs --dist apps/portal/dist
