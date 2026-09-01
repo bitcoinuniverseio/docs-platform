@@ -122,23 +122,76 @@ const factIndex = {
     <li>Anything not published. It abstains rather than guessing.</li>
   </ul>
 
-  <script type="application/json" id="ask-facts" set:html={JSON.stringify(factIndex)}></script>
+  <script is:inline type="application/json" id="ask-facts" set:html={JSON.stringify(factIndex)}></script>
 </StarlightPage>
 
 <script>
-  const facts = JSON.parse(document.getElementById('ask-facts').textContent);
+  interface ProtocolFact {
+    id: string;
+    name: string;
+    aliases: string[];
+    chain: string;
+    carrier: string;
+    purpose: string;
+    operations: string[];
+    site: string | null;
+    url: string;
+    availability: string | null;
+    surfaces: Array<{ label: string; actions: string[] }>;
+    unsupported: Array<{ action: string; reason: string }>;
+  }
+
+  interface AskFacts {
+    provenance: { repository: string; commit: string; short: string };
+    protocols: ProtocolFact[];
+  }
+
+  interface Answer {
+    heading: string;
+    body: string;
+  }
+
+  interface PagefindResultData {
+    url: string;
+    excerpt: string;
+    meta?: { title?: string };
+  }
+
+  interface PagefindResult {
+    data(): Promise<PagefindResultData>;
+  }
+
+  interface PagefindApi {
+    options(options: { baseUrl: string }): Promise<void>;
+    search(query: string): Promise<{ results: PagefindResult[] }>;
+  }
+
+  const factsElement = document.getElementById('ask-facts');
   const form = document.getElementById('ask-form');
   const input = document.getElementById('ask-input');
   const out = document.getElementById('ask-answer');
+  if (!(factsElement instanceof HTMLScriptElement)) throw new Error('Ask facts are unavailable');
+  if (!(form instanceof HTMLFormElement)) throw new Error('Ask form is unavailable');
+  if (!(input instanceof HTMLInputElement)) throw new Error('Ask input is unavailable');
+  if (!(out instanceof HTMLElement)) throw new Error('Ask output is unavailable');
+
+  const answerOut = out;
+  const facts = JSON.parse(factsElement.textContent ?? '{}') as AskFacts;
   const base = document.querySelector('base')?.getAttribute('href') ?? '/';
 
-  const esc = (v) =>
-    String(v ?? '').replace(/[<>&"]/g, (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' })[c]);
+  const HTML_ESCAPES: Record<string, string> = {
+    '<': '&lt;',
+    '>': '&gt;',
+    '&': '&amp;',
+    '"': '&quot;',
+  };
+  const esc = (value: unknown) =>
+    String(value ?? '').replace(/[<>&"]/g, (character) => HTML_ESCAPES[character] ?? character);
 
-  const href = (p) => (base.endsWith('/') ? base.slice(0, -1) : base) + p;
+  const href = (path: string) => (base.endsWith('/') ? base.slice(0, -1) : base) + path;
 
   // Action words a reader might use, mapped to the registry's action names.
-  const ACTION_WORDS = {
+  const ACTION_WORDS: Record<string, string> = {
     buy: 'buy', purchase: 'buy', bid: 'make-offer', offer: 'make-offer',
     sell: 'sell', list: 'list', listing: 'list', delist: 'unlist', unlist: 'unlist',
     cancel: 'unlist', settle: 'settle', trade: 'buy', swap: 'buy',
@@ -146,9 +199,9 @@ const factIndex = {
     transfer: 'transfer', send: 'transfer', create: 'mint',
   };
 
-  function findProtocol(q) {
+  function findProtocol(q: string): ProtocolFact | null {
     const words = q.split(/[^a-z0-9-]+/).filter(Boolean);
-    let best = null;
+    let best: { p: ProtocolFact; score: number } | null = null;
     for (const p of facts.protocols) {
       const names = [p.id, p.name.toLowerCase(), ...(p.aliases ?? [])].map((n) => n.toLowerCase());
       for (const n of names) {
@@ -163,19 +216,19 @@ const factIndex = {
     return best?.p ?? null;
   }
 
-  function findAction(q) {
+  function findAction(q: string): string | null {
     for (const word of q.split(/[^a-z-]+/).filter(Boolean)) {
       if (ACTION_WORDS[word]) return ACTION_WORDS[word];
     }
     return null;
   }
 
-  function citation(text, url) {
+  function citation(text: string, url: string): string {
     return `<p class="ask-cite">Source: <a href="${esc(url)}">${esc(text)}</a>, generated from <code>${esc(facts.provenance.repository)}</code> at <code>${esc(facts.provenance.short)}</code>.</p>`;
   }
 
   // Layer 1: exact answers from the registry.
-  function structuredAnswer(q) {
+  function structuredAnswer(q: string): Answer | null {
     const protocol = findProtocol(q);
     if (!protocol) return null;
     const action = findAction(q);
@@ -227,9 +280,11 @@ const factIndex = {
   }
 
   // Layer 2: the local Pagefind index that backs site search.
-  async function searchAnswer(q) {
+  async function searchAnswer(q: string): Promise<Answer | null> {
     try {
-      const pagefind = await import(/* @vite-ignore */ href('/pagefind/pagefind.js'));
+      const pagefind = (await import(
+        /* @vite-ignore */ href('/pagefind/pagefind.js')
+      )) as unknown as PagefindApi;
       await pagefind.options({ baseUrl: base });
       const search = await pagefind.search(q);
       const results = await Promise.all(search.results.slice(0, 4).map((r) => r.data()));
@@ -249,7 +304,7 @@ const factIndex = {
     }
   }
 
-  function abstain(q) {
+  function abstain(): Answer {
     return {
       heading: 'Nothing published answers that',
       body:
@@ -258,24 +313,24 @@ const factIndex = {
     };
   }
 
-  function render(answer, question) {
-    out.innerHTML =
+  function render(answer: Answer, question: string): void {
+    answerOut.innerHTML =
       `<section class="ask-result"><h2>${answer.heading}</h2>${answer.body}` +
       `<p class="ask-asked">You asked: ${esc(question)}</p></section>`;
   }
 
-  form.addEventListener('submit', async (event) => {
+  form.addEventListener('submit', async (event: SubmitEvent) => {
     event.preventDefault();
     const question = input.value.trim();
     if (!question) return;
-    out.innerHTML = '<p class="ask-working">Looking through published documentation.</p>';
+    answerOut.innerHTML = '<p class="ask-working">Looking through published documentation.</p>';
     const q = question.toLowerCase();
 
     const structured = structuredAnswer(q);
     if (structured) return render(structured, question);
 
     const found = await searchAnswer(question);
-    render(found ?? abstain(question), question);
+    render(found ?? abstain(), question);
   });
 </script>
 

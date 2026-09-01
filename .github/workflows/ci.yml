@@ -24,6 +24,8 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Workspace tests (manifest validator, sync registry)
         run: pnpm test
+      - name: Typecheck the workspace
+        run: pnpm typecheck
       - name: Build the portal (validates every internal link and anchor)
         run: pnpm --filter @universe/docs-portal build
       - name: Search index exists
