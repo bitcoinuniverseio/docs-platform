@@ -5,10 +5,11 @@
 // on their subject and this portal is a discovery layer over them.
 import type { APIRoute } from 'astro';
 import { protocols, products, chains, provenance } from '@universe/ecosystem-registry';
+import { siteOrigin, withBase } from '../lib/paths';
 
-const SITE = 'https://docs.bitcoinuniverse.io';
-
-export const GET: APIRoute = () => {
+export const GET: APIRoute = ({ site }) => {
+  // Absolute URLs must match the origin this build is actually served from.
+  const SITE = siteOrigin(site) + withBase('');
   const lines: string[] = [];
 
   lines.push('# Bitcoin Universe Documentation');

@@ -10,6 +10,7 @@ import {
   protocolsForProduct,
   getChain,
 } from '@universe/ecosystem-registry';
+import { withBase } from '../../lib/paths';
 
 export function getStaticPaths() {
   return products.map((product) => ({
@@ -94,7 +95,7 @@ const shortCommit = provenance.sourceCommit.slice(0, 12);
               {supported.map(({ protocol, actions }) => (
                 <tr>
                   <th scope="row">
-                    <a href={`/protocols/${protocol.id}/`}>{protocol.name}</a>
+                    <a href={withBase(`/protocols/${protocol.id}/`)}>{protocol.name}</a>
                   </th>
                   <td>{actions.join(', ')}</td>
                 </tr>
@@ -135,7 +136,7 @@ const shortCommit = provenance.sourceCommit.slice(0, 12);
           ))}
         </ul>
         <p>
-          Read <a href="/status/">how to read our status</a> before drawing conclusions from a
+          Read <a href={withBase("/status/")}>how to read our status</a> before drawing conclusions from a
           health response.
         </p>
       </>
