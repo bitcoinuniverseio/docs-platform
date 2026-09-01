@@ -2,6 +2,24 @@
   "schemaVersion": 1,
   "generatedBy": "tooling/sync/bin/sync.mjs",
   "sources": {
+    "bitcoinuniverseio/.github": {
+      "sourceRef": "main",
+      "commit": "6d5d4a30d4eee9b5eb5a23089b5e2b060e52770e",
+      "commitTimestamp": "2026-09-01T12:53:24Z",
+      "manifestSha256": "99e6278f5bfdfcb7a302cb844c0cd6418eacb5405a4c3ca7ab0209a7677079fb",
+      "manifestId": "org-profile",
+      "lifecycle": "stable",
+      "docsRoot": "."
+    },
+    "bitcoinuniverseio/docs-platform": {
+      "sourceRef": "main",
+      "commit": "a59f07fba42c0aada4555e26d7d7c442f61acfb1",
+      "commitTimestamp": "2026-09-01T13:06:47Z",
+      "manifestSha256": "bbacdc85d8b93a6d9057556da4de5919d4c23717d6736295dd95879b3d033969",
+      "manifestId": "docs-platform",
+      "lifecycle": "stable",
+      "docsRoot": "apps/portal/src/content/docs"
+    },
     "bitcoinuniverseio/docs-wallet": {
       "sourceRef": "main",
       "commit": "8588aceaa0bdf1592a44dd9251081a9adde89633",
@@ -13,8 +31,8 @@
     },
     "bitcoinuniverseio/docs-core": {
       "sourceRef": "main",
-      "commit": "750b4575c6d32c0e2970e4613091bfa05f979151",
-      "commitTimestamp": "2026-09-01T12:02:54Z",
+      "commit": "f4ff050a4ec3474097a815b361939da6d01c796d",
+      "commitTimestamp": "2026-09-01T12:40:10Z",
       "manifestSha256": "a7bf0d4f34f210722ee09cd3d4ecddc509a2458d7b2e3e4c5506828c5eeeebe9",
       "manifestId": "docs-core",
       "lifecycle": "experimental",
@@ -22,17 +40,17 @@
     },
     "bitcoinuniverseio/docs-inscribe": {
       "sourceRef": "main",
-      "commit": "4cc44c207133e3139c0df096c17a79cd62cd9a0b",
-      "commitTimestamp": "2026-09-01T11:27:46Z",
-      "manifestSha256": "62de222796702681ef28ac576d38f74cd1d5ce60055066682fbb3388ea33a61d",
+      "commit": "35ea0db52afc12c1da5b3ee5a21db2d24e31bbc0",
+      "commitTimestamp": "2026-09-01T13:14:58Z",
+      "manifestSha256": "7757eea63c8668349ffe2122da701c3c94e8065261bf193c576c62d25112d774",
       "manifestId": "docs-inscribe",
       "lifecycle": "stable",
-      "docsRoot": "."
+      "docsRoot": "src/content/docs"
     },
     "bitcoinuniverseio/docs-stampdex": {
       "sourceRef": "main",
-      "commit": "9fed5ac0f4074a1d88700e882f39278b1622ba53",
-      "commitTimestamp": "2026-09-01T12:11:54Z",
+      "commit": "acb076c1090e721dde61b71188ae1b6cabf34eb7",
+      "commitTimestamp": "2026-09-01T12:53:35Z",
       "manifestSha256": "482f39c8863cc79f008faa2e268197423fbf25de127fe5fe4e76c4419497ad14",
       "manifestId": "docs-stampdex",
       "lifecycle": "stable",
@@ -58,9 +76,9 @@
     },
     "bitcoinuniverseio/drops-protocol-docs": {
       "sourceRef": "main",
-      "commit": "2d7601b028742db17be77c40edc7ab07f56a745c",
-      "commitTimestamp": "2026-09-01T12:14:55Z",
-      "manifestSha256": "88c6e24962bba144e053777825ac4590e714830c75fd05b4a219e258e4ce32e1",
+      "commit": "0bca9b49d0dfd0cc912221204475902a405898e6",
+      "commitTimestamp": "2026-09-01T12:22:18Z",
+      "manifestSha256": "a9a2f58cce45af64c9f89407134f9ee5e7f5f189f9ff1c0ff45b4658c2092b09",
       "manifestId": "drops-protocol-docs",
       "lifecycle": "stable",
       "docsRoot": "."
@@ -211,9 +229,9 @@
     },
     "bitcoinuniverseio/tandem": {
       "sourceRef": "main",
-      "commit": "af523e21e6232611a9605e46e1782da66579f357",
-      "commitTimestamp": "2026-09-01T02:30:06Z",
-      "manifestSha256": "0d4a44db8f86a3f7d47194b6fbaa5b2cc0d8e031a102de5a1fd4f1b8b5ff7cf5",
+      "commit": "693a9f12c58997e51cb0f37618d2225974a02c24",
+      "commitTimestamp": "2026-09-01T12:54:23Z",
+      "manifestSha256": "397c7598faafe0bf93c3244a8598891a422099458ae63a7474a0d876b6585cbc",
       "manifestId": "tandem",
       "lifecycle": "experimental",
       "docsRoot": "docs"
@@ -229,36 +247,36 @@
     },
     "bitcoinuniverseio/sentry": {
       "sourceRef": "main",
-      "commit": "47cc0884bc489cec700f167aa71dbbb7ebc722a7",
-      "commitTimestamp": "2026-09-01T11:25:55Z",
-      "manifestSha256": "c35cbff9280f7c34394e8e5a0c71ebdc63d2d1b87a320932316f761a2c2f7ba3",
+      "commit": "8afcaf65e1a5e79cb34750d929b80ac55d70c7a5",
+      "commitTimestamp": "2026-09-01T12:33:41Z",
+      "manifestSha256": "27223d5fb8915afa74c3388f67bfc8dcbe35dc752bb3b949e1fe39d8778818ac",
       "manifestId": "sentry",
       "lifecycle": "archived",
       "docsRoot": "."
     },
     "bitcoinuniverseio/bitcoin-indexer": {
       "sourceRef": "develop",
-      "commit": "43830dba90812a5805ec519c3f7eaf567a9e3511",
-      "commitTimestamp": "2026-09-01T11:37:44Z",
-      "manifestSha256": "4bfbf0bbe097b0c52af66c75caa283a13ef9ec9e452cad1a699a0c962d2640fe",
+      "commit": "5b3b8262d42a628ff92cc8c138d88e5ff2894a7d",
+      "commitTimestamp": "2026-09-01T12:46:41Z",
+      "manifestSha256": "32d7ea87ba25b29e350c53d473847f57097eb37cfaaa853c8f7a8ca2ea56b22f",
       "manifestId": "bitcoin-indexer",
       "lifecycle": "experimental",
-      "docsRoot": "."
+      "docsRoot": "docs"
     },
     "bitcoinuniverseio/ord-dogecoin": {
       "sourceRef": "develop",
-      "commit": "6db7d23083f4e28df6469c51739748dae24751f2",
-      "commitTimestamp": "2026-09-01T12:03:16Z",
-      "manifestSha256": "66620140be7954b3dbf93c6c89bac8b8d9ca8f54405a7eda613c5f2975c94c10",
+      "commit": "318121894aa48d8ae26cffb601628613dc3de861",
+      "commitTimestamp": "2026-09-01T12:30:21Z",
+      "manifestSha256": "c8b6f973dd5c00546ecaeefce5cc756c77a6a9375d7140b2ef473927b5278772",
       "manifestId": "ord-dogecoin",
       "lifecycle": "experimental",
       "docsRoot": "docs"
     },
     "bitcoinuniverseio/btc_stamps": {
       "sourceRef": "main",
-      "commit": "4ee875d5f83bf7cfecd19caa350a7fd5b48fcd3a",
-      "commitTimestamp": "2026-09-01T11:37:39Z",
-      "manifestSha256": "4daf4283ecc87ceb0a70178eab9ae5f31e106c33426c8e67faf0d021cda47716",
+      "commit": "b5f0184cdb26104b69badc253eacf8e71fd72aa0",
+      "commitTimestamp": "2026-09-01T12:38:28Z",
+      "manifestSha256": "7922efa88260f15f5b13cf82782c1aff04e5b16abf384b792dbc5a476de867f8",
       "manifestId": "btc-stamps",
       "lifecycle": "experimental",
       "docsRoot": "docs"
@@ -274,9 +292,9 @@
     },
     "bitcoinuniverseio/stampchain.io": {
       "sourceRef": "dev",
-      "commit": "dcd1c649c035978468c21241b06cd9ad4ac77081",
-      "commitTimestamp": "2026-09-01T11:27:29Z",
-      "manifestSha256": "bae54be4918e8b29246e58ed43209760cd654843a769521e9adeb7f180a8e2d5",
+      "commit": "4caf990e40a9b6f32e9ef8e883ffd68f616ab8bb",
+      "commitTimestamp": "2026-09-01T13:06:23Z",
+      "manifestSha256": "997db94f32b030eb8ce0a8e5bc282700afd0cb4202fe8101e7f9239e3830a40e",
       "manifestId": "stampchain-io",
       "lifecycle": "experimental",
       "docsRoot": "docs"
@@ -319,27 +337,27 @@
     },
     "bitcoinuniverseio/index-patina": {
       "sourceRef": "main",
-      "commit": "fa1e2e02bbd8d1b69f8b9ca7bb3d3aaafed262c2",
-      "commitTimestamp": "2026-09-01T11:37:34Z",
-      "manifestSha256": "f9c94f978b059515f52fa1b1458f854ccd068665602f93f15a82f98114a85f4d",
+      "commit": "5a86dbccf2c247d598bfad717427d4d248d3f093",
+      "commitTimestamp": "2026-09-01T12:40:52Z",
+      "manifestSha256": "d2964fa1b032634032b71d1236dc78017b4a8b4b2532147b9384366360522ed0",
       "manifestId": "index-patina",
       "lifecycle": "stable",
       "docsRoot": "docs"
     },
     "bitcoinuniverseio/universe-ci-actions": {
       "sourceRef": "main",
-      "commit": "8f98110ebf947e07907e51c871718e41bfe139ff",
-      "commitTimestamp": "2026-09-01T11:30:50Z",
-      "manifestSha256": "ff4a4090dde2bd7ea6ce59a1a1cbef7a2a95017a79dbbfbe8df6777b1e36e0f2",
+      "commit": "e116e0948463962144af52550923e4e2a3c7b14a",
+      "commitTimestamp": "2026-09-01T12:53:41Z",
+      "manifestSha256": "683558cbb93604126bb57e10c3160c0d23fded6116f24aa724206be1cfb7c3cd",
       "manifestId": "universe-ci-actions",
       "lifecycle": "stable",
       "docsRoot": "."
     },
     "bitcoinuniverseio/docs-index-doge-tap": {
       "sourceRef": "main",
-      "commit": "23bff76eb0e96cc9b5fd9133204ed92001d903ca",
-      "commitTimestamp": "2026-09-01T11:25:58Z",
-      "manifestSha256": "fa7c5e5134d2e1ca1ddeb69bc376dfa93f9d543dd71b8ad8eb90b430b0b71c2d",
+      "commit": "8b16ca60692759bc615b72901fa20bb94d419cc7",
+      "commitTimestamp": "2026-09-01T12:41:00Z",
+      "manifestSha256": "9a345d5e2a1be95040f9d9cf07a55458930b1ecbd2106fe2de614551d651eb04",
       "manifestId": "docs-index-doge-tap",
       "lifecycle": "archived",
       "docsRoot": "."
