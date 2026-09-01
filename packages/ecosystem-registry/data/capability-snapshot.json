@@ -1,0 +1,4346 @@
+{
+  "$schema": "./capability-snapshot.schema.json",
+  "description": "Protocol capability truth for Bitcoin Universe applications, generated from the Core protocol registry. Support recorded here is what the product code implements; it is not a promise that a protocol is enabled in production, which the status pages report separately.",
+  "provenance": {
+    "repository": "bitcoinuniverseio/core",
+    "sourcePath": "backend/packages/ecosystem-contracts/lib/protocols.js",
+    "sourceCommit": "15dd03b5986a0a7ceba2b1a1ed30f3888ae4712c",
+    "registryCommit": "822a171da78312128e64c8156f0c6af46fb52b3b",
+    "registryCommittedAt": "2026-08-31T08:40:37Z",
+    "generatedBy": "packages/ecosystem-registry/bin/generate-capability-snapshot.mjs"
+  },
+  "counts": {
+    "protocols": 38,
+    "marketplaceProtocols": 29
+  },
+  "protocols": {
+    "bitcoin": {
+      "id": "bitcoin",
+      "displayName": "Bitcoin",
+      "aliases": [
+        "btc"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "utxo",
+      "decimals": "none",
+      "addressRoles": [
+        "payment",
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive",
+            "split",
+            "combine"
+          ]
+        }
+      },
+      "marketplace": null,
+      "sourceOfTruth": null,
+      "indexer": null,
+      "freshness": null,
+      "confirmation": null,
+      "reorg": null
+    },
+    "stamps": {
+      "id": "stamps",
+      "displayName": "Bitcoin Stamps",
+      "aliases": [
+        "stamp",
+        "btc-stamps"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "utxo",
+      "decimals": "none",
+      "addressRoles": [
+        "payment"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "inscribe",
+            "transfer"
+          ]
+        },
+        "stampdex": {
+          "label": "StampDEX",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction",
+            "list",
+            "unlist",
+            "buy"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "stampdex",
+        "availability": "enabled",
+        "mode": "external-execution",
+        "featureGate": null,
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "external-execution"
+            },
+            {
+              "action": "view-collection",
+              "mode": "external-execution"
+            },
+            {
+              "action": "view-activity",
+              "mode": "external-execution"
+            },
+            {
+              "action": "list",
+              "mode": "external-execution"
+            },
+            {
+              "action": "unlist",
+              "mode": "external-execution"
+            },
+            {
+              "action": "buy",
+              "mode": "external-execution"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "update-listing",
+              "reason": "Bitcoin Stamps listings must be cancelled and relisted; no atomic listing update is implemented."
+            },
+            {
+              "action": "make-offer",
+              "reason": "Bitcoin Stamps has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "accept-offer",
+              "reason": "Bitcoin Stamps has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "cancel-offer",
+              "reason": "Bitcoin Stamps has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "sell",
+              "reason": "Bitcoin Stamps has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "settle",
+              "reason": "Bitcoin Stamps has no executable settle authority on this marketplace surface."
+            },
+            {
+              "action": "reconcile",
+              "reason": "Bitcoin Stamps has no executable reconcile authority on this marketplace surface."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "StampDEX Counterparty dispenser order book",
+        "ownership": "StampDEX/Counterparty indexer-backed compose validation plus wallet PSBT signatures",
+        "settlement": "StampDEX Counterparty dispense composition and Bitcoin broadcast",
+        "protocolState": "StampDEX and Stampchain"
+      },
+      "indexer": {
+        "primary": "StampDEX and Stampchain",
+        "fallbacks": [
+          "OpenStamp for reference metadata"
+        ],
+        "mutationGate": "Universe allowlists and validates the exact proxy route/body; StampDEX/Counterparty validates dispenser state. Universe does not compare provider and Bitcoin tips."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "Universe does not enforce a StampDEX-versus-chain lag threshold."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": null,
+        "policy": "Confirmation policy is delegated to StampDEX/Counterparty."
+      },
+      "reorg": {
+        "automaticReconciliation": false,
+        "policy": "Universe relies on StampDEX/Counterparty state and has no local rollback worker."
+      }
+    },
+    "src20": {
+      "id": "src20",
+      "displayName": "SRC-20",
+      "aliases": [
+        "src-20"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "balance",
+      "decimals": "asset-defined",
+      "addressRoles": [
+        "payment",
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "deploy",
+            "mint",
+            "transfer"
+          ]
+        },
+        "stampdex": {
+          "label": "StampDEX",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction",
+            "list",
+            "unlist",
+            "buy",
+            "cancel-offer",
+            "settle"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "stampdex",
+        "availability": "enabled",
+        "mode": "external-execution",
+        "featureGate": null,
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "external-execution"
+            },
+            {
+              "action": "view-collection",
+              "mode": "external-execution"
+            },
+            {
+              "action": "view-activity",
+              "mode": "external-execution"
+            },
+            {
+              "action": "list",
+              "mode": "external-execution"
+            },
+            {
+              "action": "unlist",
+              "mode": "external-execution"
+            },
+            {
+              "action": "buy",
+              "mode": "external-execution"
+            },
+            {
+              "action": "cancel-offer",
+              "mode": "external-execution"
+            },
+            {
+              "action": "settle",
+              "mode": "external-execution"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "update-listing",
+              "reason": "SRC-20 listings must be cancelled and relisted; no atomic listing update is implemented."
+            },
+            {
+              "action": "make-offer",
+              "reason": "SRC-20 has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "accept-offer",
+              "reason": "SRC-20 has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "sell",
+              "reason": "SRC-20 has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "reconcile",
+              "reason": "SRC-20 has no executable reconcile authority on this marketplace surface."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "StampDEX SRC-20 order book",
+        "ownership": "StampDEX one-time action challenge, seller listing PSBT, and indexed SRC-20 collateral checks",
+        "settlement": "StampDEX fill/confirm endpoints plus wallet Bitcoin broadcast",
+        "protocolState": "StampDEX"
+      },
+      "indexer": {
+        "primary": "StampDEX",
+        "fallbacks": [
+          "Stampchain activity",
+          "OpenStamp mint/deploy reference data"
+        ],
+        "mutationGate": "Universe allowlists and validates the exact proxy route/body/challenge headers; StampDEX rechecks indexed collateral before fill. Universe does not compare provider and Bitcoin tips."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "Universe does not enforce a StampDEX-versus-chain lag threshold."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": null,
+        "policy": "Confirmation policy is delegated to the StampDEX fill workflow."
+      },
+      "reorg": {
+        "automaticReconciliation": false,
+        "policy": "Universe retains broadcast receipts but delegates chain reconciliation to StampDEX."
+      }
+    },
+    "src101": {
+      "id": "src101",
+      "displayName": "SRC-101",
+      "aliases": [
+        "src-101"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "hybrid",
+      "decimals": "none",
+      "addressRoles": [
+        "payment",
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "mint",
+            "transfer"
+          ]
+        }
+      },
+      "marketplace": null,
+      "sourceOfTruth": null,
+      "indexer": null,
+      "freshness": null,
+      "confirmation": null,
+      "reorg": null
+    },
+    "ordinals": {
+      "id": "ordinals",
+      "displayName": "Ordinals",
+      "aliases": [
+        "ordinal",
+        "inscriptions",
+        "inscription"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "utxo",
+      "decimals": "none",
+      "addressRoles": [
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction",
+            "list",
+            "update-listing",
+            "unlist",
+            "buy",
+            "make-offer",
+            "accept-offer",
+            "cancel-offer",
+            "settle",
+            "reconcile"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "inscribe",
+            "transfer"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "enabled",
+        "mode": "in-app-execution",
+        "featureGate": null,
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "view-collection",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "view-activity",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "list",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "update-listing",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "unlist",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "buy",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "make-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "accept-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "cancel-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "settle",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "reconcile",
+              "mode": "in-app-execution"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "sell",
+              "reason": "Ordinals has no executable offer workflow on this marketplace surface."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "Universe SQL generic marketplace order book",
+        "ownership": "Seller-signed listing PSBT plus exact Ord inscription/output and Bitcoin prevout/outspend agreement",
+        "settlement": "Confirmed exact listed-outpoint spend, signed payout, and indexed buyer inscription receipt",
+        "protocolState": "Configured Ord server output and inscription views"
+      },
+      "indexer": {
+        "primary": "Configured Ord server output and inscription views",
+        "fallbacks": [
+          "Configured mempool/Esplora providers for UTXO and settlement reads"
+        ],
+        "mutationGate": "Every mutation requires one confirmed, unspent, single-inscription output with no co-located Runes; Ord and Bitcoin value/outpoint/owner state must agree."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "Exact state is checked per mutation; the current Ord endpoints expose no numeric tip for a lag comparison."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": 1,
+        "policy": "Settlement requires at least one confirmation by default; operators may configure 1-100."
+      },
+      "reorg": {
+        "automaticReconciliation": true,
+        "policy": "Authoritative Esplora evidence drives deterministic dropped, replacement, conflict, and reorg reconciliation for generic orders."
+      }
+    },
+    "runes": {
+      "id": "runes",
+      "displayName": "Runes",
+      "aliases": [
+        "rune"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "hybrid",
+      "decimals": "asset-defined",
+      "addressRoles": [
+        "payment",
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction",
+            "list",
+            "update-listing",
+            "unlist",
+            "buy",
+            "settle"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "etch",
+            "mint",
+            "transfer"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "read-only",
+        "mode": "read-only",
+        "featureGate": null,
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "read-only"
+            },
+            {
+              "action": "view-collection",
+              "mode": "read-only"
+            },
+            {
+              "action": "view-activity",
+              "mode": "read-only"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "list",
+              "reason": "Rune mutations remain read-only until complete Rune outpoint inventory, cardinal-input safety, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven on Universe infrastructure."
+            },
+            {
+              "action": "update-listing",
+              "reason": "Rune mutations remain read-only until complete Rune outpoint inventory, cardinal-input safety, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven on Universe infrastructure."
+            },
+            {
+              "action": "unlist",
+              "reason": "Rune mutations remain read-only until complete Rune outpoint inventory, cardinal-input safety, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven on Universe infrastructure."
+            },
+            {
+              "action": "buy",
+              "reason": "Rune mutations remain read-only until complete Rune outpoint inventory, cardinal-input safety, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven on Universe infrastructure."
+            },
+            {
+              "action": "make-offer",
+              "reason": "Rune mutations remain read-only until complete Rune outpoint inventory, cardinal-input safety, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven on Universe infrastructure."
+            },
+            {
+              "action": "accept-offer",
+              "reason": "Rune mutations remain read-only until complete Rune outpoint inventory, cardinal-input safety, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven on Universe infrastructure."
+            },
+            {
+              "action": "cancel-offer",
+              "reason": "Rune mutations remain read-only until complete Rune outpoint inventory, cardinal-input safety, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven on Universe infrastructure."
+            },
+            {
+              "action": "sell",
+              "reason": "Rune mutations remain read-only until complete Rune outpoint inventory, cardinal-input safety, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven on Universe infrastructure."
+            },
+            {
+              "action": "settle",
+              "reason": "Rune mutations remain read-only until complete Rune outpoint inventory, cardinal-input safety, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven on Universe infrastructure."
+            },
+            {
+              "action": "reconcile",
+              "reason": "Rune mutations remain read-only until complete Rune outpoint inventory, cardinal-input safety, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven on Universe infrastructure."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "No executable order authority is deployed",
+        "ownership": "Read authority only; no complete transferability proof",
+        "settlement": "No executable settlement authority is deployed",
+        "protocolState": "Universe Ord Rune index and Universe order book"
+      },
+      "indexer": {
+        "primary": "Universe Ord Rune index and Universe order book",
+        "fallbacks": [
+          "Configured mempool/Esplora providers for UTXO and settlement reads"
+        ],
+        "mutationGate": "Rune mutations remain read-only until complete Rune outpoint inventory, cardinal-input safety, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven on Universe infrastructure."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "No node-tip/indexer-tip comparison or maximum observation age is enforced."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": null,
+        "policy": "No supported mutation reaches confirmation or settlement."
+      },
+      "reorg": {
+        "automaticReconciliation": false,
+        "policy": "Read state follows the authority; no executable order state exists to roll back."
+      }
+    },
+    "runes_native": {
+      "id": "runes_native",
+      "displayName": "Runes (Native)",
+      "aliases": [
+        "runes-native",
+        "native-runes",
+        "runes-(native)"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "hybrid",
+      "decimals": "asset-defined",
+      "addressRoles": [
+        "payment",
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "read-only",
+        "mode": "read-only",
+        "featureGate": null,
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "read-only"
+            },
+            {
+              "action": "view-collection",
+              "mode": "read-only"
+            },
+            {
+              "action": "view-activity",
+              "mode": "read-only"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "list",
+              "reason": "Runes Native mutations remain read-only until complete Rune outpoint inventory, cardinal-input safety, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "update-listing",
+              "reason": "Runes Native mutations remain read-only until complete Rune outpoint inventory, cardinal-input safety, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "unlist",
+              "reason": "Runes Native mutations remain read-only until complete Rune outpoint inventory, cardinal-input safety, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "buy",
+              "reason": "Runes Native mutations remain read-only until complete Rune outpoint inventory, cardinal-input safety, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "make-offer",
+              "reason": "Runes Native mutations remain read-only until complete Rune outpoint inventory, cardinal-input safety, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "accept-offer",
+              "reason": "Runes Native mutations remain read-only until complete Rune outpoint inventory, cardinal-input safety, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "cancel-offer",
+              "reason": "Runes Native mutations remain read-only until complete Rune outpoint inventory, cardinal-input safety, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "sell",
+              "reason": "Runes Native mutations remain read-only until complete Rune outpoint inventory, cardinal-input safety, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "settle",
+              "reason": "Runes Native mutations remain read-only until complete Rune outpoint inventory, cardinal-input safety, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "reconcile",
+              "reason": "Runes Native mutations remain read-only until complete Rune outpoint inventory, cardinal-input safety, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "No executable order authority is deployed",
+        "ownership": "Read authority only; no complete transferability proof",
+        "settlement": "No executable settlement authority is deployed",
+        "protocolState": "Universe Ord Rune index and Universe order book"
+      },
+      "indexer": {
+        "primary": "Universe Ord Rune index and Universe order book",
+        "fallbacks": [
+          "Configured mempool/Esplora providers for UTXO and settlement reads"
+        ],
+        "mutationGate": "Runes Native mutations remain read-only until complete Rune outpoint inventory, cardinal-input safety, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "No node-tip/indexer-tip comparison or maximum observation age is enforced."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": null,
+        "policy": "No supported mutation reaches confirmation or settlement."
+      },
+      "reorg": {
+        "automaticReconciliation": false,
+        "policy": "Read state follows the authority; no executable order state exists to roll back."
+      }
+    },
+    "brc20": {
+      "id": "brc20",
+      "displayName": "BRC-20",
+      "aliases": [
+        "brc-20"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "hybrid",
+      "decimals": "asset-defined",
+      "addressRoles": [
+        "payment",
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction",
+            "list",
+            "update-listing",
+            "unlist",
+            "buy",
+            "settle"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "deploy",
+            "mint",
+            "transfer"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "enabled",
+        "mode": "external-execution",
+        "featureGate": null,
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "external-execution"
+            },
+            {
+              "action": "view-collection",
+              "mode": "external-execution"
+            },
+            {
+              "action": "view-activity",
+              "mode": "external-execution"
+            },
+            {
+              "action": "list",
+              "mode": "external-execution"
+            },
+            {
+              "action": "update-listing",
+              "mode": "external-execution"
+            },
+            {
+              "action": "unlist",
+              "mode": "external-execution"
+            },
+            {
+              "action": "buy",
+              "mode": "external-execution"
+            },
+            {
+              "action": "settle",
+              "mode": "external-execution"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "make-offer",
+              "reason": "BRC-20 has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "accept-offer",
+              "reason": "BRC-20 has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "cancel-offer",
+              "reason": "BRC-20 has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "sell",
+              "reason": "BRC-20 has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "reconcile",
+              "reason": "BRC-20 has no executable reconcile authority on this marketplace surface."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "UniSat Marketplace Open API",
+        "ownership": "UniSat order creation/confirmation workflow",
+        "settlement": "UniSat order confirmation workflow plus wallet-signed PSBT",
+        "protocolState": "UniSat Open API"
+      },
+      "indexer": {
+        "primary": "UniSat Open API",
+        "fallbacks": [],
+        "mutationGate": "Provider-owned; Universe does not compare UniSat and local Bitcoin/indexer tips."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "Order freshness and inventory reconciliation are delegated to UniSat."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": null,
+        "policy": "Confirmation policy is delegated to UniSat; Universe records pending receipts for retries."
+      },
+      "reorg": {
+        "automaticReconciliation": false,
+        "policy": "Universe has no local UniSat order rollback state."
+      }
+    },
+    "atomicals": {
+      "id": "atomicals",
+      "displayName": "Atomicals",
+      "aliases": [
+        "atomical"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "utxo",
+      "decimals": "none",
+      "addressRoles": [
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "mint",
+            "transfer"
+          ]
+        }
+      },
+      "marketplace": null,
+      "sourceOfTruth": null,
+      "indexer": null,
+      "freshness": null,
+      "confirmation": null,
+      "reorg": null
+    },
+    "arc20": {
+      "id": "arc20",
+      "displayName": "ARC-20",
+      "aliases": [
+        "arc-20"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "hybrid",
+      "decimals": "asset-defined",
+      "addressRoles": [
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction",
+            "list",
+            "update-listing",
+            "unlist",
+            "buy",
+            "make-offer",
+            "accept-offer",
+            "cancel-offer",
+            "settle",
+            "reconcile"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "deploy",
+            "mint",
+            "transfer"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "enabled",
+        "mode": "in-app-execution",
+        "featureGate": null,
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "view-collection",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "view-activity",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "list",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "update-listing",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "unlist",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "buy",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "make-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "accept-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "cancel-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "settle",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "reconcile",
+              "mode": "in-app-execution"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "sell",
+              "reason": "ARC-20 has no executable offer workflow on this marketplace surface."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "Durable ARC-20 SQL listings, funded offers, reservations, orders, and broadcast lineage",
+        "ownership": "Exact seller outpoint, ticker, amount, and owner proof from the configured Atomicals indexer",
+        "settlement": "Exact listed-outpoint spend and signed payout observed after the configured confirmation depth",
+        "protocolState": "Configured Atomicals ElectrumX/Atomicals proxy"
+      },
+      "indexer": {
+        "primary": "Configured Atomicals ElectrumX/Atomicals proxy",
+        "fallbacks": [],
+        "mutationGate": "Listing and buyer-funding mutations fail closed on indexer transport, schema, identity, ticker, amount, or ownership mismatch."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "No node-tip/indexer-tip comparison or maximum observation age is enforced."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": 1,
+        "policy": "Settlement requires at least one confirmation by default; operators may configure 1-100."
+      },
+      "reorg": {
+        "automaticReconciliation": true,
+        "policy": "The ARC-20 journal retains signed listing proof and converges sold rows through authoritative outspend reconciliation."
+      }
+    },
+    "atomicals_nft": {
+      "id": "atomicals_nft",
+      "displayName": "Atomicals NFTs",
+      "aliases": [
+        "atomicals-nft",
+        "atomicals_nfts"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "utxo",
+      "decimals": "none",
+      "addressRoles": [
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction",
+            "list",
+            "update-listing",
+            "unlist",
+            "buy",
+            "make-offer",
+            "accept-offer",
+            "cancel-offer",
+            "settle",
+            "reconcile"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "mint",
+            "transfer"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "enabled",
+        "mode": "in-app-execution",
+        "featureGate": null,
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "view-collection",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "view-activity",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "list",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "update-listing",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "unlist",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "buy",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "make-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "accept-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "cancel-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "settle",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "reconcile",
+              "mode": "in-app-execution"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "sell",
+              "reason": "Atomicals NFTs has no executable offer workflow on this marketplace surface."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "Durable Atomicals Marketplace listings, funded offers, reservations, orders, and broadcast lineage",
+        "ownership": "Exact single-NFT Atomical, live Bitcoin outpoint, owner script, and Atomicals checkpoint agreement",
+        "settlement": "Exact unburned NFT output assignment and signed payout observed after the configured confirmation depth",
+        "protocolState": "Configured Atomicals ElectrumX/Atomicals Marketplace authority"
+      },
+      "indexer": {
+        "primary": "Configured Atomicals ElectrumX/Atomicals Marketplace authority",
+        "fallbacks": [],
+        "mutationGate": "Mutations fail closed on mixed collateral, wrong NFT subtype, spent outpoint, checkpoint drift, burn, or ownership mismatch."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "Every mutation rechecks the Bitcoin and Atomicals checkpoint; deployment readiness must enforce operator lag limits."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": 1,
+        "policy": "Settlement requires at least one confirmation by default; operators may configure 1-100."
+      },
+      "reorg": {
+        "automaticReconciliation": true,
+        "policy": "The Atomicals journal retains signed listing proof and converges sold rows through authoritative outspend reconciliation."
+      }
+    },
+    "realms": {
+      "id": "realms",
+      "displayName": "Realms",
+      "aliases": [
+        "realm",
+        "atomicals-realms"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "utxo",
+      "decimals": "none",
+      "addressRoles": [
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction",
+            "list",
+            "update-listing",
+            "unlist",
+            "buy",
+            "make-offer",
+            "accept-offer",
+            "cancel-offer",
+            "settle",
+            "reconcile"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "mint",
+            "transfer"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "enabled",
+        "mode": "in-app-execution",
+        "featureGate": null,
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "view-collection",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "view-activity",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "list",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "update-listing",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "unlist",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "buy",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "make-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "accept-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "cancel-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "settle",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "reconcile",
+              "mode": "in-app-execution"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "sell",
+              "reason": "Realms has no executable offer workflow on this marketplace surface."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "Durable Atomicals Realm Marketplace order and broadcast journal",
+        "ownership": "Verified authoritative realm winner, exact single Atomical outpoint, owner script, and stable checkpoint",
+        "settlement": "Exact unburned realm output assignment and signed payout observed after the configured confirmation depth",
+        "protocolState": "Configured Atomicals ElectrumX authoritative realm authority"
+      },
+      "indexer": {
+        "primary": "Configured Atomicals ElectrumX authoritative realm authority",
+        "fallbacks": [],
+        "mutationGate": "Mutations fail closed unless the realm resolver returns the verified winner at the exact live owner outpoint."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "Every mutation rechecks the Bitcoin and Atomicals checkpoint; deployment readiness must enforce operator lag limits."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": 1,
+        "policy": "Settlement requires at least one confirmation by default; operators may configure 1-100."
+      },
+      "reorg": {
+        "automaticReconciliation": true,
+        "policy": "Authoritative winner and outspend reconciliation preserve signed evidence across rollback."
+      }
+    },
+    "subrealms": {
+      "id": "subrealms",
+      "displayName": "Subrealms",
+      "aliases": [
+        "subrealm",
+        "atomicals-subrealms"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "utxo",
+      "decimals": "none",
+      "addressRoles": [
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction",
+            "list",
+            "update-listing",
+            "unlist",
+            "buy",
+            "make-offer",
+            "accept-offer",
+            "cancel-offer",
+            "settle",
+            "reconcile"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "mint",
+            "transfer"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "enabled",
+        "mode": "in-app-execution",
+        "featureGate": null,
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "view-collection",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "view-activity",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "list",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "update-listing",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "unlist",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "buy",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "make-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "accept-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "cancel-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "settle",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "reconcile",
+              "mode": "in-app-execution"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "sell",
+              "reason": "Subrealms has no executable offer workflow on this marketplace surface."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "Durable Atomicals Subrealm Marketplace order and broadcast journal",
+        "ownership": "Verified authoritative subrealm winner, exact single Atomical outpoint, owner script, and stable checkpoint",
+        "settlement": "Exact unburned subrealm output assignment and signed payout observed after the configured confirmation depth",
+        "protocolState": "Configured Atomicals ElectrumX authoritative subrealm authority"
+      },
+      "indexer": {
+        "primary": "Configured Atomicals ElectrumX authoritative subrealm authority",
+        "fallbacks": [],
+        "mutationGate": "Mutations fail closed unless the subrealm resolver returns the verified winner at the exact live owner outpoint."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "Every mutation rechecks the Bitcoin and Atomicals checkpoint; deployment readiness must enforce operator lag limits."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": 1,
+        "policy": "Settlement requires at least one confirmation by default; operators may configure 1-100."
+      },
+      "reorg": {
+        "automaticReconciliation": true,
+        "policy": "Authoritative winner and outspend reconciliation preserve signed evidence across rollback."
+      }
+    },
+    "avm": {
+      "id": "avm",
+      "displayName": "AVM",
+      "aliases": [
+        "avm-assets",
+        "atomicals-avm"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "hybrid",
+      "decimals": "none",
+      "addressRoles": [
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "deploy"
+          ]
+        }
+      },
+      "marketplace": null,
+      "sourceOfTruth": null,
+      "indexer": null,
+      "freshness": null,
+      "confirmation": null,
+      "reorg": null
+    },
+    "alkanes": {
+      "id": "alkanes",
+      "displayName": "Alkanes",
+      "aliases": [
+        "alkane"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "hybrid",
+      "decimals": "asset-defined",
+      "addressRoles": [
+        "payment",
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "mint"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "read-only",
+        "mode": "read-only",
+        "featureGate": null,
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "read-only"
+            },
+            {
+              "action": "view-collection",
+              "mode": "read-only"
+            },
+            {
+              "action": "view-activity",
+              "mode": "read-only"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "list",
+              "reason": "Alkanes mutations remain read-only until exact Alkane state, transferability, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "update-listing",
+              "reason": "Alkanes mutations remain read-only until exact Alkane state, transferability, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "unlist",
+              "reason": "Alkanes mutations remain read-only until exact Alkane state, transferability, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "buy",
+              "reason": "Alkanes mutations remain read-only until exact Alkane state, transferability, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "make-offer",
+              "reason": "Alkanes mutations remain read-only until exact Alkane state, transferability, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "accept-offer",
+              "reason": "Alkanes mutations remain read-only until exact Alkane state, transferability, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "cancel-offer",
+              "reason": "Alkanes mutations remain read-only until exact Alkane state, transferability, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "sell",
+              "reason": "Alkanes mutations remain read-only until exact Alkane state, transferability, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "settle",
+              "reason": "Alkanes mutations remain read-only until exact Alkane state, transferability, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "reconcile",
+              "reason": "Alkanes mutations remain read-only until exact Alkane state, transferability, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "No executable order authority is deployed",
+        "ownership": "Read authority only; no complete transferability proof",
+        "settlement": "No executable settlement authority is deployed",
+        "protocolState": "Universe Alkanes authority"
+      },
+      "indexer": {
+        "primary": "Universe Alkanes authority",
+        "fallbacks": [
+          "Configured mempool/Esplora providers for UTXO and settlement reads"
+        ],
+        "mutationGate": "Alkanes mutations remain read-only until exact Alkane state, transferability, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "No node-tip/indexer-tip comparison or maximum observation age is enforced."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": null,
+        "policy": "No supported mutation reaches confirmation or settlement."
+      },
+      "reorg": {
+        "automaticReconciliation": false,
+        "policy": "Read state follows the authority; no executable order state exists to roll back."
+      }
+    },
+    "mezcal": {
+      "id": "mezcal",
+      "displayName": "Mezcal",
+      "aliases": [],
+      "chain": "bitcoin",
+      "ownershipModel": "hybrid",
+      "decimals": "asset-defined",
+      "addressRoles": [
+        "payment",
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction",
+            "list",
+            "update-listing",
+            "unlist",
+            "buy",
+            "settle",
+            "reconcile"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "etch",
+            "mint",
+            "transfer"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "read-only",
+        "mode": "read-only",
+        "featureGate": null,
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "read-only"
+            },
+            {
+              "action": "view-collection",
+              "mode": "read-only"
+            },
+            {
+              "action": "view-activity",
+              "mode": "read-only"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "list",
+              "reason": "Mezcal mutations remain read-only until authoritative ownership, transferability, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "update-listing",
+              "reason": "Mezcal mutations remain read-only until authoritative ownership, transferability, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "unlist",
+              "reason": "Mezcal mutations remain read-only until authoritative ownership, transferability, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "buy",
+              "reason": "Mezcal mutations remain read-only until authoritative ownership, transferability, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "make-offer",
+              "reason": "Mezcal mutations remain read-only until authoritative ownership, transferability, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "accept-offer",
+              "reason": "Mezcal mutations remain read-only until authoritative ownership, transferability, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "cancel-offer",
+              "reason": "Mezcal mutations remain read-only until authoritative ownership, transferability, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "sell",
+              "reason": "Mezcal mutations remain read-only until authoritative ownership, transferability, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "settle",
+              "reason": "Mezcal mutations remain read-only until authoritative ownership, transferability, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            },
+            {
+              "action": "reconcile",
+              "reason": "Mezcal mutations remain read-only until authoritative ownership, transferability, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "No executable order authority is deployed",
+        "ownership": "Read authority only; no complete transferability proof",
+        "settlement": "No executable settlement authority is deployed",
+        "protocolState": "mezcal.sh API"
+      },
+      "indexer": {
+        "primary": "mezcal.sh API",
+        "fallbacks": [
+          "Configured mempool/Esplora providers for UTXO and settlement reads"
+        ],
+        "mutationGate": "Mezcal mutations remain read-only until authoritative ownership, transferability, builder, signed-transaction validation, broadcast, settlement, and reorg recovery are deployed and proven."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "No node-tip/indexer-tip comparison or maximum observation age is enforced."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": null,
+        "policy": "No supported mutation reaches confirmation or settlement."
+      },
+      "reorg": {
+        "automaticReconciliation": false,
+        "policy": "Read state follows the authority; no executable order state exists to roll back."
+      }
+    },
+    "tap": {
+      "id": "tap",
+      "displayName": "TAP",
+      "aliases": [
+        "tap-protocol"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "hybrid",
+      "decimals": "none",
+      "addressRoles": [
+        "payment",
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction",
+            "list",
+            "update-listing",
+            "unlist",
+            "buy",
+            "make-offer",
+            "accept-offer",
+            "cancel-offer",
+            "settle",
+            "reconcile"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "deploy",
+            "mint",
+            "transfer"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "feature-gated",
+        "mode": "in-app-execution",
+        "featureGate": "tapMarketplaceV1",
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "view-collection",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "view-activity",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "list",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "update-listing",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "unlist",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "buy",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "make-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "accept-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "cancel-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "settle",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "reconcile",
+              "mode": "in-app-execution"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "sell",
+              "reason": "TAP has no executable offer workflow on this marketplace surface."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "Durable index-tap SQLite listings, revisions, funded offers, reservations, action requests, funding fences, broadcast lineage, history, and settlement observations",
+        "ownership": "Exact live TAP transfer inscription, Ord location, Bitcoin prevout and outspend, and complete 29-protocol output inventory agreement",
+        "settlement": "Exact PSBT templates, wallet-authorized input signatures, Bitcoin Core preflight and broadcast, chain confirmation, consumed TAP transfer state, buyer indexed balance, and rollback-safe reconciliation",
+        "protocolState": "Configured index-tap executable Marketplace authority"
+      },
+      "indexer": {
+        "primary": "Configured index-tap executable Marketplace authority",
+        "fallbacks": [],
+        "mutationGate": "Execution requires distinct read and execution credentials, a fresh TAP readiness checkpoint, exact complete inventory, clean funding, immutable economics, and protocol-native post-sign validation."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "Every mutation is bound to stable TAP, Ord, Bitcoin Core, and complete-inventory checkpoints; deployment readiness must enforce the configured checkpoint age and lag limits."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": 1,
+        "policy": "Settlement requires the exact confirmed Bitcoin transaction, the consumed TAP transfer inscription, and the buyer indexed balance at stable checkpoints."
+      },
+      "reorg": {
+        "automaticReconciliation": true,
+        "policy": "The authority appends reorg observations, reopens or invalidates affected orders deterministically, and preserves funding, broadcast, settlement, and replacement lineage."
+      }
+    },
+    "dmt": {
+      "id": "dmt",
+      "displayName": "DMT",
+      "aliases": [
+        "tap-dmt",
+        "tap_dmt"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "hybrid",
+      "decimals": "none",
+      "addressRoles": [
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction",
+            "list",
+            "update-listing",
+            "unlist",
+            "buy",
+            "make-offer",
+            "accept-offer",
+            "cancel-offer",
+            "settle",
+            "reconcile"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "feature-gated",
+        "mode": "in-app-execution",
+        "featureGate": "dmtMarketplaceV1",
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "view-collection",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "view-activity",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "list",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "update-listing",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "unlist",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "buy",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "make-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "accept-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "cancel-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "settle",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "reconcile",
+              "mode": "in-app-execution"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "sell",
+              "reason": "DMT has no executable offer workflow on this marketplace surface."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "Durable index-dmt SQLite listings, revisions, funded offers, reservations, action requests, funding fences, broadcast lineage, history, and settlement observations",
+        "ownership": "Exact live DMT transfer inscription, Ord location, Bitcoin prevout and outspend, and complete 29-protocol output inventory agreement",
+        "settlement": "Exact PSBT templates, wallet-authorized input signatures, Bitcoin Core preflight and broadcast, chain confirmation, consumed DMT transfer state, buyer indexed balance, and rollback-safe reconciliation",
+        "protocolState": "Configured index-dmt executable Marketplace authority"
+      },
+      "indexer": {
+        "primary": "Configured index-dmt executable Marketplace authority",
+        "fallbacks": [],
+        "mutationGate": "Execution requires distinct read and execution credentials, a fresh DMT readiness checkpoint, exact complete inventory, clean funding, immutable economics, and protocol-native post-sign validation."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "Every mutation is bound to stable DMT, Ord, Bitcoin Core, and complete-inventory checkpoints; deployment readiness must enforce the configured checkpoint age and lag limits."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": 1,
+        "policy": "Settlement requires the exact confirmed Bitcoin transaction, the consumed DMT transfer inscription, and the buyer indexed balance at stable checkpoints."
+      },
+      "reorg": {
+        "automaticReconciliation": true,
+        "policy": "The authority appends reorg observations, reopens or invalidates affected orders deterministically, and preserves funding, broadcast, settlement, and replacement lineage."
+      }
+    },
+    "tap_doge": {
+      "id": "tap_doge",
+      "displayName": "TAP on Doge",
+      "aliases": [
+        "tap-on-doge",
+        "doge-tap",
+        "tap-doge"
+      ],
+      "chain": "dogecoin",
+      "ownershipModel": "hybrid",
+      "decimals": "none",
+      "addressRoles": [
+        "payment"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction",
+            "list",
+            "update-listing",
+            "unlist",
+            "buy",
+            "make-offer",
+            "accept-offer",
+            "cancel-offer",
+            "settle",
+            "reconcile"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "mint"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "feature-gated",
+        "mode": "external-execution",
+        "featureGate": "dogecoinMarketplaceV1",
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "external-execution"
+            },
+            {
+              "action": "view-collection",
+              "mode": "external-execution"
+            },
+            {
+              "action": "view-activity",
+              "mode": "external-execution"
+            },
+            {
+              "action": "list",
+              "mode": "external-execution"
+            },
+            {
+              "action": "update-listing",
+              "mode": "external-execution"
+            },
+            {
+              "action": "unlist",
+              "mode": "external-execution"
+            },
+            {
+              "action": "buy",
+              "mode": "external-execution"
+            },
+            {
+              "action": "make-offer",
+              "mode": "external-execution"
+            },
+            {
+              "action": "accept-offer",
+              "mode": "external-execution"
+            },
+            {
+              "action": "cancel-offer",
+              "mode": "external-execution"
+            },
+            {
+              "action": "settle",
+              "mode": "external-execution"
+            },
+            {
+              "action": "reconcile",
+              "mode": "external-execution"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "sell",
+              "reason": "TAP on Doge has no executable offer workflow on this marketplace surface."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "Durable Dogecoin-native SQLite listings, revisions, funded offers, reservations, action requests, funding fences, broadcast lineage, history, and settlement observations",
+        "ownership": "Protocol-specific authoritative checkpoint ownership and exact outpoint proof corroborated by Dogecoin Core and, for TAP-DOGE, the pinned immutable TAP reader",
+        "settlement": "Exact Dogecoin raw transaction templates, wallet-authorized permitted input signatures, Core validation and broadcast, chain confirmation, protocol checkpoint convergence, and rollback-safe reconciliation",
+        "protocolState": "Configured pinned Dogecoin TAP reader and Dogecoin Core"
+      },
+      "indexer": {
+        "primary": "Configured pinned Dogecoin TAP reader and Dogecoin Core",
+        "fallbacks": [],
+        "mutationGate": "Execution requires distinct read and execution credentials, a fresh execution-authenticated readiness probe, a complete authoritative checkpoint, Core-verified funding, exact immutable economics, and protocol-native post-sign validation."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "Every mutation is bound to the exact authority checkpoint and an execution-authenticated readiness observation; deployment readiness must enforce its configured checkpoint-age and lag limits."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": 1,
+        "policy": "Settlement requires the exact Dogecoin transaction confirmation and the expected protocol-state transition in a later authoritative checkpoint."
+      },
+      "reorg": {
+        "automaticReconciliation": true,
+        "policy": "The authority appends reorg observations, reopens or invalidates affected orders deterministically, and preserves funding, broadcast, and replacement lineage."
+      }
+    },
+    "block20": {
+      "id": "block20",
+      "displayName": "BLOCK-20",
+      "aliases": [
+        "block-20"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "hybrid",
+      "decimals": "none",
+      "addressRoles": [
+        "payment",
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "deploy",
+            "mint",
+            "transfer"
+          ]
+        }
+      },
+      "marketplace": null,
+      "sourceOfTruth": null,
+      "indexer": null,
+      "freshness": null,
+      "confirmation": null,
+      "reorg": null
+    },
+    "dust20": {
+      "id": "dust20",
+      "displayName": "DUST-20",
+      "aliases": [
+        "dust-20"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "utxo",
+      "decimals": "none",
+      "addressRoles": [
+        "payment",
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "deploy",
+            "mint",
+            "transfer"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "read-only",
+        "mode": "read-only",
+        "featureGate": null,
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "read-only"
+            },
+            {
+              "action": "view-collection",
+              "mode": "read-only"
+            },
+            {
+              "action": "view-activity",
+              "mode": "read-only"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "list",
+              "reason": "DUST-20 mutations are unavailable until a typed authoritative ownership resolver replaces the retired address-only legacy flow."
+            },
+            {
+              "action": "update-listing",
+              "reason": "DUST-20 mutations are unavailable until a typed authoritative ownership resolver replaces the retired address-only legacy flow."
+            },
+            {
+              "action": "unlist",
+              "reason": "DUST-20 mutations are unavailable until a typed authoritative ownership resolver replaces the retired address-only legacy flow."
+            },
+            {
+              "action": "buy",
+              "reason": "DUST-20 mutations are unavailable until a typed authoritative ownership resolver replaces the retired address-only legacy flow."
+            },
+            {
+              "action": "make-offer",
+              "reason": "DUST-20 mutations are unavailable until a typed authoritative ownership resolver replaces the retired address-only legacy flow."
+            },
+            {
+              "action": "accept-offer",
+              "reason": "DUST-20 mutations are unavailable until a typed authoritative ownership resolver replaces the retired address-only legacy flow."
+            },
+            {
+              "action": "cancel-offer",
+              "reason": "DUST-20 mutations are unavailable until a typed authoritative ownership resolver replaces the retired address-only legacy flow."
+            },
+            {
+              "action": "sell",
+              "reason": "DUST-20 mutations are unavailable until a typed authoritative ownership resolver replaces the retired address-only legacy flow."
+            },
+            {
+              "action": "settle",
+              "reason": "DUST-20 mutations are unavailable until a typed authoritative ownership resolver replaces the retired address-only legacy flow."
+            },
+            {
+              "action": "reconcile",
+              "reason": "DUST-20 mutations are unavailable until a typed authoritative ownership resolver replaces the retired address-only legacy flow."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "Read-only legacy Universe catalog",
+        "ownership": "No safe typed mutation resolver is configured",
+        "settlement": "No supported settlement while ownership is unverifiable",
+        "protocolState": "DUST-20 indexer discovery and portfolio data"
+      },
+      "indexer": {
+        "primary": "DUST-20 indexer discovery and portfolio data",
+        "fallbacks": [],
+        "mutationGate": "DUST-20 mutations are unavailable until a typed authoritative ownership resolver replaces the retired address-only legacy flow."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "Discovery is non-authoritative for mutations."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": null,
+        "policy": "No supported marketplace mutation reaches settlement."
+      },
+      "reorg": {
+        "automaticReconciliation": false,
+        "policy": "Read-only catalog data follows its discovery source."
+      }
+    },
+    "op_return": {
+      "id": "op_return",
+      "displayName": "OP-20",
+      "aliases": [
+        "op-return",
+        "op20",
+        "op-20"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "hybrid",
+      "decimals": "none",
+      "addressRoles": [
+        "payment",
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "deploy",
+            "mint",
+            "inscribe",
+            "transfer"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "read-only",
+        "mode": "read-only",
+        "featureGate": null,
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "read-only"
+            },
+            {
+              "action": "view-collection",
+              "mode": "read-only"
+            },
+            {
+              "action": "view-activity",
+              "mode": "read-only"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "list",
+              "reason": "Legacy random-key/replay marketplace mutations are retired and fail closed; the backend returns HTTP 410."
+            },
+            {
+              "action": "update-listing",
+              "reason": "Legacy random-key/replay marketplace mutations are retired and fail closed; the backend returns HTTP 410."
+            },
+            {
+              "action": "unlist",
+              "reason": "Legacy random-key/replay marketplace mutations are retired and fail closed; the backend returns HTTP 410."
+            },
+            {
+              "action": "buy",
+              "reason": "Legacy random-key/replay marketplace mutations are retired and fail closed; the backend returns HTTP 410. The current UI can reach a broadcast step before registration fails, so buy is not declared supported."
+            },
+            {
+              "action": "make-offer",
+              "reason": "OP-20 has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "accept-offer",
+              "reason": "OP-20 has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "cancel-offer",
+              "reason": "OP-20 has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "sell",
+              "reason": "OP-20 has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "settle",
+              "reason": "OP-20 has no executable settle authority on this marketplace surface."
+            },
+            {
+              "action": "reconcile",
+              "reason": "OP-20 has no executable reconcile authority on this marketplace surface."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "Read-only APIV4/legacy marketplace feed",
+        "ownership": "No supported mutation authority",
+        "settlement": "No supported settlement registration",
+        "protocolState": "APIV4 OP-20 API with legacy fallback"
+      },
+      "indexer": {
+        "primary": "APIV4 OP-20 API with legacy fallback",
+        "fallbacks": [
+          "Legacy API and static sample fallback data"
+        ],
+        "mutationGate": "All legacy replay-key mutations are rejected."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "Read sources expose no enforced node-tip/indexer-tip lag contract."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": null,
+        "policy": "No supported marketplace mutation reaches a confirmed local state."
+      },
+      "reorg": {
+        "automaticReconciliation": false,
+        "policy": "The read-only feed has no local lifecycle reconciliation."
+      }
+    },
+    "op_names": {
+      "id": "op_names",
+      "displayName": "OP Names",
+      "aliases": [
+        "op-names",
+        "opnames"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "utxo",
+      "decimals": "none",
+      "addressRoles": [
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "read-only",
+        "mode": "read-only",
+        "featureGate": null,
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "read-only"
+            },
+            {
+              "action": "view-collection",
+              "mode": "read-only"
+            },
+            {
+              "action": "view-activity",
+              "mode": "read-only"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "list",
+              "reason": "Legacy random-key/replay marketplace mutations are retired and fail closed; the backend returns HTTP 410."
+            },
+            {
+              "action": "update-listing",
+              "reason": "Legacy random-key/replay marketplace mutations are retired and fail closed; the backend returns HTTP 410."
+            },
+            {
+              "action": "unlist",
+              "reason": "Legacy random-key/replay marketplace mutations are retired and fail closed; the backend returns HTTP 410."
+            },
+            {
+              "action": "buy",
+              "reason": "Legacy random-key/replay marketplace mutations are retired and fail closed; the backend returns HTTP 410. The current UI can reach a broadcast step before registration fails, so buy is not declared supported."
+            },
+            {
+              "action": "make-offer",
+              "reason": "OP Names has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "accept-offer",
+              "reason": "OP Names has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "cancel-offer",
+              "reason": "OP Names has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "sell",
+              "reason": "OP Names has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "settle",
+              "reason": "OP Names has no executable settle authority on this marketplace surface."
+            },
+            {
+              "action": "reconcile",
+              "reason": "OP Names has no executable reconcile authority on this marketplace surface."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "Read-only APIV4/legacy marketplace feed",
+        "ownership": "No supported mutation authority",
+        "settlement": "No supported settlement registration",
+        "protocolState": "APIV4 OP Names API with legacy fallback"
+      },
+      "indexer": {
+        "primary": "APIV4 OP Names API with legacy fallback",
+        "fallbacks": [
+          "Legacy API and static sample fallback data"
+        ],
+        "mutationGate": "All legacy replay-key mutations are rejected."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "Read sources expose no enforced node-tip/indexer-tip lag contract."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": null,
+        "policy": "No supported marketplace mutation reaches a confirmed local state."
+      },
+      "reorg": {
+        "automaticReconciliation": false,
+        "policy": "The read-only feed has no local lifecycle reconciliation."
+      }
+    },
+    "op_inscriptions": {
+      "id": "op_inscriptions",
+      "displayName": "OP Inscriptions",
+      "aliases": [
+        "op-inscriptions",
+        "opinscriptions"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "utxo",
+      "decimals": "none",
+      "addressRoles": [
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction",
+            "list",
+            "unlist",
+            "buy",
+            "settle",
+            "reconcile"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "enabled",
+        "mode": "in-app-execution",
+        "featureGate": null,
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "view-collection",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "view-activity",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "list",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "unlist",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "buy",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "settle",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "reconcile",
+              "mode": "in-app-execution"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "update-listing",
+              "reason": "OP Inscriptions listings must be cancelled and relisted; no atomic listing update is implemented."
+            },
+            {
+              "action": "make-offer",
+              "reason": "OP Inscriptions has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "accept-offer",
+              "reason": "OP Inscriptions has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "cancel-offer",
+              "reason": "OP Inscriptions has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "sell",
+              "reason": "OP Inscriptions has no executable offer workflow on this marketplace surface."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "Universe SQL OP inscription market orders",
+        "ownership": "Current OPI title receipt resolved through a mempool-compatible Bitcoin API",
+        "settlement": "Exact title-outpoint spend and buyer receipt output observed through the Bitcoin API",
+        "protocolState": "Standalone OP Inscriptions indexer for catalog reads"
+      },
+      "indexer": {
+        "primary": "Standalone OP Inscriptions indexer for catalog reads",
+        "fallbacks": [
+          "Universe raw-block OP_RETURN scanner and SQL cache"
+        ],
+        "mutationGate": "Live title receipt is re-resolved, but indexer tip lag is not compared with node tip."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "Ownership is checked per mutation; no numeric indexer lag threshold is enforced."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": 1,
+        "policy": "A fill is recorded only after the exact receipt spend, buyer receipt, and seller payout are confirmed on-chain."
+      },
+      "reorg": {
+        "automaticReconciliation": true,
+        "policy": "The OP Inscriptions reconciler reopens canonically unspent receipts and marks conflicting spends stale."
+      }
+    },
+    "op_drop": {
+      "id": "op_drop",
+      "displayName": "OP_DROP",
+      "aliases": [
+        "op-drop",
+        "opdrop"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "hybrid",
+      "decimals": "none",
+      "addressRoles": [
+        "payment",
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction",
+            "list",
+            "update-listing",
+            "unlist",
+            "buy",
+            "make-offer",
+            "accept-offer",
+            "cancel-offer",
+            "settle",
+            "reconcile"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "deploy",
+            "mint",
+            "transfer"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "feature-gated",
+        "mode": "external-execution",
+        "featureGate": "opDropTrading",
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "external-execution"
+            },
+            {
+              "action": "view-collection",
+              "mode": "external-execution"
+            },
+            {
+              "action": "view-activity",
+              "mode": "external-execution"
+            },
+            {
+              "action": "list",
+              "mode": "external-execution"
+            },
+            {
+              "action": "update-listing",
+              "mode": "external-execution"
+            },
+            {
+              "action": "unlist",
+              "mode": "external-execution"
+            },
+            {
+              "action": "buy",
+              "mode": "external-execution"
+            },
+            {
+              "action": "make-offer",
+              "mode": "external-execution"
+            },
+            {
+              "action": "accept-offer",
+              "mode": "external-execution"
+            },
+            {
+              "action": "cancel-offer",
+              "mode": "external-execution"
+            },
+            {
+              "action": "settle",
+              "mode": "external-execution"
+            },
+            {
+              "action": "reconcile",
+              "mode": "external-execution"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "sell",
+              "reason": "OP_DROP has no executable offer workflow on this marketplace surface."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "Durable OP_DROP listings, funded offers, reservations, action intents, request journal, history, and settlement rows in the configured OP_DROP authority",
+        "ownership": "Confirmed OP_DROP balance and custody projection, Bitcoin Core prevout agreement, exact BIP-322 actor authorization, and transferability checks",
+        "settlement": "Exact jointly signed PSBT template, post-sign validation, Bitcoin broadcast, finalized-block settlement, and deterministic rollback",
+        "protocolState": "Configured OP_DROP marketplace v1 authority"
+      },
+      "indexer": {
+        "primary": "Configured OP_DROP marketplace v1 authority",
+        "fallbacks": [],
+        "mutationGate": "Execution requires distinct read and execution credentials, a fresh authoritative checkpoint, exact immutable economic terms, and a compatible durable schema."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "Every mutation is bound to the authority checkpoint; operator readiness must still enforce deployment-specific lag limits."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": 1,
+        "policy": "Settlement is recorded only when the finalized-block scanner verifies the exact intent transaction and OP_DROP custody transition."
+      },
+      "reorg": {
+        "automaticReconciliation": true,
+        "policy": "Authoritative rollback removes block-bound settlement evidence, marks the intent reorged, and preserves deterministic recovery and rebroadcast lineage."
+      }
+    },
+    "drops": {
+      "id": "drops",
+      "displayName": "DROPS",
+      "aliases": [
+        "drops-protocol"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "hybrid",
+      "decimals": "none",
+      "addressRoles": [
+        "payment",
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction",
+            "list",
+            "update-listing",
+            "unlist",
+            "buy",
+            "make-offer",
+            "accept-offer",
+            "cancel-offer",
+            "settle",
+            "reconcile"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "inscribe",
+            "transfer"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "feature-gated",
+        "mode": "external-execution",
+        "featureGate": "dropsMarketplaceV1",
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "external-execution"
+            },
+            {
+              "action": "view-collection",
+              "mode": "external-execution"
+            },
+            {
+              "action": "view-activity",
+              "mode": "external-execution"
+            },
+            {
+              "action": "list",
+              "mode": "external-execution"
+            },
+            {
+              "action": "update-listing",
+              "mode": "external-execution"
+            },
+            {
+              "action": "unlist",
+              "mode": "external-execution"
+            },
+            {
+              "action": "buy",
+              "mode": "external-execution"
+            },
+            {
+              "action": "make-offer",
+              "mode": "external-execution"
+            },
+            {
+              "action": "accept-offer",
+              "mode": "external-execution"
+            },
+            {
+              "action": "cancel-offer",
+              "mode": "external-execution"
+            },
+            {
+              "action": "settle",
+              "mode": "external-execution"
+            },
+            {
+              "action": "reconcile",
+              "mode": "external-execution"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "sell",
+              "reason": "DROPS has no executable offer workflow on this marketplace surface."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "Durable DROPS listings, funded offers, reservations, intents, history, and settlement rows in the configured DROPS indexer",
+        "ownership": "Confirmed DROPS custody projection, dual Bitcoin Core prevout agreement, BIP-322 actor authorization, and complete 29-protocol output inventory",
+        "settlement": "Exact jointly signed transaction template, testmempoolaccept, optional Bitcoin broadcast, finalized-block settlement, and deterministic rollback",
+        "protocolState": "Configured DROPS marketplace v1 authority"
+      },
+      "indexer": {
+        "primary": "Configured DROPS marketplace v1 authority",
+        "fallbacks": [],
+        "mutationGate": "Execution requires distinct read and execution credentials, finalized dual-Core agreement, complete composite inventory, and exact immutable terms."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "Every mutation is bound to the authority finalized checkpoint; operator readiness must still enforce deployment-specific lag limits."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": 1,
+        "policy": "Settlement is recorded only when the finalized-block scanner verifies the exact intent transaction and custody transition."
+      },
+      "reorg": {
+        "automaticReconciliation": true,
+        "policy": "Authoritative rollback removes block-bound settlement evidence, marks the intent reorged, and preserves deterministic rebroadcast lineage."
+      }
+    },
+    "cat20": {
+      "id": "cat20",
+      "displayName": "CAT-20",
+      "aliases": [
+        "cat",
+        "cat-20"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "utxo",
+      "decimals": "none",
+      "addressRoles": [
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "mint"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "feature-gated-testnet-only",
+        "mode": "trade-preview-only",
+        "featureGate": "cat20FractalTrade",
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "trade-preview-only"
+            },
+            {
+              "action": "view-collection",
+              "mode": "trade-preview-only"
+            },
+            {
+              "action": "view-activity",
+              "mode": "trade-preview-only"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "list",
+              "reason": "Fractal testnet reads and trade preview are available, but no CAT20 signer or broadcaster exists."
+            },
+            {
+              "action": "update-listing",
+              "reason": "Fractal testnet reads and trade preview are available, but no CAT20 signer or broadcaster exists."
+            },
+            {
+              "action": "unlist",
+              "reason": "Fractal testnet reads and trade preview are available, but no CAT20 signer or broadcaster exists."
+            },
+            {
+              "action": "buy",
+              "reason": "Fractal testnet reads and trade preview are available, but no CAT20 signer or broadcaster exists."
+            },
+            {
+              "action": "make-offer",
+              "reason": "Fractal testnet reads and trade preview are available, but no CAT20 signer or broadcaster exists."
+            },
+            {
+              "action": "accept-offer",
+              "reason": "Fractal testnet reads and trade preview are available, but no CAT20 signer or broadcaster exists."
+            },
+            {
+              "action": "cancel-offer",
+              "reason": "Fractal testnet reads and trade preview are available, but no CAT20 signer or broadcaster exists."
+            },
+            {
+              "action": "sell",
+              "reason": "Fractal testnet reads and trade preview are available, but no CAT20 signer or broadcaster exists."
+            },
+            {
+              "action": "settle",
+              "reason": "Fractal testnet reads and trade preview are available, but no CAT20 signer or broadcaster exists."
+            },
+            {
+              "action": "reconcile",
+              "reason": "Fractal testnet reads and trade preview are available, but no CAT20 signer or broadcaster exists."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "Read-only tracker order-book review",
+        "ownership": "Tracker plus Fractal Bitcoin Core read validation",
+        "settlement": "No signer or broadcaster",
+        "protocolState": "Configured CAT20 tracker plus Fractal Bitcoin Core read client"
+      },
+      "indexer": {
+        "primary": "Configured CAT20 tracker plus Fractal Bitcoin Core read client",
+        "fallbacks": [],
+        "mutationGate": "Mainnet is unavailable; preview does not authorize execution."
+      },
+      "freshness": {
+        "enforced": true,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "Trade preview enforces the runtime-configured order-book age (120 seconds by default) and future-skew limit, but no chain-tip lag ceiling."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": null,
+        "policy": "No executable settlement exists."
+      },
+      "reorg": {
+        "automaticReconciliation": false,
+        "policy": "Read state follows tracker/node responses; no local order lifecycle exists."
+      }
+    },
+    "cat721": {
+      "id": "cat721",
+      "displayName": "CAT-721",
+      "aliases": [
+        "cat-721"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "utxo",
+      "decimals": "none",
+      "addressRoles": [
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        }
+      },
+      "marketplace": null,
+      "sourceOfTruth": null,
+      "indexer": null,
+      "freshness": null,
+      "confirmation": null,
+      "reorg": null
+    },
+    "bitmap": {
+      "id": "bitmap",
+      "displayName": "Bitmap",
+      "aliases": [
+        "bitmaps"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "utxo",
+      "decimals": "none",
+      "addressRoles": [
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction",
+            "list",
+            "update-listing",
+            "unlist",
+            "buy",
+            "make-offer",
+            "accept-offer",
+            "cancel-offer",
+            "settle",
+            "reconcile"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "transfer"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "feature-gated",
+        "mode": "in-app-execution",
+        "featureGate": "bitmapMarketplaceV1",
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "view-collection",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "view-activity",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "list",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "update-listing",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "unlist",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "buy",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "make-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "accept-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "cancel-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "settle",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "reconcile",
+              "mode": "in-app-execution"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "sell",
+              "reason": "Bitmap has no executable offer workflow on this marketplace surface."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "Durable index-bitmap SQLite listings, revisions, funded offers, reservations, action requests, broadcast lineage, activity, and settlement observations",
+        "ownership": "Authoritative first-valid Bitmap claim, live Ord location, Bitcoin Core prevout and outspend, and complete 29-protocol output inventory agreement",
+        "settlement": "Exact PSBT templates, wallet-authorized signatures, Bitcoin Core preflight and broadcast, confirmed buyer-owned Bitmap claim, and rollback-safe reconciliation",
+        "protocolState": "Configured index-bitmap executable Marketplace authority"
+      },
+      "indexer": {
+        "primary": "Configured index-bitmap executable Marketplace authority",
+        "fallbacks": [],
+        "mutationGate": "Execution requires distinct read and execution credentials, a fresh Bitmap checkpoint, authoritative first-claim ownership, complete inventory, clean funding, immutable economics, and post-sign validation."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "Every mutation is bound to stable Bitmap, Ord, Bitcoin Core, and complete-inventory checkpoints; deployment readiness must enforce configured checkpoint age and lag limits."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": 1,
+        "policy": "Settlement requires the exact confirmed Bitcoin transaction and the authoritative Bitmap claim indexed at a buyer-owned output at stable checkpoints."
+      },
+      "reorg": {
+        "automaticReconciliation": true,
+        "policy": "The authority appends reorg observations, reopens or invalidates affected orders deterministically, and preserves funding, broadcast, settlement, and replacement lineage."
+      }
+    },
+    "unat": {
+      "id": "unat",
+      "displayName": "UNAT",
+      "aliases": [
+        "tap-unat",
+        "tap_unat"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "utxo",
+      "decimals": "none",
+      "addressRoles": [
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction",
+            "list",
+            "update-listing",
+            "unlist",
+            "buy",
+            "make-offer",
+            "accept-offer",
+            "cancel-offer",
+            "settle",
+            "reconcile"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "transfer"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "feature-gated",
+        "mode": "in-app-execution",
+        "featureGate": "unatMarketplaceV1",
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "view-collection",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "view-activity",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "list",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "update-listing",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "unlist",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "buy",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "make-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "accept-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "cancel-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "settle",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "reconcile",
+              "mode": "in-app-execution"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "sell",
+              "reason": "UNAT has no executable offer workflow on this marketplace surface."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "Durable index-unat SQLite listings, revisions, funded offers, reservations, action requests, funding fences, broadcast lineage, history, and settlement observations",
+        "ownership": "Exact live UNAT mint inscription, authoritative membership, Ord location, Bitcoin prevout and outspend, and complete 29-protocol output inventory agreement",
+        "settlement": "Exact PSBT templates, wallet-authorized input signatures, Bitcoin Core preflight and broadcast, chain confirmation, authoritative buyer-owned UNAT mint location, and rollback-safe reconciliation",
+        "protocolState": "Configured index-unat executable Marketplace authority"
+      },
+      "indexer": {
+        "primary": "Configured index-unat executable Marketplace authority",
+        "fallbacks": [],
+        "mutationGate": "Execution requires distinct read and execution credentials, a fresh UNAT readiness checkpoint, exact authoritative mint membership, complete inventory, clean funding, immutable economics, and protocol-native post-sign validation."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "Every mutation is bound to stable UNAT, Ord, Bitcoin Core, and complete-inventory checkpoints; deployment readiness must enforce the configured checkpoint age and lag limits."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": 1,
+        "policy": "Settlement requires the exact confirmed Bitcoin transaction and the authoritative UNAT mint indexed at a buyer-owned output at stable checkpoints."
+      },
+      "reorg": {
+        "automaticReconciliation": true,
+        "policy": "The authority appends reorg observations, reopens or invalidates affected orders deterministically, and preserves funding, broadcast, settlement, and replacement lineage."
+      }
+    },
+    "names": {
+      "id": "names",
+      "displayName": "Bitcoin Names",
+      "aliases": [
+        "bitcoin-names",
+        "domains"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "utxo",
+      "decimals": "none",
+      "addressRoles": [
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction",
+            "list",
+            "update-listing",
+            "unlist",
+            "buy",
+            "make-offer",
+            "accept-offer",
+            "cancel-offer",
+            "settle",
+            "reconcile"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "feature-gated",
+        "mode": "in-app-execution",
+        "featureGate": "namesMarketplaceV1",
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "view-collection",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "view-activity",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "list",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "update-listing",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "unlist",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "buy",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "make-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "accept-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "cancel-offer",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "settle",
+              "mode": "in-app-execution"
+            },
+            {
+              "action": "reconcile",
+              "mode": "in-app-execution"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "sell",
+              "reason": "Bitcoin Names has no executable offer workflow on this marketplace surface."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "Durable index-names SQLite listings, revisions, funded offers, reservations, action requests, broadcast lineage, activity, and settlement observations",
+        "ownership": "Authoritative first-valid SNS registration, live Ord inscription location, Bitcoin Core prevout and outspend, and complete 29-protocol output inventory agreement",
+        "settlement": "Exact PSBT templates, wallet-authorized signatures, Bitcoin Core preflight and broadcast, confirmed buyer-owned authoritative name inscription, and automatic rollback-safe reconciliation",
+        "protocolState": "Configured index-names executable Marketplace authority"
+      },
+      "indexer": {
+        "primary": "Configured index-names executable Marketplace authority",
+        "fallbacks": [],
+        "mutationGate": "Execution requires distinct read and execution credentials, a fresh Names checkpoint, authoritative first-registration ownership, complete inventory, clean funding, immutable economics, and post-sign validation."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "Every mutation is bound to stable Names, Ord, Bitcoin Core, and complete-inventory checkpoints; deployment readiness must enforce configured checkpoint age and lag limits."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": 1,
+        "policy": "Settlement requires the exact confirmed Bitcoin transaction and the authoritative name inscription indexed at a buyer-owned output at stable checkpoints."
+      },
+      "reorg": {
+        "automaticReconciliation": true,
+        "policy": "The authority continuously reconciles active broadcasts, appends reorg observations, invalidates affected orders deterministically, and preserves funding, broadcast, settlement, and replacement lineage."
+      }
+    },
+    "doginals": {
+      "id": "doginals",
+      "displayName": "Doginals",
+      "aliases": [
+        "doginal"
+      ],
+      "chain": "dogecoin",
+      "ownershipModel": "utxo",
+      "decimals": "none",
+      "addressRoles": [
+        "payment"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction",
+            "list",
+            "update-listing",
+            "unlist",
+            "buy",
+            "make-offer",
+            "accept-offer",
+            "cancel-offer",
+            "settle",
+            "reconcile"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "inscribe"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "feature-gated",
+        "mode": "external-execution",
+        "featureGate": "dogecoinMarketplaceV1",
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "external-execution"
+            },
+            {
+              "action": "view-collection",
+              "mode": "external-execution"
+            },
+            {
+              "action": "view-activity",
+              "mode": "external-execution"
+            },
+            {
+              "action": "list",
+              "mode": "external-execution"
+            },
+            {
+              "action": "update-listing",
+              "mode": "external-execution"
+            },
+            {
+              "action": "unlist",
+              "mode": "external-execution"
+            },
+            {
+              "action": "buy",
+              "mode": "external-execution"
+            },
+            {
+              "action": "make-offer",
+              "mode": "external-execution"
+            },
+            {
+              "action": "accept-offer",
+              "mode": "external-execution"
+            },
+            {
+              "action": "cancel-offer",
+              "mode": "external-execution"
+            },
+            {
+              "action": "settle",
+              "mode": "external-execution"
+            },
+            {
+              "action": "reconcile",
+              "mode": "external-execution"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "sell",
+              "reason": "Doginals has no executable offer workflow on this marketplace surface."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "Durable Dogecoin-native SQLite listings, revisions, funded offers, reservations, action requests, funding fences, broadcast lineage, history, and settlement observations",
+        "ownership": "Protocol-specific authoritative checkpoint ownership and exact outpoint proof corroborated by Dogecoin Core and, for TAP-DOGE, the pinned immutable TAP reader",
+        "settlement": "Exact Dogecoin raw transaction templates, wallet-authorized permitted input signatures, Core validation and broadcast, chain confirmation, protocol checkpoint convergence, and rollback-safe reconciliation",
+        "protocolState": "Configured Doginals checkpoint authority and Dogecoin Core"
+      },
+      "indexer": {
+        "primary": "Configured Doginals checkpoint authority and Dogecoin Core",
+        "fallbacks": [],
+        "mutationGate": "Execution requires distinct read and execution credentials, a fresh execution-authenticated readiness probe, a complete authoritative checkpoint, Core-verified funding, exact immutable economics, and protocol-native post-sign validation."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "Every mutation is bound to the exact authority checkpoint and an execution-authenticated readiness observation; deployment readiness must enforce its configured checkpoint-age and lag limits."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": 1,
+        "policy": "Settlement requires the exact Dogecoin transaction confirmation and the expected protocol-state transition in a later authoritative checkpoint."
+      },
+      "reorg": {
+        "automaticReconciliation": true,
+        "policy": "The authority appends reorg observations, reopens or invalidates affected orders deterministically, and preserves funding, broadcast, and replacement lineage."
+      }
+    },
+    "drc20": {
+      "id": "drc20",
+      "displayName": "DRC-20",
+      "aliases": [
+        "drc-20"
+      ],
+      "chain": "dogecoin",
+      "ownershipModel": "hybrid",
+      "decimals": "none",
+      "addressRoles": [
+        "payment",
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction",
+            "list",
+            "update-listing",
+            "unlist",
+            "buy",
+            "make-offer",
+            "accept-offer",
+            "cancel-offer",
+            "settle",
+            "reconcile"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "mint"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "feature-gated",
+        "mode": "external-execution",
+        "featureGate": "dogecoinMarketplaceV1",
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "external-execution"
+            },
+            {
+              "action": "view-collection",
+              "mode": "external-execution"
+            },
+            {
+              "action": "view-activity",
+              "mode": "external-execution"
+            },
+            {
+              "action": "list",
+              "mode": "external-execution"
+            },
+            {
+              "action": "update-listing",
+              "mode": "external-execution"
+            },
+            {
+              "action": "unlist",
+              "mode": "external-execution"
+            },
+            {
+              "action": "buy",
+              "mode": "external-execution"
+            },
+            {
+              "action": "make-offer",
+              "mode": "external-execution"
+            },
+            {
+              "action": "accept-offer",
+              "mode": "external-execution"
+            },
+            {
+              "action": "cancel-offer",
+              "mode": "external-execution"
+            },
+            {
+              "action": "settle",
+              "mode": "external-execution"
+            },
+            {
+              "action": "reconcile",
+              "mode": "external-execution"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "sell",
+              "reason": "DRC-20 has no executable offer workflow on this marketplace surface."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "Durable Dogecoin-native SQLite listings, revisions, funded offers, reservations, action requests, funding fences, broadcast lineage, history, and settlement observations",
+        "ownership": "Protocol-specific authoritative checkpoint ownership and exact outpoint proof corroborated by Dogecoin Core and, for TAP-DOGE, the pinned immutable TAP reader",
+        "settlement": "Exact Dogecoin raw transaction templates, wallet-authorized permitted input signatures, Core validation and broadcast, chain confirmation, protocol checkpoint convergence, and rollback-safe reconciliation",
+        "protocolState": "Configured DRC-20 checkpoint authority and Dogecoin Core"
+      },
+      "indexer": {
+        "primary": "Configured DRC-20 checkpoint authority and Dogecoin Core",
+        "fallbacks": [],
+        "mutationGate": "Execution requires distinct read and execution credentials, a fresh execution-authenticated readiness probe, a complete authoritative checkpoint, Core-verified funding, exact immutable economics, and protocol-native post-sign validation."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "Every mutation is bound to the exact authority checkpoint and an execution-authenticated readiness observation; deployment readiness must enforce its configured checkpoint-age and lag limits."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": 1,
+        "policy": "Settlement requires the exact Dogecoin transaction confirmation and the expected protocol-state transition in a later authoritative checkpoint."
+      },
+      "reorg": {
+        "automaticReconciliation": true,
+        "policy": "The authority appends reorg observations, reopens or invalidates affected orders deterministically, and preserves funding, broadcast, and replacement lineage."
+      }
+    },
+    "zerdinals": {
+      "id": "zerdinals",
+      "displayName": "Zerdinals",
+      "aliases": [
+        "universe-zerdinals"
+      ],
+      "chain": "zcash",
+      "ownershipModel": "utxo",
+      "decimals": "none",
+      "addressRoles": [
+        "payment"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "read",
+            "explore"
+          ]
+        }
+      },
+      "marketplace": null,
+      "sourceOfTruth": null,
+      "indexer": null,
+      "freshness": null,
+      "confirmation": null,
+      "reorg": null
+    },
+    "zrunes": {
+      "id": "zrunes",
+      "displayName": "ZRunes",
+      "aliases": [],
+      "chain": "zcash",
+      "ownershipModel": "hybrid",
+      "decimals": "protocol-defined",
+      "addressRoles": [
+        "payment"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "read",
+            "explore"
+          ]
+        }
+      },
+      "marketplace": null,
+      "sourceOfTruth": null,
+      "indexer": null,
+      "freshness": null,
+      "confirmation": null,
+      "reorg": null
+    },
+    "rare_sats": {
+      "id": "rare_sats",
+      "displayName": "Rare Sats",
+      "aliases": [
+        "rare-sats",
+        "raresats"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "utxo",
+      "decimals": "none",
+      "addressRoles": [
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "feature-gated",
+        "mode": "live-read-only",
+        "featureGate": "rareSats",
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "live-read-only"
+            },
+            {
+              "action": "view-collection",
+              "mode": "live-read-only"
+            },
+            {
+              "action": "view-activity",
+              "mode": "live-read-only"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "list",
+              "reason": "Production Rare Sats trading requires an external marketplace; local execution exists only in the development/test simulator."
+            },
+            {
+              "action": "update-listing",
+              "reason": "Production Rare Sats trading requires an external marketplace; local execution exists only in the development/test simulator."
+            },
+            {
+              "action": "unlist",
+              "reason": "Production Rare Sats trading requires an external marketplace; local execution exists only in the development/test simulator."
+            },
+            {
+              "action": "buy",
+              "reason": "Production Rare Sats trading requires an external marketplace; local execution exists only in the development/test simulator."
+            },
+            {
+              "action": "make-offer",
+              "reason": "Production Rare Sats trading requires an external marketplace; local execution exists only in the development/test simulator."
+            },
+            {
+              "action": "accept-offer",
+              "reason": "Production Rare Sats trading requires an external marketplace; local execution exists only in the development/test simulator."
+            },
+            {
+              "action": "cancel-offer",
+              "reason": "Production Rare Sats trading requires an external marketplace; local execution exists only in the development/test simulator."
+            },
+            {
+              "action": "sell",
+              "reason": "Production Rare Sats trading requires an external marketplace; local execution exists only in the development/test simulator."
+            },
+            {
+              "action": "settle",
+              "reason": "Production Rare Sats trading requires an external marketplace; local execution exists only in the development/test simulator."
+            },
+            {
+              "action": "reconcile",
+              "reason": "Production Rare Sats trading requires an external marketplace; local execution exists only in the development/test simulator."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "External marketplace required in live mode",
+        "ownership": "Configured local ord index plus Bitcoin outpoint ownership",
+        "settlement": "No Universe production settlement implementation",
+        "protocolState": "Operator-configured local ord server with sat index"
+      },
+      "indexer": {
+        "primary": "Operator-configured local ord server with sat index",
+        "fallbacks": [],
+        "mutationGate": "Live checks require sat-index readiness, matching network, checkpoint stability, and no reported reorg."
+      },
+      "freshness": {
+        "enforced": true,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "Two stable index checkpoints and explicit reorg state are required; no numeric lag ceiling is configured."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": null,
+        "policy": "The simulator enforces configured confirmations; live production does not settle orders."
+      },
+      "reorg": {
+        "automaticReconciliation": false,
+        "policy": "Live checks fail closed when ord reports a reorg; no local production order state exists to roll back."
+      }
+    },
+    "ordex": {
+      "id": "ordex",
+      "displayName": "Ordex",
+      "aliases": [
+        "openordex"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "utxo",
+      "decimals": "none",
+      "addressRoles": [
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "list"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "send",
+            "receive"
+          ]
+        }
+      },
+      "marketplace": {
+        "owner": "main",
+        "availability": "feature-gated",
+        "mode": "psbt-routing-only",
+        "featureGate": "ordex",
+        "actions": {
+          "supported": [
+            {
+              "action": "view",
+              "mode": "psbt-routing-only"
+            },
+            {
+              "action": "view-collection",
+              "mode": "psbt-routing-only"
+            },
+            {
+              "action": "list",
+              "mode": "psbt-routing-only"
+            }
+          ],
+          "unsupported": [
+            {
+              "action": "view-activity",
+              "reason": "Ordex does not implement view-activity on this marketplace surface."
+            },
+            {
+              "action": "update-listing",
+              "reason": "Ordex does not mutate signed PSBT terms; publish a new signed order instead."
+            },
+            {
+              "action": "unlist",
+              "reason": "Ordex withdrawal is an operator-admin action; no public seller cancellation authorization is implemented."
+            },
+            {
+              "action": "buy",
+              "reason": "Ordex validates and routes PSBTs but explicitly does not fund, sign, or broadcast settlement."
+            },
+            {
+              "action": "make-offer",
+              "reason": "Ordex has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "accept-offer",
+              "reason": "Ordex has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "cancel-offer",
+              "reason": "Ordex has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "sell",
+              "reason": "Ordex has no executable offer workflow on this marketplace surface."
+            },
+            {
+              "action": "settle",
+              "reason": "Ordex has no executable settle authority on this marketplace surface."
+            },
+            {
+              "action": "reconcile",
+              "reason": "Ordex has no executable reconcile authority on this marketplace surface."
+            }
+          ]
+        }
+      },
+      "sourceOfTruth": {
+        "orderBook": "Local Ordex journal with signed PSBT digest and source evidence",
+        "ownership": "Local Bitcoin Core gettxout plus local ord claim validation",
+        "settlement": "Caller-provided final transaction preflight only",
+        "protocolState": "Local Bitcoin Core and local ord server"
+      },
+      "indexer": {
+        "primary": "Local Bitcoin Core and local ord server",
+        "fallbacks": [
+          "Signed OpenOrdex Nostr kind-802 evidence",
+          "ord-offers/direct imports"
+        ],
+        "mutationGate": "Build/publish validates live UTXO and ord claim; no persistent node/indexer lag metric is enforced."
+      },
+      "freshness": {
+        "enforced": false,
+        "maxLagBlocks": null,
+        "maxObservationAgeMs": null,
+        "policy": "Orders can be manually revalidated; there is no automatic lag threshold or reconciliation cadence."
+      },
+      "confirmation": {
+        "listingMinConfirmations": null,
+        "settlementMinConfirmations": null,
+        "policy": "Ordex never broadcasts or records a completed settlement."
+      },
+      "reorg": {
+        "automaticReconciliation": false,
+        "policy": "Manual revalidation can change actionability; no automatic reorg state transition exists."
+      }
+    },
+    "chainbloom": {
+      "id": "chainbloom",
+      "displayName": "ChainBloom",
+      "aliases": [
+        "chain-bloom"
+      ],
+      "chain": "bitcoin",
+      "ownershipModel": "utxo",
+      "decimals": "none",
+      "addressRoles": [
+        "payment",
+        "ordinals"
+      ],
+      "surfaces": {
+        "main": {
+          "label": "Core",
+          "actions": [
+            "view",
+            "discover",
+            "view-collection",
+            "view-activity",
+            "view-transaction"
+          ]
+        },
+        "wallet": {
+          "label": "Wallet",
+          "actions": [
+            "view",
+            "receive"
+          ]
+        },
+        "inscribe": {
+          "label": "Inscribe",
+          "actions": [
+            "inscribe"
+          ]
+        }
+      },
+      "marketplace": null,
+      "sourceOfTruth": null,
+      "indexer": null,
+      "freshness": null,
+      "confirmation": null,
+      "reorg": null
+    }
+  }
+}
