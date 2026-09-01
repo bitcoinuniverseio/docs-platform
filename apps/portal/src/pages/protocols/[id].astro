@@ -13,6 +13,7 @@ import {
   AVAILABILITY_LABELS,
   MODE_LABELS,
 } from '@universe/ecosystem-registry';
+import { withBase } from '../../lib/paths';
 
 export function getStaticPaths() {
   return protocols.map((protocol) => ({
@@ -222,7 +223,7 @@ const originLine = (() => {
       {provenance.repository} at {shortCommit}
     </a>
     . Implemented behaviour is not the same as production availability: see{' '}
-    <a href="/status/">how to read our status</a>.
+    <a href={withBase("/status/")}>how to read our status</a>.
   </p>
 </StarlightPage>
 

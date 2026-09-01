@@ -9,6 +9,7 @@
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import { Aside } from '@astrojs/starlight/components';
 import { products } from '@universe/ecosystem-registry';
+import { withBase } from '../../lib/paths';
 
 const monitored = products.filter((product) => product.statusEndpoints.length > 0);
 ---
@@ -28,7 +29,7 @@ const monitored = products.filter((product) => product.statusEndpoints.length > 
 
   <Aside type="caution" title="Implemented, enabled, and healthy are three different things">
     <p>
-      The <a href="/protocols/">Protocol Atlas</a> records what our code implements. This page
+      The <a href={withBase("/protocols/")}>Protocol Atlas</a> records what our code implements. This page
       records what the running service reports. A protocol can be fully implemented, switched off by
       an operator, and therefore correctly shown here as unavailable. Read both before concluding
       that something is broken.

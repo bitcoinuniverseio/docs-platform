@@ -4,6 +4,7 @@
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import { Aside } from '@astrojs/starlight/components';
 import { protocols, chains, provenance, AVAILABILITY_LABELS } from '@universe/ecosystem-registry';
+import { withBase } from '../../lib/paths';
 
 const shortCommit = provenance.sourceCommit.slice(0, 12);
 
@@ -40,7 +41,7 @@ function supportCell(protocol) {
   <Aside type="caution" title="Implemented is not the same as available">
     <p>
       This Atlas records what our products implement. Whether a protocol is switched on in
-      production right now is a separate question answered by <a href="/status/">status</a>. A
+      production right now is a separate question answered by <a href={withBase("/status/")}>status</a>. A
       protocol can be fully implemented and still be gated off, and a read-only protocol is one we
       deliberately do not let you trade.
     </p>
@@ -65,7 +66,7 @@ function supportCell(protocol) {
               {entries.map((protocol) => (
                 <tr>
                   <th scope="row">
-                    <a href={`/protocols/${protocol.id}/`}>{protocol.name}</a>
+                    <a href={withBase(`/protocols/${protocol.id}/`)}>{protocol.name}</a>
                   </th>
                   <td>{protocol.carrier}</td>
                   <td>

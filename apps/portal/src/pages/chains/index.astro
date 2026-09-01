@@ -3,6 +3,7 @@
 // "finality" mean the same thing on every documentation surface in the estate.
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import { chains, protocolsByChain } from '@universe/ecosystem-registry';
+import { withBase } from '../../lib/paths';
 
 const rows = chains.map((chain) => ({
   chain,
@@ -60,7 +61,7 @@ const rows = chains.map((chain) => ({
             .map((protocol, index) => (
               <>
                 {index > 0 && ', '}
-                <a href={`/protocols/${protocol.id}/`}>{protocol.name}</a>
+                <a href={withBase(`/protocols/${protocol.id}/`)}>{protocol.name}</a>
               </>
             ))}
           .
@@ -75,7 +76,7 @@ const rows = chains.map((chain) => ({
     Bitcoin represents roughly an hour of work; six on Dogecoin represents roughly six minutes. When
     a guide anywhere in this estate says "wait for confirmation", it means the policy recorded for
     that protocol on that chain, which you can read in each{' '}
-    <a href="/protocols/">Atlas dossier</a>.
+    <a href={withBase("/protocols/")}>Atlas dossier</a>.
   </p>
 </StarlightPage>
 
