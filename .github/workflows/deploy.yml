@@ -1,0 +1,93 @@
+name: deploy
+
+# Production deploys only from main, and only the exact commit that passed.
+# Nothing is ever published from a working tree.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      rollback_to:
+        description: "Commit to roll back to. Leave empty to deploy this ref."
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+# Never let two deploys race for the same symlink.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: runs-on=${{ github.run_id }}-deploy/runner=universe-fast/cpu=4+16/env=production
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bitcoinuniverseio/universe-ci-actions/universe-node-env@main
+
+      - name: Install pnpm
+        run: npm install -g pnpm@10.34.5
+
+      - name: Install locked dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify pinned sources still validate
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: pnpm sync:verify
+
+      - name: Build the portal
+        run: pnpm --filter @universe/docs-portal build
+
+      - name: Install a browser for the accessibility audit
+        run: npx playwright install --with-deps chromium
+
+      - name: Accessibility gate
+        run: node packages/docs-quality/bin/check-accessibility.mjs --dist apps/portal/dist
+
+      - name: Prepare SSH authentication
+        env:
+          DOCS_DEPLOY_KEY: ${{ secrets.DOCS_DEPLOY_KEY }}
+          DOCS_DEPLOY_PASSWORD: ${{ secrets.DOCS_DEPLOY_PASSWORD }}
+        run: |
+          if [ -n "$DOCS_DEPLOY_KEY" ]; then
+            install -m 700 -d ~/.ssh
+            printf '%s\n' "$DOCS_DEPLOY_KEY" > ~/.ssh/docs_deploy
+            chmod 600 ~/.ssh/docs_deploy
+          elif [ -n "$DOCS_DEPLOY_PASSWORD" ]; then
+            sudo apt-get update
+            sudo apt-get install -y sshpass
+          else
+            echo "DOCS_DEPLOY_KEY or DOCS_DEPLOY_PASSWORD is required" >&2
+            exit 2
+          fi
+
+      - name: Deploy
+        if: ${{ inputs.rollback_to == '' }}
+        env:
+          DOCS_HOST: ${{ secrets.DOCS_HOST }}
+          DOCS_SSH_KEY: /home/runner/.ssh/docs_deploy
+          DOCS_PASSWORD: ${{ secrets.DOCS_DEPLOY_PASSWORD }}
+        run: bash tooling/deploy/deploy.sh apps/portal/dist "${{ github.sha }}"
+
+      - name: Roll back
+        if: ${{ inputs.rollback_to != '' }}
+        env:
+          DOCS_HOST: ${{ secrets.DOCS_HOST }}
+          DOCS_SSH_KEY: /home/runner/.ssh/docs_deploy
+          DOCS_PASSWORD: ${{ secrets.DOCS_DEPLOY_PASSWORD }}
+        run: bash tooling/deploy/rollback.sh "${{ inputs.rollback_to }}"
+
+      - name: Remove the deploy key
+        if: always()
+        run: rm -f ~/.ssh/docs_deploy
+
+      - name: Report what is live
+        run: |
+          live=$(curl -sf https://docs.bitcoinuniverse.io/RELEASE)
+          echo "live release: $live"
+          echo "### Documentation portal" >> "$GITHUB_STEP_SUMMARY"
+          echo "Live release: \`$live\`" >> "$GITHUB_STEP_SUMMARY"

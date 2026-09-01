@@ -14,7 +14,9 @@ concurrency:
 
 jobs:
   checks:
-    runs-on: runs-on=${{ github.run_id }}-checks/runner=universe-hosted/cpu=4+16/env=production
+    # universe-fast currently has eligible Spot capacity for this browser-heavy
+    # gate. The profile remains Spot-only with no on-demand fallback.
+    runs-on: runs-on=${{ github.run_id }}-checks/runner=universe-fast/cpu=4+16/env=production
     steps:
       - uses: actions/checkout@v4
       - uses: bitcoinuniverseio/universe-ci-actions/universe-node-env@main
@@ -32,3 +34,7 @@ jobs:
         run: test -f apps/portal/dist/pagefind/pagefind.js
       - name: Sitemap exists
         run: test -f apps/portal/dist/sitemap-index.xml
+      - name: Install a browser for the accessibility audit
+        run: npx playwright install --with-deps chromium
+      - name: Accessibility and sideways scroll, every page, both themes
+        run: node packages/docs-quality/bin/check-accessibility.mjs --dist apps/portal/dist
