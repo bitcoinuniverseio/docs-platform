@@ -2,6 +2,11 @@
 title: Bitcoin Universe Docs
 description: Documentation for every Bitcoin Universe product, protocol, API, and indexer, with source provenance and live status behind every claim.
 template: splash
+head:
+  # Without this the page title renders as the site title twice over, because
+  # Starlight appends the site title to every page title.
+  - tag: title
+    content: Bitcoin Universe Docs
 hero:
   title: Bitcoin Universe Docs
   tagline: Every product, protocol, API, and indexer we run, documented with the source commit and release evidence behind each claim.
