@@ -32,13 +32,15 @@ if [ -f "$DOCS_SSH_KEY" ]; then
   SSH+=(-i "$DOCS_SSH_KEY")
   SCP+=(-i "$DOCS_SSH_KEY")
 elif [ -n "$DOCS_PASSWORD" ]; then
-  command -v sshpass >/dev/null || {
-    echo "sshpass is required for password authentication" >&2
+  if [ -z "${SSH_ASKPASS:-}" ] || [ ! -x "$SSH_ASKPASS" ]; then
+    echo "an executable SSH_ASKPASS helper is required for password authentication" >&2
     exit 2
-  }
-  export SSHPASS="$DOCS_PASSWORD"
-  SSH=(sshpass -e ssh)
-  SCP=(sshpass -e scp)
+  fi
+  export SSH_ASKPASS
+  export SSH_ASKPASS_REQUIRE=force
+  export DISPLAY=${DISPLAY:-docs-deploy}
+  SSH=(ssh -o BatchMode=no -o NumberOfPasswordPrompts=1)
+  SCP=(scp -o BatchMode=no -o NumberOfPasswordPrompts=1)
 else
   echo "DOCS_SSH_KEY or DOCS_PASSWORD is required" >&2
   exit 2
