@@ -10,20 +10,35 @@ import { Aside } from '@astrojs/starlight/components';
 import health from '@universe/ecosystem-registry/data/docs-health.json' with { type: 'json' };
 import { withBase } from '../../lib/paths';
 
+type Repository = (typeof health.repositories)[number];
+type ContractKind = keyof Repository['contracts'];
+interface InterfaceEntry {
+  repository: string;
+  path: string;
+  lifecycle: string | null;
+  commit: string;
+}
+
+interface BlobEntry {
+  repository: string;
+  path: string;
+  commit: string;
+}
+
 const KINDS = [
   { key: 'openapi', label: 'REST APIs', form: 'OpenAPI 3.1' },
   { key: 'asyncapi', label: 'Event and WebSocket interfaces', form: 'AsyncAPI' },
   { key: 'jsonSchema', label: 'Data models and payload schemas', form: 'JSON Schema' },
   { key: 'cli', label: 'Command line interfaces', form: 'CLI reference' },
   { key: 'sdk', label: 'SDKs', form: 'SDK' },
-];
+] as const satisfies ReadonlyArray<{ key: ContractKind; label: string; form: string }>;
 
 const valid = health.repositories.filter((r) => r.manifest.valid);
 
-function entriesFor(kind) {
+function entriesFor(kind: ContractKind): InterfaceEntry[] {
   return valid
     .flatMap((repo) =>
-      (repo.contracts?.[kind] ?? []).map((path) => ({
+      (repo.contracts[kind] as string[]).map((path: string) => ({
         repository: repo.repository,
         path,
         lifecycle: repo.lifecycle,
@@ -52,7 +67,7 @@ const statusEndpoints = valid
 
 const totalContracts = sections.reduce((sum, s) => sum + s.entries.length, 0);
 
-function blobUrl(entry) {
+function blobUrl(entry: BlobEntry) {
   return `https://github.com/${entry.repository}/blob/${entry.commit}/${entry.path}`;
 }
 ---
