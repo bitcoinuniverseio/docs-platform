@@ -66,5 +66,6 @@ and give it write access to the release directory and nothing else. The
 workflow writes the key to the runner, uses it, and removes it in an `always`
 step so it does not survive the job. Password authentication is supported for
 an existing credential when a scoped key is not available; the password stays
-in the protected production environment and is passed to `sshpass` through its
-environment interface, never the command line.
+in the protected production environment and is supplied through OpenSSH's
+temporary askpass helper, never the command line. The helper is mode 700 and is
+removed in the workflow's unconditional cleanup step.
