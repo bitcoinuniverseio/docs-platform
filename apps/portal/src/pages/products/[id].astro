@@ -1,0 +1,187 @@
+---
+// One page per product. The protocol support list is derived from the same
+// capability snapshot the Atlas uses, so a product page can never claim support
+// the Atlas denies.
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { Aside } from '@astrojs/starlight/components';
+import {
+  products,
+  provenance,
+  protocolsForProduct,
+  getChain,
+} from '@universe/ecosystem-registry';
+
+export function getStaticPaths() {
+  return products.map((product) => ({
+    params: { id: product.id },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+const supported = protocolsForProduct(product.id);
+const chainNames = product.chains.map((c) => getChain(c)?.name ?? c);
+const shortCommit = provenance.sourceCommit.slice(0, 12);
+---
+
+<StarlightPage
+  frontmatter={{
+    title: product.name,
+    description: product.tagline,
+    tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 2 },
+  }}
+>
+  <p class="lede">{product.tagline}</p>
+  <p>{product.role}</p>
+
+  <dl class="facts">
+    <div>
+      <dt>Chains</dt>
+      <dd>{chainNames.join(', ')}</dd>
+    </div>
+    <div>
+      <dt>Documentation</dt>
+      <dd><a href={product.documentationSite}>Read the docs</a></dd>
+    </div>
+    <div>
+      <dt>Source</dt>
+      <dd>
+        {product.sourceVisibility === 'private'
+          ? `${product.sourceRepository} (private)`
+          : product.sourceRepository}
+      </dd>
+    </div>
+    {
+      product.liveUrl && (
+        <div>
+          <dt>Live</dt>
+          <dd>
+            <a href={product.liveUrl}>{product.liveUrl.replace('https://', '')}</a>
+          </dd>
+        </div>
+      )
+    }
+  </dl>
+
+  <Aside type="tip" title="The documentation site is the authority">
+    <p>
+      This page exists so you can place {product.name} inside the wider estate. The complete guides,
+      reference, and release notes live in its own documentation at{' '}
+      <a href={product.documentationSite}>{product.documentationSite}</a>, which is maintained in{' '}
+      <a href={`https://github.com/${product.documentationRepository}`}>
+        {product.documentationRepository}
+      </a>.
+    </p>
+  </Aside>
+
+  {
+    supported.length > 0 ? (
+      <>
+        <h2 id="protocols">Protocols this product implements</h2>
+        <p>
+          Derived from the product's own protocol registry. Each protocol links to its Atlas dossier,
+          where the unimplemented actions are listed with the reason for each.
+        </p>
+        <div class="scroll-x">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Protocol</th>
+                <th scope="col">Actions implemented here</th>
+              </tr>
+            </thead>
+            <tbody>
+              {supported.map(({ protocol, actions }) => (
+                <tr>
+                  <th scope="row">
+                    <a href={`/protocols/${protocol.id}/`}>{protocol.name}</a>
+                  </th>
+                  <td>{actions.join(', ')}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="provenance">
+          Generated from <code>{provenance.sourcePath}</code> in{' '}
+          <a href={`https://github.com/${provenance.repository}/commit/${provenance.sourceCommit}`}>
+            {provenance.repository} at {shortCommit}
+          </a>.
+        </p>
+      </>
+    ) : (
+      <>
+        <h2 id="protocols">Protocols</h2>
+        <p>
+          {product.name} does not declare protocol support through the shared Core protocol registry.
+          Its own documentation states what it supports.
+        </p>
+      </>
+    )
+  }
+
+  {
+    product.statusEndpoints.length > 0 && (
+      <>
+        <h2 id="status">Status</h2>
+        <p>These public endpoints report this product's live state:</p>
+        <ul>
+          {product.statusEndpoints.map((endpoint) => (
+            <li>
+              <a href={endpoint}>
+                <code>{endpoint}</code>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p>
+          Read <a href="/status/">how to read our status</a> before drawing conclusions from a
+          health response.
+        </p>
+      </>
+    )
+  }
+</StarlightPage>
+
+<style>
+  .lede {
+    font-size: var(--sl-text-lg);
+    color: var(--sl-color-white);
+  }
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: 0.75rem 1.5rem;
+    margin: 1.5rem 0 2rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.5rem;
+    background: var(--sl-color-gray-6);
+  }
+  .facts div {
+    margin: 0;
+  }
+  .facts dt {
+    font-size: var(--sl-text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--sl-color-gray-3);
+    margin: 0;
+  }
+  .facts dd {
+    margin: 0.15rem 0 0;
+    color: var(--sl-color-white);
+  }
+  .scroll-x {
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+  .scroll-x table {
+    margin: 0;
+    min-width: 34rem;
+  }
+  .provenance {
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-2);
+  }
+</style>

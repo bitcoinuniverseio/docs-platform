@@ -1,0 +1,116 @@
+---
+// The chain catalog. Shared definitions so that "confirmed", "network", and
+// "finality" mean the same thing on every documentation surface in the estate.
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { chains, protocolsByChain } from '@universe/ecosystem-registry';
+
+const rows = chains.map((chain) => ({
+  chain,
+  protocols: protocolsByChain(chain.id),
+}));
+---
+
+<StarlightPage
+  frontmatter={{
+    title: 'Chains and networks',
+    description:
+      'The chains Bitcoin Universe operates on, the networks on each, and the properties that change how protocols and confirmations behave.',
+    tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 2 },
+  }}
+>
+  <p class="lede">
+    Three chains, each with its own block target, its own fee market, and its own reasons to wait
+    before treating something as settled. Protocol behaviour is not portable between them.
+  </p>
+
+  {
+    rows.map(({ chain, protocols }) => (
+      <>
+        <h2 id={chain.id}>
+          {chain.name} <span class="ticker">{chain.ticker}</span>
+        </h2>
+        <p>{chain.note}</p>
+        <dl class="facts">
+          <div>
+            <dt>Networks</dt>
+            <dd>{chain.networks.join(', ')}</dd>
+          </div>
+          <div>
+            <dt>Block target</dt>
+            <dd>{chain.blockTargetMinutes} minutes</dd>
+          </div>
+          <div>
+            <dt>Protocols in the Atlas</dt>
+            <dd>{protocols.length}</dd>
+          </div>
+        </dl>
+        <h3 id={`${chain.id}-finality`}>Finality</h3>
+        <p>{chain.finality}</p>
+        <h3 id={`${chain.id}-carriers`}>How data is carried</h3>
+        <ul>
+          {chain.dataCarriers.map((carrier) => (
+            <li>{carrier}</li>
+          ))}
+        </ul>
+        <h3 id={`${chain.id}-protocols`}>Protocols on {chain.name}</h3>
+        <p>
+          {protocols
+            .slice()
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map((protocol, index) => (
+              <>
+                {index > 0 && ', '}
+                <a href={`/protocols/${protocol.id}/`}>{protocol.name}</a>
+              </>
+            ))}
+          .
+        </p>
+      </>
+    ))
+  }
+
+  <h2 id="why-this-page-exists">Why this page exists</h2>
+  <p>
+    A confirmation count means something different on each of these chains. Six confirmations on
+    Bitcoin represents roughly an hour of work; six on Dogecoin represents roughly six minutes. When
+    a guide anywhere in this estate says "wait for confirmation", it means the policy recorded for
+    that protocol on that chain, which you can read in each{' '}
+    <a href="/protocols/">Atlas dossier</a>.
+  </p>
+</StarlightPage>
+
+<style>
+  .lede {
+    font-size: var(--sl-text-lg);
+    color: var(--sl-color-white);
+  }
+  .ticker {
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+    font-weight: 400;
+  }
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: 0.75rem 1.5rem;
+    margin: 1rem 0 1.5rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.5rem;
+    background: var(--sl-color-gray-6);
+  }
+  .facts div {
+    margin: 0;
+  }
+  .facts dt {
+    font-size: var(--sl-text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--sl-color-gray-3);
+    margin: 0;
+  }
+  .facts dd {
+    margin: 0.15rem 0 0;
+    color: var(--sl-color-white);
+  }
+</style>

@@ -1,0 +1,15 @@
+{
+  "name": "@universe/ecosystem-registry",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The structured ecosystem data behind docs.bitcoinuniverse.io: protocols, products, chains, APIs, and the capability snapshot generated from the Core protocol registry.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.js",
+    "./data/*": "./data/*"
+  },
+  "scripts": {
+    "generate:capabilities": "node bin/generate-capability-snapshot.mjs",
+    "test": "node test/registry.test.mjs"
+  }
+}
