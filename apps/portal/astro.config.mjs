@@ -64,7 +64,10 @@ export default defineConfig({
         },
         {
           label: 'Developers',
-          items: [{ label: 'Overview', slug: 'developers' }],
+          items: [
+            { label: 'Overview', slug: 'developers' },
+            { label: 'Interface directory', link: '/developers/interfaces/' },
+          ],
         },
         {
           label: 'Chains',
@@ -97,6 +100,7 @@ export default defineConfig({
             '/chains/**',
             '/status/live/**',
             '/status/documentation-health/**',
+            '/developers/interfaces/**',
           ],
         }),
       ],
