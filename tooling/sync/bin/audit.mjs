@@ -81,6 +81,7 @@ async function auditRepository(entry) {
     statusSources: [],
     lastVerified: null,
     lastVerifiedAgeDays: null,
+    releases: [],
     governance: {},
     machineReadable: {},
     problems: [],
@@ -126,6 +127,22 @@ async function auditRepository(entry) {
         record.lastVerifiedAgeDays = Math.max(0, Math.round(ageMs / 86_400_000));
       }
     }
+  }
+
+  // Recent published releases, for the aggregated changelog. Repositories with
+  // no releases are recorded as having none rather than being omitted, because
+  // "this project has never cut a release" is itself worth knowing.
+  try {
+    const releases = await gh(`/repos/${repository}/releases?per_page=5`);
+    record.releases = releases.map((release) => ({
+      tag: release.tag_name,
+      name: release.name,
+      publishedAt: release.published_at,
+      prerelease: release.prerelease,
+      url: release.html_url,
+    }));
+  } catch {
+    record.releases = [];
   }
 
   // Presence checks only. A file existing is not a claim that it is good.
