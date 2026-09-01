@@ -49,6 +49,7 @@ export default defineConfig({
         {
           label: 'Start',
           items: [
+            { label: 'Ask Universe', link: '/ask/' },
             { label: 'What Bitcoin Universe is', slug: 'start/what-bitcoin-universe-is' },
             { label: 'Safety in sixty seconds', slug: 'start/safety' },
             { label: 'Choose your path', slug: 'start/choose-your-path' },
@@ -101,6 +102,7 @@ export default defineConfig({
             '/status/live/**',
             '/status/documentation-health/**',
             '/developers/interfaces/**',
+            '/ask/**',
           ],
         }),
       ],
