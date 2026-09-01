@@ -6,8 +6,14 @@
       "name": "Core",
       "tagline": "Explore the chain, hold a portfolio, and trade digital artifacts in one place.",
       "role": "The explorer, portfolio, and marketplace application. Core is where assets are discovered, inspected, and traded, and it is the surface most protocol support is measured against.",
-      "audiences": ["user", "collector", "app-developer"],
-      "chains": ["bitcoin"],
+      "audiences": [
+        "user",
+        "collector",
+        "app-developer"
+      ],
+      "chains": [
+        "bitcoin"
+      ],
       "capabilitySurface": "main",
       "documentationRepository": "bitcoinuniverseio/docs-core",
       "documentationSite": "https://bitcoinuniverseio.github.io/docs-core/",
@@ -24,8 +30,13 @@
       "name": "Wallet",
       "tagline": "Self-custody for Bitcoin digital artifacts, with approvals you can actually read.",
       "role": "The browser wallet. It holds keys, separates payment outputs from asset-bearing outputs, and presents what a signature authorises before it is given.",
-      "audiences": ["user", "collector"],
-      "chains": ["bitcoin"],
+      "audiences": [
+        "user",
+        "collector"
+      ],
+      "chains": [
+        "bitcoin"
+      ],
       "capabilitySurface": "wallet",
       "documentationRepository": "bitcoinuniverseio/docs-wallet",
       "documentationSite": "https://bitcoinuniverseio.github.io/docs-wallet/",
@@ -39,8 +50,14 @@
       "name": "Inscribe",
       "tagline": "Create on Bitcoin: files, text, tokens, and collections, with the cost shown before you commit.",
       "role": "The creation studio. Inscribe builds the transactions that bring new artifacts and tokens into existence, across every protocol whose creation path is implemented.",
-      "audiences": ["user", "collector", "app-developer"],
-      "chains": ["bitcoin"],
+      "audiences": [
+        "user",
+        "collector",
+        "app-developer"
+      ],
+      "chains": [
+        "bitcoin"
+      ],
       "capabilitySurface": "inscribe",
       "documentationRepository": "bitcoinuniverseio/docs-inscribe",
       "documentationSite": "https://bitcoinuniverseio.github.io/docs-inscribe/",
@@ -54,8 +71,14 @@
       "name": "StampDEX",
       "tagline": "A trading venue for Bitcoin Stamps and SRC-20.",
       "role": "The Stamps marketplace surface, with its own order and settlement model distinct from the Core marketplace.",
-      "audiences": ["user", "collector", "app-developer"],
-      "chains": ["bitcoin"],
+      "audiences": [
+        "user",
+        "collector",
+        "app-developer"
+      ],
+      "chains": [
+        "bitcoin"
+      ],
       "capabilitySurface": "stampdex",
       "documentationRepository": "bitcoinuniverseio/docs-stampdex",
       "documentationSite": "https://bitcoinuniverseio.github.io/docs-stampdex/",
@@ -69,8 +92,15 @@
       "name": "Zerdinals and Z-Runes",
       "tagline": "Digital artifacts and fungible tokens native to Zcash.",
       "role": "The Zcash application and its protocol family, including the ZordiScan explorer, with explicit treatment of transparent and shielded activity.",
-      "audiences": ["user", "collector", "app-developer", "protocol-implementer"],
-      "chains": ["zcash"],
+      "audiences": [
+        "user",
+        "collector",
+        "app-developer",
+        "protocol-implementer"
+      ],
+      "chains": [
+        "zcash"
+      ],
       "capabilitySurface": null,
       "documentationRepository": "bitcoinuniverseio/docs-zerdinals-and-zrunes",
       "documentationSite": "https://bitcoinuniverseio.github.io/docs-zerdinals-and-zrunes/",
@@ -84,14 +114,19 @@
       "name": "Forked Felines",
       "tagline": "A collection held whole on Bitcoin.",
       "role": "The collection: artwork, traits, provenance, minting, and the collector experience around it.",
-      "audiences": ["user", "collector"],
-      "chains": ["bitcoin"],
+      "audiences": [
+        "user",
+        "collector"
+      ],
+      "chains": [
+        "bitcoin"
+      ],
       "capabilitySurface": null,
       "documentationRepository": "bitcoinuniverseio/forked-felines-docs",
       "documentationSite": "https://docs.forkedfelines.art",
       "sourceRepository": "bitcoinuniverseio/forked-felines",
       "sourceVisibility": "private",
-      "liveUrl": "https://forked-felines.art",
+      "liveUrl": "https://forkedfelines.art",
       "statusEndpoints": []
     },
     {
@@ -99,8 +134,14 @@
       "name": "Drops",
       "tagline": "Permanent media and agreements on an original carrier.",
       "role": "The Drops application and the OP_DROP carrier beneath it, including Drop Pacts.",
-      "audiences": ["user", "collector", "protocol-implementer"],
-      "chains": ["bitcoin"],
+      "audiences": [
+        "user",
+        "collector",
+        "protocol-implementer"
+      ],
+      "chains": [
+        "bitcoin"
+      ],
       "capabilitySurface": null,
       "documentationRepository": "bitcoinuniverseio/drops-protocol-docs",
       "documentationSite": "https://bitcoinuniverseio.github.io/drops-protocol-docs/",

@@ -38,7 +38,16 @@
       "description": "Human product, protocol, or component name."
     },
     "classification": {
-      "enum": ["product", "product-docs", "protocol", "indexer", "implementation", "infrastructure", "ci", "archive"],
+      "enum": [
+        "product",
+        "product-docs",
+        "protocol",
+        "indexer",
+        "implementation",
+        "infrastructure",
+        "ci",
+        "archive"
+      ],
       "description": "What kind of repository this is."
     },
     "repository": {
@@ -70,7 +79,13 @@
       "description": "Current public release version string shown to readers. Omit only when lifecycle is experimental or archive."
     },
     "lifecycle": {
-      "enum": ["stable", "beta", "experimental", "deprecated", "archived"],
+      "enum": [
+        "stable",
+        "beta",
+        "experimental",
+        "deprecated",
+        "archived"
+      ],
       "description": "Lifecycle state using the shared terminology in bitcoinuniverseio/.github docs/lifecycle.md."
     },
     "chains": {
@@ -79,32 +94,62 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["chain", "networks"],
+        "required": [
+          "chain",
+          "networks"
+        ],
         "properties": {
-          "chain": { "enum": ["bitcoin", "dogecoin", "zcash"] },
+          "chain": {
+            "enum": [
+              "bitcoin",
+              "dogecoin",
+              "zcash"
+            ]
+          },
           "networks": {
             "type": "array",
             "minItems": 1,
-            "items": { "enum": ["mainnet", "testnet", "testnet4", "signet", "regtest"] }
+            "items": {
+              "enum": [
+                "mainnet",
+                "testnet",
+                "testnet4",
+                "signet",
+                "regtest"
+              ]
+            }
           }
         }
       }
     },
     "protocols": {
       "type": "array",
-      "items": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
-      "description": "Protocol ids this component implements, indexes, documents, or depends on."
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9][a-z0-9_-]*$"
+      },
+      "description": "Protocol ids this component implements, indexes, documents, or depends on. These are registry ids as the portal keys them, so underscores are allowed: op_return and tap_doge are real ids."
     },
     "audiences": {
       "type": "array",
       "minItems": 1,
       "items": {
-        "enum": ["user", "collector", "app-developer", "protocol-implementer", "indexer-operator", "infrastructure-operator", "security-verifier"]
+        "enum": [
+          "user",
+          "collector",
+          "app-developer",
+          "protocol-implementer",
+          "indexer-operator",
+          "infrastructure-operator",
+          "security-verifier"
+        ]
       }
     },
     "specifications": {
       "type": "array",
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "description": "Repository-relative paths of normative specification documents, when this repository holds any."
     },
     "contracts": {
@@ -112,11 +157,36 @@
       "additionalProperties": false,
       "description": "Machine-readable interface contracts this repository holds.",
       "properties": {
-        "openapi": { "type": "array", "items": { "type": "string" } },
-        "asyncapi": { "type": "array", "items": { "type": "string" } },
-        "jsonSchema": { "type": "array", "items": { "type": "string" } },
-        "cli": { "type": "array", "items": { "type": "string" } },
-        "sdk": { "type": "array", "items": { "type": "string" } }
+        "openapi": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "asyncapi": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "jsonSchema": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "cli": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sdk": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     },
     "capabilityManifest": {
@@ -125,26 +195,53 @@
     },
     "statusSources": {
       "type": "array",
-      "items": { "type": "string", "format": "uri", "pattern": "^https://" },
+      "items": {
+        "type": "string",
+        "format": "uri",
+        "pattern": "^https://"
+      },
       "description": "Public HTTPS endpoints the portal may poll for live status and freshness. Public endpoints only."
     },
     "owners": {
       "type": "array",
       "minItems": 1,
-      "items": { "type": "string" },
+      "items": {
+        "type": "string"
+      },
       "description": "GitHub teams or accounts responsible for this documentation."
     },
     "upstream": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["project", "url", "license", "relationship"],
+      "required": [
+        "project",
+        "url",
+        "license",
+        "relationship"
+      ],
       "description": "Present when this repository derives from an upstream project.",
       "properties": {
-        "project": { "type": "string" },
-        "url": { "type": "string", "format": "uri" },
-        "license": { "type": "string" },
-        "relationship": { "enum": ["fork", "port", "mirror", "derived"] },
-        "divergenceSummary": { "type": "string" }
+        "project": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "license": {
+          "type": "string"
+        },
+        "relationship": {
+          "enum": [
+            "fork",
+            "port",
+            "mirror",
+            "derived"
+          ]
+        },
+        "divergenceSummary": {
+          "type": "string"
+        }
       }
     },
     "redirects": {
@@ -152,10 +249,19 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["from", "to"],
+        "required": [
+          "from",
+          "to"
+        ],
         "properties": {
-          "from": { "type": "string", "pattern": "^/" },
-          "to": { "type": "string", "minLength": 1 }
+          "from": {
+            "type": "string",
+            "pattern": "^/"
+          },
+          "to": {
+            "type": "string",
+            "minLength": 1
+          }
         }
       },
       "description": "Permanent redirects the portal must serve for this component's previous public routes."
@@ -163,10 +269,19 @@
     "lastVerified": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["commit", "timestamp"],
+      "required": [
+        "commit",
+        "timestamp"
+      ],
       "properties": {
-        "commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
-        "timestamp": { "type": "string", "format": "date-time" }
+        "commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        }
       },
       "description": "The exact commit at which a maintainer last verified this manifest against reality, and when."
     },
@@ -177,12 +292,23 @@
     "archived": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["date", "replacement"],
+      "required": [
+        "date",
+        "replacement"
+      ],
       "properties": {
-        "date": { "type": "string", "format": "date" },
-        "reason": { "type": "string" },
+        "date": {
+          "type": "string",
+          "format": "date"
+        },
+        "reason": {
+          "type": "string"
+        },
         "replacement": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "description": "Replacement documentation URL or repository, or null when none exists."
         }
       },
@@ -191,12 +317,37 @@
   },
   "allOf": [
     {
-      "if": { "properties": { "lifecycle": { "const": "archived" } } },
-      "then": { "required": ["archived"] }
+      "if": {
+        "properties": {
+          "lifecycle": {
+            "const": "archived"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "archived"
+        ]
+      }
     },
     {
-      "if": { "properties": { "lifecycle": { "enum": ["stable", "beta", "deprecated"] } } },
-      "then": { "required": ["releasedRef", "releaseVersion"] }
+      "if": {
+        "properties": {
+          "lifecycle": {
+            "enum": [
+              "stable",
+              "beta",
+              "deprecated"
+            ]
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "releasedRef",
+          "releaseVersion"
+        ]
+      }
     }
   ]
 }
