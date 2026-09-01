@@ -67,6 +67,7 @@ export default defineConfig({
           label: 'Developers',
           items: [
             { label: 'Overview', slug: 'developers' },
+            { label: 'Wallet provider API', slug: 'developers/wallet-provider-api' },
             { label: 'Interface directory', link: '/developers/interfaces/' },
           ],
         },
