@@ -68,7 +68,17 @@ async function auditRepository(entry) {
     commitTimestamp: null,
     manifest: { present: false, valid: false, error: null },
     lifecycle: null,
+    classification: null,
     documentationUrl: null,
+    releaseVersion: null,
+    chains: [],
+    audiences: [],
+    // Interface contracts and specifications the repository declares it owns.
+    // This is what the API and SDK directory is built from, so it is recorded
+    // from the manifest rather than assembled by hand on a portal page.
+    contracts: { openapi: [], asyncapi: [], jsonSchema: [], cli: [], sdk: [] },
+    specifications: [],
+    statusSources: [],
     lastVerified: null,
     lastVerifiedAgeDays: null,
     governance: {},
@@ -100,7 +110,16 @@ async function auditRepository(entry) {
     } else {
       const m = result.manifest;
       record.lifecycle = m.lifecycle;
+      record.classification = m.classification;
       record.documentationUrl = m.documentationUrl;
+      record.releaseVersion = m.releaseVersion ?? null;
+      record.chains = m.chains ?? [];
+      record.audiences = m.audiences ?? [];
+      record.specifications = m.specifications ?? [];
+      record.statusSources = m.statusSources ?? [];
+      for (const kind of Object.keys(record.contracts)) {
+        record.contracts[kind] = m.contracts?.[kind] ?? [];
+      }
       record.lastVerified = m.lastVerified?.timestamp ?? null;
       if (record.lastVerified) {
         const ageMs = Date.now() - Date.parse(record.lastVerified);
