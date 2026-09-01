@@ -3,6 +3,7 @@
 // remains the authority on what it does and how to use it.
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import { products, protocolsForProduct, getChain } from '@universe/ecosystem-registry';
+import { withBase } from '../../lib/paths';
 
 const rows = products.map((product) => ({
   product,
@@ -67,7 +68,7 @@ const audienceGroups = [
           rows.map(({ product, protocolCount, chainNames }) => (
             <tr>
               <th scope="row">
-                <a href={`/products/${product.id}/`}>{product.name}</a>
+                <a href={withBase(`/products/${product.id}/`)}>{product.name}</a>
               </th>
               <td>{product.tagline}</td>
               <td>{chainNames}</td>
@@ -90,7 +91,7 @@ const audienceGroups = [
             const product = products.find((p) => p.id === id);
             return product ? (
               <li>
-                <a href={`/products/${product.id}/`}>{product.name}</a>: {product.tagline}
+                <a href={withBase(`/products/${product.id}/`)}>{product.name}</a>: {product.tagline}
               </li>
             ) : null;
           })}

@@ -12,10 +12,12 @@ import {
   provenance,
   protocolsForProduct,
 } from '@universe/ecosystem-registry';
+import { siteOrigin, withBase } from '../lib/paths';
 
-const SITE = 'https://docs.bitcoinuniverse.io';
-
-export const GET: APIRoute = () => {
+export const GET: APIRoute = ({ site }) => {
+  // Absolute URLs must match the origin this build is actually served from, so a
+  // Pages build under a project path does not publish production URLs.
+  const SITE = siteOrigin(site) + withBase('');
   const body = {
     $schema: `${SITE}/schemas/ecosystem-index.schema.json`,
     generator: 'docs.bitcoinuniverse.io',

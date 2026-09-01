@@ -8,6 +8,7 @@
 import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
 import { Aside } from '@astrojs/starlight/components';
 import health from '@universe/ecosystem-registry/data/docs-health.json' with { type: 'json' };
+import { withBase } from '../../lib/paths';
 
 const repositories = [...health.repositories].sort((a, b) => {
   // Problems first: this page is a work list, not a scoreboard.
@@ -130,7 +131,7 @@ function governanceSummary(record) {
     <dt>Lifecycle</dt>
     <dd>
       The repository's own declared state, using the shared{' '}
-      <a href="/status/">status vocabulary</a>. A repository declaring <code>stable</code> must also
+      <a href={withBase("/status/")}>status vocabulary</a>. A repository declaring <code>stable</code> must also
       declare the release it is stable at.
     </dd>
     <dt>Last verified</dt>
