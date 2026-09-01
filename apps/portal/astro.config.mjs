@@ -67,6 +67,7 @@ export default defineConfig({
           items: [
             { label: 'How to read our status', slug: 'status' },
             { label: 'Live status', link: '/status/live/' },
+            { label: 'Documentation health', link: '/status/documentation-health/' },
             { label: 'Source provenance', slug: 'status/provenance' },
           ],
         },
@@ -82,7 +83,13 @@ export default defineConfig({
           // Astro pages, so the validator cannot see them in the content
           // collection. The registry test suite checks these links instead: it
           // fails the build if a protocol or product id is missing or duplicated.
-          exclude: ['/protocols/**', '/products/**', '/chains/**', '/status/live/**'],
+          exclude: [
+            '/protocols/**',
+            '/products/**',
+            '/chains/**',
+            '/status/live/**',
+            '/status/documentation-health/**',
+          ],
         }),
       ],
     }),
