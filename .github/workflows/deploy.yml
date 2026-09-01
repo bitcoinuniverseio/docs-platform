@@ -58,8 +58,9 @@ jobs:
             printf '%s\n' "$DOCS_DEPLOY_KEY" > ~/.ssh/docs_deploy
             chmod 600 ~/.ssh/docs_deploy
           elif [ -n "$DOCS_DEPLOY_PASSWORD" ]; then
-            sudo apt-get update
-            sudo apt-get install -y sshpass
+            install -m 700 -d ~/.ssh
+            printf '%s\n' '#!/usr/bin/env sh' 'printf "%s\\n" "$DOCS_PASSWORD"' > ~/.ssh/docs_askpass
+            chmod 700 ~/.ssh/docs_askpass
           else
             echo "DOCS_DEPLOY_KEY or DOCS_DEPLOY_PASSWORD is required" >&2
             exit 2
@@ -71,6 +72,7 @@ jobs:
           DOCS_HOST: ${{ secrets.DOCS_HOST }}
           DOCS_SSH_KEY: /home/runner/.ssh/docs_deploy
           DOCS_PASSWORD: ${{ secrets.DOCS_DEPLOY_PASSWORD }}
+          SSH_ASKPASS: /home/runner/.ssh/docs_askpass
         run: bash tooling/deploy/deploy.sh apps/portal/dist "${{ github.sha }}"
 
       - name: Roll back
@@ -79,11 +81,12 @@ jobs:
           DOCS_HOST: ${{ secrets.DOCS_HOST }}
           DOCS_SSH_KEY: /home/runner/.ssh/docs_deploy
           DOCS_PASSWORD: ${{ secrets.DOCS_DEPLOY_PASSWORD }}
+          SSH_ASKPASS: /home/runner/.ssh/docs_askpass
         run: bash tooling/deploy/rollback.sh "${{ inputs.rollback_to }}"
 
-      - name: Remove the deploy key
+      - name: Remove deployment authentication helpers
         if: always()
-        run: rm -f ~/.ssh/docs_deploy
+        run: rm -f ~/.ssh/docs_deploy ~/.ssh/docs_askpass
 
       - name: Report what is live
         run: |
