@@ -1,0 +1,348 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "tooling/sync/bin/sync.mjs",
+  "sources": {
+    "bitcoinuniverseio/docs-wallet": {
+      "sourceRef": "main",
+      "commit": "a736f81ed19bd8bdd4ee3ba785eb502cfff28545",
+      "commitTimestamp": "2026-09-01T11:27:18Z",
+      "manifestSha256": "822163e17948cf17989191f80c3cf8745dc7d2b824803e42e760f77353433398",
+      "manifestId": "docs-wallet",
+      "lifecycle": "experimental",
+      "docsRoot": "src/content/docs"
+    },
+    "bitcoinuniverseio/docs-core": {
+      "sourceRef": "main",
+      "commit": "ae4b03a2e28bb3db72c54d14d64c8a6448df2eb7",
+      "commitTimestamp": "2026-09-01T11:43:22Z",
+      "manifestSha256": "2cc8b2e0cd59e6815e8f223e7104058eb33054db2a2b42a6826c5e981c56cc39",
+      "manifestId": "docs-core",
+      "lifecycle": "experimental",
+      "docsRoot": "src/content/docs"
+    },
+    "bitcoinuniverseio/docs-inscribe": {
+      "sourceRef": "main",
+      "commit": "4cc44c207133e3139c0df096c17a79cd62cd9a0b",
+      "commitTimestamp": "2026-09-01T11:27:46Z",
+      "manifestSha256": "62de222796702681ef28ac576d38f74cd1d5ce60055066682fbb3388ea33a61d",
+      "manifestId": "docs-inscribe",
+      "lifecycle": "stable",
+      "docsRoot": "."
+    },
+    "bitcoinuniverseio/docs-stampdex": {
+      "sourceRef": "main",
+      "commit": "2443143044448d71f6a2f8f08d2e48e620ca0ff8",
+      "commitTimestamp": "2026-09-01T02:01:34Z",
+      "manifestSha256": "1bae3321e6c82eed9c3881e3a1882c586bf0dcf5e11802fcbe6fc01bbb3427e3",
+      "manifestId": "docs-stampdex",
+      "lifecycle": "stable",
+      "docsRoot": "docs"
+    },
+    "bitcoinuniverseio/docs-zerdinals-and-zrunes": {
+      "sourceRef": "develop",
+      "commit": "78bbfc80489f6f24eee21508974bc8217cdb714c",
+      "commitTimestamp": "2026-09-01T02:59:22Z",
+      "manifestSha256": "da8335d9a23ac635489588b05eac2bc06dafd25f9ce49a1eddbe20b97dfa9aa8",
+      "manifestId": "docs-zerdinals-and-zrunes",
+      "lifecycle": "stable",
+      "docsRoot": "src/content/docs"
+    },
+    "bitcoinuniverseio/forked-felines-docs": {
+      "sourceRef": "main",
+      "commit": "a76a3afa81f8da1d785353f0df0717ed12b84c19",
+      "commitTimestamp": "2026-09-01T11:27:22Z",
+      "manifestSha256": "c3f31d810af7033b4d7ba6c3e3f113fd4c6619a5d82c3f012550a6d6649fae87",
+      "manifestId": "forked-felines-docs",
+      "lifecycle": "stable",
+      "docsRoot": "docs"
+    },
+    "bitcoinuniverseio/drops-protocol-docs": {
+      "sourceRef": "main",
+      "commit": "f7bd2a22b3f4ea9517fc8653f8ef431e478aba51",
+      "commitTimestamp": "2026-09-01T02:01:41Z",
+      "manifestSha256": "e49c76708f2d784ec8b39244b19a5961baaca4ea825bc6c12edccf8c8362dafa",
+      "manifestId": "drops-protocol-docs",
+      "lifecycle": "stable",
+      "docsRoot": "."
+    },
+    "bitcoinuniverseio/op-drop": {
+      "sourceRef": "main",
+      "commit": "bb67dac1614a3fda70f52ec725dd8cd469cc56e3",
+      "commitTimestamp": "2026-09-01T11:26:44Z",
+      "manifestSha256": "3d836923823f4de3da94379c749738dfad97200745884ec90b23da8fe27080e2",
+      "manifestId": "op-drop",
+      "lifecycle": "experimental",
+      "docsRoot": "docs"
+    },
+    "bitcoinuniverseio/brc-20": {
+      "sourceRef": "main",
+      "commit": "62d27a836ce093d26f4acc0e1a901dd2e2ed096a",
+      "commitTimestamp": "2026-09-01T11:26:47Z",
+      "manifestSha256": "7809298ad25b92cb674b8a826bb3d54a97006b674a10719bfd5da2e8ed009731",
+      "manifestId": "brc-20",
+      "lifecycle": "experimental",
+      "docsRoot": "."
+    },
+    "bitcoinuniverseio/runes": {
+      "sourceRef": "main",
+      "commit": "72fe2cc6accd7a9b1709c40b9c60f84c0f77084a",
+      "commitTimestamp": "2026-09-01T11:26:50Z",
+      "manifestSha256": "599c0aeaa6f526afcbd253a24243e0b20548b85183c6e2f7c7c03e5af82e0460",
+      "manifestId": "runes",
+      "lifecycle": "stable",
+      "docsRoot": "."
+    },
+    "bitcoinuniverseio/src-20": {
+      "sourceRef": "main",
+      "commit": "b35b5e3950c88b546675ee2da866f48f2074dcb5",
+      "commitTimestamp": "2026-09-01T11:26:53Z",
+      "manifestSha256": "fb5be35a6da513843d9163609b2dfb524d115ca9e1fd39cdd888e3fda5822454",
+      "manifestId": "src-20",
+      "lifecycle": "stable",
+      "docsRoot": "."
+    },
+    "bitcoinuniverseio/alkanes": {
+      "sourceRef": "main",
+      "commit": "53b52c0f4636e3e2a67557221dbc7d57db0451fa",
+      "commitTimestamp": "2026-09-01T02:01:11Z",
+      "manifestSha256": "b16dab72076c7a647873fae0fa08e7490d7c054003862c49d43b8d3386fef019",
+      "manifestId": "alkanes",
+      "lifecycle": "experimental",
+      "docsRoot": "."
+    },
+    "bitcoinuniverseio/atomicals-and-arc-20": {
+      "sourceRef": "main",
+      "commit": "f6b093f2ecfa12904792934b0bda6823194d10f6",
+      "commitTimestamp": "2026-09-01T11:26:57Z",
+      "manifestSha256": "8f1d93df7a17708a01819c882e5000811894c5ac1658a9e2578a301df8df823c",
+      "manifestId": "atomicals-and-arc-20",
+      "lifecycle": "beta",
+      "docsRoot": "."
+    },
+    "bitcoinuniverseio/tap": {
+      "sourceRef": "main",
+      "commit": "b244ce30ef411fbb3e9b8e92a428985225f7ca0c",
+      "commitTimestamp": "2026-09-01T11:27:00Z",
+      "manifestSha256": "3bf7cf98b063ca683210361add6cf9a944a75abc2a30d751a859e19e2fb91532",
+      "manifestId": "tap",
+      "lifecycle": "experimental",
+      "docsRoot": "."
+    },
+    "bitcoinuniverseio/tap-on-doge": {
+      "sourceRef": "main",
+      "commit": "00d9f4b7e8fab847087ab045d58e0504d9f5fdbf",
+      "commitTimestamp": "2026-09-01T11:27:03Z",
+      "manifestSha256": "f276eefb7f8c6d12f6512c97c4fd42db9964a136426cff5057835564cfea2d8e",
+      "manifestId": "tap-on-doge",
+      "lifecycle": "experimental",
+      "docsRoot": "."
+    },
+    "bitcoinuniverseio/block-20": {
+      "sourceRef": "main",
+      "commit": "653d06ff5a0faf936cf44e1aa7b7493fd4672fe5",
+      "commitTimestamp": "2026-09-01T11:43:25Z",
+      "manifestSha256": "203592ae5e10f341b5b9bdcd1bda84d80fa15fbdc755d7af6bfc5e0d3b5d92bf",
+      "manifestId": "block-20",
+      "lifecycle": "experimental",
+      "docsRoot": "."
+    },
+    "bitcoinuniverseio/dust-20": {
+      "sourceRef": "main",
+      "commit": "313ec62537cdb4cf43a6f39174992b10252154ee",
+      "commitTimestamp": "2026-09-01T11:27:09Z",
+      "manifestSha256": "f01a86a93fc58b669ff0e465fe61f5c40abb54908ca4802cb92aeadc62fefd34",
+      "manifestId": "dust-20",
+      "lifecycle": "experimental",
+      "docsRoot": "."
+    },
+    "bitcoinuniverseio/op-return": {
+      "sourceRef": "main",
+      "commit": "72ab2cc75586ddab87dec6b51c7d627e08605fe6",
+      "commitTimestamp": "2026-09-01T11:27:13Z",
+      "manifestSha256": "d89027160ceae21574436a71e5d667482c3a8aa460e504ec83472e4116aacebd",
+      "manifestId": "op-return",
+      "lifecycle": "experimental",
+      "docsRoot": "."
+    },
+    "bitcoinuniverseio/src-101": {
+      "sourceRef": "main",
+      "commit": "2807b923e7ffc6ebc2f99f55a9c2f47d88e95094",
+      "commitTimestamp": "2026-09-01T11:27:06Z",
+      "manifestSha256": "b9e1100667e2ddcec8c5e9dd43f05f2ca1f1916337b689cf5bdbf4f0eb0a1800",
+      "manifestId": "src-101",
+      "lifecycle": "experimental",
+      "docsRoot": "."
+    },
+    "bitcoinuniverseio/mezcal": {
+      "sourceRef": "main",
+      "commit": "cdf336b0e549baa0250bdd2a11fbcd55c36bb204",
+      "commitTimestamp": "2026-09-01T11:27:10Z",
+      "manifestSha256": "5a064d3b3728a36cb8555b04ff5fbc4f8b45ed47f86f12c3fd11f3ae9047b03a",
+      "manifestId": "mezcal",
+      "lifecycle": "beta",
+      "docsRoot": "."
+    },
+    "bitcoinuniverseio/ordex": {
+      "sourceRef": "main",
+      "commit": "073c9ae13429f46d1ff42cef43a3ab18030153b8",
+      "commitTimestamp": "2026-09-01T11:41:22Z",
+      "manifestSha256": "7df0c2035e4bb472d480a88c4895cdcb8ef21f5aa4fe41b8975b02f5b6038389",
+      "manifestId": "ordex",
+      "lifecycle": "experimental",
+      "docsRoot": "docs"
+    },
+    "bitcoinuniverseio/chainbloom": {
+      "sourceRef": "main",
+      "commit": "06b34a88495118c6a3455688e103829dd6eda42e",
+      "commitTimestamp": "2026-09-01T02:49:51Z",
+      "manifestSha256": "77ffc55aebf418b17107465aee66a193e50439bc47bbf9bf6c0f53004a101068",
+      "manifestId": "chainbloom",
+      "lifecycle": "experimental",
+      "docsRoot": "docs"
+    },
+    "bitcoinuniverseio/witness-circles": {
+      "sourceRef": "main",
+      "commit": "6507df3848c9f44959ae5e40afa7c75fb55605df",
+      "commitTimestamp": "2026-09-01T02:30:02Z",
+      "manifestSha256": "2b26bef79d14970d0f9b14ad5f644539e2fc639750dda1f8a25c2b424edf2b79",
+      "manifestId": "witness-circles",
+      "lifecycle": "experimental",
+      "docsRoot": "docs"
+    },
+    "bitcoinuniverseio/tandem": {
+      "sourceRef": "main",
+      "commit": "af523e21e6232611a9605e46e1782da66579f357",
+      "commitTimestamp": "2026-09-01T02:30:06Z",
+      "manifestSha256": "0d4a44db8f86a3f7d47194b6fbaa5b2cc0d8e031a102de5a1fd4f1b8b5ff7cf5",
+      "manifestId": "tandem",
+      "lifecycle": "experimental",
+      "docsRoot": "docs"
+    },
+    "bitcoinuniverseio/patina": {
+      "sourceRef": "main",
+      "commit": "9098c2d39f07aa4b4f2bab2470061b474a09211e",
+      "commitTimestamp": "2026-09-01T02:52:25Z",
+      "manifestSha256": "25955821bad8244266a518ac708b6541e609d7c5927b96590a3c5717a3981322",
+      "manifestId": "patina",
+      "lifecycle": "stable",
+      "docsRoot": "docs"
+    },
+    "bitcoinuniverseio/sentry": {
+      "sourceRef": "main",
+      "commit": "47cc0884bc489cec700f167aa71dbbb7ebc722a7",
+      "commitTimestamp": "2026-09-01T11:25:55Z",
+      "manifestSha256": "c35cbff9280f7c34394e8e5a0c71ebdc63d2d1b87a320932316f761a2c2f7ba3",
+      "manifestId": "sentry",
+      "lifecycle": "archived",
+      "docsRoot": "."
+    },
+    "bitcoinuniverseio/bitcoin-indexer": {
+      "sourceRef": "develop",
+      "commit": "43830dba90812a5805ec519c3f7eaf567a9e3511",
+      "commitTimestamp": "2026-09-01T11:37:44Z",
+      "manifestSha256": "4bfbf0bbe097b0c52af66c75caa283a13ef9ec9e452cad1a699a0c962d2640fe",
+      "manifestId": "bitcoin-indexer",
+      "lifecycle": "experimental",
+      "docsRoot": "."
+    },
+    "bitcoinuniverseio/ord-dogecoin": {
+      "sourceRef": "develop",
+      "commit": "3b76bdb35be2329b731eb3f60b6fc2f8a4f456a2",
+      "commitTimestamp": "2026-09-01T11:29:28Z",
+      "manifestSha256": "66620140be7954b3dbf93c6c89bac8b8d9ca8f54405a7eda613c5f2975c94c10",
+      "manifestId": "ord-dogecoin",
+      "lifecycle": "experimental",
+      "docsRoot": "docs"
+    },
+    "bitcoinuniverseio/btc_stamps": {
+      "sourceRef": "main",
+      "commit": "4ee875d5f83bf7cfecd19caa350a7fd5b48fcd3a",
+      "commitTimestamp": "2026-09-01T11:37:39Z",
+      "manifestSha256": "4daf4283ecc87ceb0a70178eab9ae5f31e106c33426c8e67faf0d021cda47716",
+      "manifestId": "btc-stamps",
+      "lifecycle": "experimental",
+      "docsRoot": "docs"
+    },
+    "bitcoinuniverseio/mempool": {
+      "sourceRef": "develop",
+      "commit": "9936eb7a29e8aaa3857a86fe363d529df121b243",
+      "commitTimestamp": "2026-09-01T11:37:29Z",
+      "manifestSha256": "22d249e289501f0f0a6a554bb1c7742f17927866db249ceb6d31713c6e8e7eaf",
+      "manifestId": "mempool",
+      "lifecycle": "stable",
+      "docsRoot": "docs"
+    },
+    "bitcoinuniverseio/stampchain.io": {
+      "sourceRef": "dev",
+      "commit": "dcd1c649c035978468c21241b06cd9ad4ac77081",
+      "commitTimestamp": "2026-09-01T11:27:29Z",
+      "manifestSha256": "bae54be4918e8b29246e58ed43209760cd654843a769521e9adeb7f180a8e2d5",
+      "manifestId": "stampchain-io",
+      "lifecycle": "experimental",
+      "docsRoot": "docs"
+    },
+    "bitcoinuniverseio/alkanes-rs": {
+      "sourceRef": "main",
+      "commit": "fd0a5d2e6e9614816a039c44ef564ef7434a0d4b",
+      "commitTimestamp": "2026-09-01T11:43:35Z",
+      "manifestSha256": "1b6ae5e7d8ab821bc7be2cae6c5b81ede707b21d13486137f489b96139b7f750",
+      "manifestId": "alkanes-rs",
+      "lifecycle": "experimental",
+      "docsRoot": "docs"
+    },
+    "bitcoinuniverseio/index-witness-circles": {
+      "sourceRef": "main",
+      "commit": "139ce6d9690f7fc677c30d5a202c11f6166265a0",
+      "commitTimestamp": "2026-09-01T11:42:51Z",
+      "manifestSha256": "f339ad984f81c0caade31d21dfd56cff55b73791fd8c75102781b56433551a7e",
+      "manifestId": "index-witness-circles",
+      "lifecycle": "experimental",
+      "docsRoot": "docs"
+    },
+    "bitcoinuniverseio/index-tandem": {
+      "sourceRef": "main",
+      "commit": "cde19ae31ab638c706843c416aae6a69462ddc73",
+      "commitTimestamp": "2026-09-01T11:27:33Z",
+      "manifestSha256": "cc631728a121508f68b18e04268c8ca355a0879e34c179ea5901514677ae429f",
+      "manifestId": "index-tandem",
+      "lifecycle": "experimental",
+      "docsRoot": "docs"
+    },
+    "bitcoinuniverseio/tandem-verifier-rs": {
+      "sourceRef": "main",
+      "commit": "aa72212cf801d3052ef8a450650d2327bd7fc582",
+      "commitTimestamp": "2026-09-01T11:32:04Z",
+      "manifestSha256": "b0814c6d68362e95ae547744ca544d824e2731a89229bd2dd5c7ddfebdea2134",
+      "manifestId": "tandem-verifier-rs",
+      "lifecycle": "experimental",
+      "docsRoot": "docs"
+    },
+    "bitcoinuniverseio/index-patina": {
+      "sourceRef": "main",
+      "commit": "fa1e2e02bbd8d1b69f8b9ca7bb3d3aaafed262c2",
+      "commitTimestamp": "2026-09-01T11:37:34Z",
+      "manifestSha256": "f9c94f978b059515f52fa1b1458f854ccd068665602f93f15a82f98114a85f4d",
+      "manifestId": "index-patina",
+      "lifecycle": "stable",
+      "docsRoot": "docs"
+    },
+    "bitcoinuniverseio/universe-ci-actions": {
+      "sourceRef": "main",
+      "commit": "8f98110ebf947e07907e51c871718e41bfe139ff",
+      "commitTimestamp": "2026-09-01T11:30:50Z",
+      "manifestSha256": "ff4a4090dde2bd7ea6ce59a1a1cbef7a2a95017a79dbbfbe8df6777b1e36e0f2",
+      "manifestId": "universe-ci-actions",
+      "lifecycle": "stable",
+      "docsRoot": "."
+    },
+    "bitcoinuniverseio/docs-index-doge-tap": {
+      "sourceRef": "main",
+      "commit": "23bff76eb0e96cc9b5fd9133204ed92001d903ca",
+      "commitTimestamp": "2026-09-01T11:25:58Z",
+      "manifestSha256": "fa7c5e5134d2e1ca1ddeb69bc376dfa93f9d543dd71b8ad8eb90b430b0b71c2d",
+      "manifestId": "docs-index-doge-tap",
+      "lifecycle": "archived",
+      "docsRoot": "."
+    }
+  }
+}
