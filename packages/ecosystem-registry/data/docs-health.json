@@ -1,18 +1,18 @@
 {
   "description": "Standing documentation health across every repository in the portal source registry. A missing manifest is a finding, not an error: it records that a repository is not yet wired into the estate.",
   "generatedBy": "tooling/sync/bin/audit.mjs",
-  "generatedAt": "2026-09-01T04:15:18.377Z",
+  "generatedAt": "2026-09-01T11:56:52.474Z",
   "summary": {
     "total": 38,
-    "ingestable": 36,
-    "notIngestable": 2
+    "ingestable": 38,
+    "notIngestable": 0
   },
   "repositories": [
     {
       "repository": "bitcoinuniverseio/docs-wallet",
       "sourceRef": "main",
-      "commit": "c50efdb219d9f887dabb852f9e539564a11b8fb8",
-      "commitTimestamp": "2026-09-01T04:10:30Z",
+      "commit": "a736f81ed19bd8bdd4ee3ba785eb502cfff28545",
+      "commitTimestamp": "2026-09-01T11:27:18Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -20,7 +20,7 @@
       },
       "lifecycle": "experimental",
       "classification": "product-docs",
-      "documentationUrl": "https://bitcoinuniverseio.github.io/docs-wallet",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/products/wallet/",
       "releaseVersion": null,
       "chains": [
         {
@@ -81,17 +81,17 @@
     {
       "repository": "bitcoinuniverseio/docs-core",
       "sourceRef": "main",
-      "commit": "6f6b214bc75cbab116ae82d25b7517a31894f5e6",
-      "commitTimestamp": "2026-09-01T03:37:44Z",
+      "commit": "ae4b03a2e28bb3db72c54d14d64c8a6448df2eb7",
+      "commitTimestamp": "2026-09-01T11:43:22Z",
       "manifest": {
         "present": true,
         "valid": true,
         "error": null
       },
-      "lifecycle": "stable",
+      "lifecycle": "experimental",
       "classification": "product-docs",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/products/core/",
-      "releaseVersion": "continuous",
+      "documentationUrl": "https://bitcoinuniverseio.github.io/docs-core/",
+      "releaseVersion": null,
       "chains": [
         {
           "chain": "bitcoin",
@@ -109,17 +109,25 @@
       "audiences": [
         "user",
         "collector",
-        "app-developer"
+        "app-developer",
+        "security-verifier"
       ],
       "contracts": {
-        "openapi": [],
+        "openapi": [
+          "public/openapi/core-public-read.json"
+        ],
         "asyncapi": [],
-        "jsonSchema": [],
+        "jsonSchema": [
+          "src/data/capability-snapshot.json"
+        ],
         "cli": [],
         "sdk": []
       },
       "specifications": [],
-      "statusSources": [],
+      "statusSources": [
+        "https://api.bitcoinuniverse.io/health",
+        "https://api.bitcoinuniverse.io/indexer-health"
+      ],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
       "releases": [],
@@ -127,22 +135,20 @@
         "README.md": true,
         "SECURITY.md": true,
         "CONTRIBUTING.md": true,
-        "SUPPORT.md": false
+        "SUPPORT.md": true
       },
       "machineReadable": {
         "llms.txt": false,
         "robots.txt": false,
         "sitemap.xml": false
       },
-      "problems": [
-        "missing SUPPORT.md"
-      ]
+      "problems": []
     },
     {
       "repository": "bitcoinuniverseio/docs-inscribe",
       "sourceRef": "main",
-      "commit": "c433c6aeb43cdf4c31a0d3651cca61d03d645707",
-      "commitTimestamp": "2026-09-01T02:01:30Z",
+      "commit": "4cc44c207133e3139c0df096c17a79cd62cd9a0b",
+      "commitTimestamp": "2026-09-01T11:27:46Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -306,8 +312,8 @@
     {
       "repository": "bitcoinuniverseio/forked-felines-docs",
       "sourceRef": "main",
-      "commit": "7b417d43aad1e69aecca4a609ec21b8f09090722",
-      "commitTimestamp": "2026-09-01T03:56:11Z",
+      "commit": "a76a3afa81f8da1d785353f0df0717ed12b84c19",
+      "commitTimestamp": "2026-09-01T11:27:22Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -315,7 +321,7 @@
       },
       "lifecycle": "stable",
       "classification": "product-docs",
-      "documentationUrl": "https://docs.forkedfelines.art/",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/products/forked-felines/",
       "releaseVersion": "2026.09.01",
       "chains": [
         {
@@ -418,8 +424,8 @@
     {
       "repository": "bitcoinuniverseio/op-drop",
       "sourceRef": "main",
-      "commit": "46a9b374eb33c4a8e0e550f6e0a892d352d9d8c6",
-      "commitTimestamp": "2026-09-01T04:11:19Z",
+      "commit": "bb67dac1614a3fda70f52ec725dd8cd469cc56e3",
+      "commitTimestamp": "2026-09-01T11:26:44Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -427,7 +433,7 @@
       },
       "lifecycle": "experimental",
       "classification": "protocol",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/op-drop",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/op_drop/",
       "releaseVersion": null,
       "chains": [
         {
@@ -480,8 +486,8 @@
     {
       "repository": "bitcoinuniverseio/brc-20",
       "sourceRef": "main",
-      "commit": "a04d5844b2bc3f9792a33fa26efea5b422cda681",
-      "commitTimestamp": "2026-09-01T02:01:24Z",
+      "commit": "62d27a836ce093d26f4acc0e1a901dd2e2ed096a",
+      "commitTimestamp": "2026-09-01T11:26:47Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -489,7 +495,7 @@
       },
       "lifecycle": "experimental",
       "classification": "protocol",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/brc-20/",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/brc20/",
       "releaseVersion": null,
       "chains": [
         {
@@ -532,8 +538,8 @@
     {
       "repository": "bitcoinuniverseio/runes",
       "sourceRef": "main",
-      "commit": "314b41b9a0dcf4b7094f754abbafdabf3b46d5b1",
-      "commitTimestamp": "2026-09-01T02:01:50Z",
+      "commit": "72fe2cc6accd7a9b1709c40b9c60f84c0f77084a",
+      "commitTimestamp": "2026-09-01T11:26:50Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -541,7 +547,7 @@
       },
       "lifecycle": "stable",
       "classification": "protocol",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/runes",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/runes/",
       "releaseVersion": "2.0.0",
       "chains": [
         {
@@ -588,8 +594,8 @@
     {
       "repository": "bitcoinuniverseio/src-20",
       "sourceRef": "main",
-      "commit": "2ea2e3f1b2fae16bbbe889fb31ecc8e7dd29c132",
-      "commitTimestamp": "2026-09-01T03:29:53Z",
+      "commit": "b35b5e3950c88b546675ee2da866f48f2074dcb5",
+      "commitTimestamp": "2026-09-01T11:26:53Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -597,7 +603,7 @@
       },
       "lifecycle": "stable",
       "classification": "protocol",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/src-20/",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/src20/",
       "releaseVersion": "2026.09.01",
       "chains": [
         {
@@ -644,8 +650,8 @@
     {
       "repository": "bitcoinuniverseio/alkanes",
       "sourceRef": "main",
-      "commit": "53b52c0f4636e3e2a67557221dbc7d57db0451fa",
-      "commitTimestamp": "2026-09-01T02:01:11Z",
+      "commit": "8e135bbd74fcc58eb554940e8df2f6fda2a30fe3",
+      "commitTimestamp": "2026-09-01T11:51:13Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -653,20 +659,24 @@
       },
       "lifecycle": "experimental",
       "classification": "protocol",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/alkanes/",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/alkanes",
       "releaseVersion": null,
       "chains": [
         {
           "chain": "bitcoin",
           "networks": [
-            "mainnet"
+            "mainnet",
+            "regtest"
           ]
         }
       ],
       "audiences": [
         "user",
+        "collector",
         "app-developer",
-        "protocol-implementer"
+        "protocol-implementer",
+        "indexer-operator",
+        "security-verifier"
       ],
       "contracts": {
         "openapi": [],
@@ -675,33 +685,33 @@
         "cli": [],
         "sdk": []
       },
-      "specifications": [],
+      "specifications": [
+        "specification.html",
+        "encoding.html",
+        "test-vectors.html"
+      ],
       "statusSources": [],
-      "lastVerified": "2026-09-01T02:00:00Z",
+      "lastVerified": "2026-09-01T11:00:00Z",
       "lastVerifiedAgeDays": 0,
       "releases": [],
       "governance": {
         "README.md": true,
-        "SECURITY.md": false,
-        "CONTRIBUTING.md": false,
-        "SUPPORT.md": false
+        "SECURITY.md": true,
+        "CONTRIBUTING.md": true,
+        "SUPPORT.md": true
       },
       "machineReadable": {
-        "llms.txt": false,
-        "robots.txt": false,
-        "sitemap.xml": false
+        "llms.txt": true,
+        "robots.txt": true,
+        "sitemap.xml": true
       },
-      "problems": [
-        "missing SECURITY.md",
-        "missing CONTRIBUTING.md",
-        "missing SUPPORT.md"
-      ]
+      "problems": []
     },
     {
       "repository": "bitcoinuniverseio/atomicals-and-arc-20",
       "sourceRef": "main",
-      "commit": "bb811277a64c38d497bea8cfc6c98946341af57a",
-      "commitTimestamp": "2026-09-01T02:22:26Z",
+      "commit": "f6b093f2ecfa12904792934b0bda6823194d10f6",
+      "commitTimestamp": "2026-09-01T11:26:57Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -709,7 +719,7 @@
       },
       "lifecycle": "beta",
       "classification": "protocol",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/atomicals-and-arc-20",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/atomicals/",
       "releaseVersion": "2.0.0",
       "chains": [
         {
@@ -757,8 +767,8 @@
     {
       "repository": "bitcoinuniverseio/tap",
       "sourceRef": "main",
-      "commit": "ab705619784bc262d64734c45b05599467fe4cac",
-      "commitTimestamp": "2026-09-01T04:00:09Z",
+      "commit": "b244ce30ef411fbb3e9b8e92a428985225f7ca0c",
+      "commitTimestamp": "2026-09-01T11:27:00Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -766,7 +776,7 @@
       },
       "lifecycle": "experimental",
       "classification": "protocol",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/tap",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/tap/",
       "releaseVersion": null,
       "chains": [
         {
@@ -814,8 +824,8 @@
     {
       "repository": "bitcoinuniverseio/tap-on-doge",
       "sourceRef": "main",
-      "commit": "f6e6163ac04489ba2419e03cede0d5b7121cc7ae",
-      "commitTimestamp": "2026-09-01T02:02:15Z",
+      "commit": "1764179321443f5196275420a9e68b6c40e03705",
+      "commitTimestamp": "2026-09-01T11:54:21Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -823,7 +833,7 @@
       },
       "lifecycle": "experimental",
       "classification": "protocol",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/tap-on-doge/",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/tap_doge/",
       "releaseVersion": null,
       "chains": [
         {
@@ -835,8 +845,10 @@
       ],
       "audiences": [
         "user",
+        "collector",
         "app-developer",
-        "protocol-implementer"
+        "protocol-implementer",
+        "indexer-operator"
       ],
       "contracts": {
         "openapi": [],
@@ -845,33 +857,31 @@
         "cli": [],
         "sdk": []
       },
-      "specifications": [],
+      "specifications": [
+        "spec.html"
+      ],
       "statusSources": [],
-      "lastVerified": "2026-09-01T02:00:00Z",
+      "lastVerified": "2026-09-01T00:00:00Z",
       "lastVerifiedAgeDays": 0,
       "releases": [],
       "governance": {
         "README.md": true,
-        "SECURITY.md": false,
-        "CONTRIBUTING.md": false,
-        "SUPPORT.md": false
+        "SECURITY.md": true,
+        "CONTRIBUTING.md": true,
+        "SUPPORT.md": true
       },
       "machineReadable": {
         "llms.txt": true,
-        "robots.txt": false,
-        "sitemap.xml": false
+        "robots.txt": true,
+        "sitemap.xml": true
       },
-      "problems": [
-        "missing SECURITY.md",
-        "missing CONTRIBUTING.md",
-        "missing SUPPORT.md"
-      ]
+      "problems": []
     },
     {
       "repository": "bitcoinuniverseio/block-20",
       "sourceRef": "main",
-      "commit": "87a89f566268a1c6b47b3beab9cdc35aebb3a417",
-      "commitTimestamp": "2026-09-01T02:01:19Z",
+      "commit": "653d06ff5a0faf936cf44e1aa7b7493fd4672fe5",
+      "commitTimestamp": "2026-09-01T11:43:25Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -879,7 +889,7 @@
       },
       "lifecycle": "experimental",
       "classification": "protocol",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/block-20/",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/block20/",
       "releaseVersion": null,
       "chains": [
         {
@@ -892,7 +902,8 @@
       "audiences": [
         "user",
         "app-developer",
-        "protocol-implementer"
+        "protocol-implementer",
+        "indexer-operator"
       ],
       "contracts": {
         "openapi": [],
@@ -901,33 +912,31 @@
         "cli": [],
         "sdk": []
       },
-      "specifications": [],
+      "specifications": [
+        "spec.html"
+      ],
       "statusSources": [],
-      "lastVerified": "2026-09-01T02:00:00Z",
+      "lastVerified": "2026-09-01T12:00:00Z",
       "lastVerifiedAgeDays": 0,
       "releases": [],
       "governance": {
         "README.md": true,
-        "SECURITY.md": false,
-        "CONTRIBUTING.md": false,
-        "SUPPORT.md": false
+        "SECURITY.md": true,
+        "CONTRIBUTING.md": true,
+        "SUPPORT.md": true
       },
       "machineReadable": {
-        "llms.txt": false,
-        "robots.txt": false,
-        "sitemap.xml": false
+        "llms.txt": true,
+        "robots.txt": true,
+        "sitemap.xml": true
       },
-      "problems": [
-        "missing SECURITY.md",
-        "missing CONTRIBUTING.md",
-        "missing SUPPORT.md"
-      ]
+      "problems": []
     },
     {
       "repository": "bitcoinuniverseio/dust-20",
       "sourceRef": "main",
-      "commit": "7b1350a59bf735ea5d82327c8169566d5232717a",
-      "commitTimestamp": "2026-09-01T04:02:58Z",
+      "commit": "313ec62537cdb4cf43a6f39174992b10252154ee",
+      "commitTimestamp": "2026-09-01T11:27:09Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -935,7 +944,7 @@
       },
       "lifecycle": "experimental",
       "classification": "protocol",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/dust-20",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/dust20/",
       "releaseVersion": null,
       "chains": [
         {
@@ -983,8 +992,8 @@
     {
       "repository": "bitcoinuniverseio/op-return",
       "sourceRef": "main",
-      "commit": "c6f544025a5fcf6f4eb5cfeb176a8406fc7dafd0",
-      "commitTimestamp": "2026-09-01T02:01:57Z",
+      "commit": "72ab2cc75586ddab87dec6b51c7d627e08605fe6",
+      "commitTimestamp": "2026-09-01T11:27:13Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -992,7 +1001,7 @@
       },
       "lifecycle": "experimental",
       "classification": "protocol",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/op-return/",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/op_return/",
       "releaseVersion": null,
       "chains": [
         {
@@ -1039,8 +1048,8 @@
     {
       "repository": "bitcoinuniverseio/src-101",
       "sourceRef": "main",
-      "commit": "0c90a3fc80160d4f9acc6d952f977ce679563e7b",
-      "commitTimestamp": "2026-09-01T02:02:04Z",
+      "commit": "2807b923e7ffc6ebc2f99f55a9c2f47d88e95094",
+      "commitTimestamp": "2026-09-01T11:27:06Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -1048,7 +1057,7 @@
       },
       "lifecycle": "experimental",
       "classification": "protocol",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/src-101/",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/src101/",
       "releaseVersion": null,
       "chains": [
         {
@@ -1095,8 +1104,8 @@
     {
       "repository": "bitcoinuniverseio/mezcal",
       "sourceRef": "main",
-      "commit": "e67c1928167f42f23ebbe70bb1ae943b2d889fd2",
-      "commitTimestamp": "2026-09-01T02:22:34Z",
+      "commit": "cdf336b0e549baa0250bdd2a11fbcd55c36bb204",
+      "commitTimestamp": "2026-09-01T11:27:10Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -1104,7 +1113,7 @@
       },
       "lifecycle": "beta",
       "classification": "protocol",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/mezcal",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/mezcal/",
       "releaseVersion": "2026.09.01",
       "chains": [
         {
@@ -1151,8 +1160,8 @@
     {
       "repository": "bitcoinuniverseio/ordex",
       "sourceRef": "main",
-      "commit": "a03256df923404a2c3643508c43c4d543cdab877",
-      "commitTimestamp": "2026-09-01T02:29:56Z",
+      "commit": "073c9ae13429f46d1ff42cef43a3ab18030153b8",
+      "commitTimestamp": "2026-09-01T11:41:22Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -1462,8 +1471,8 @@
     {
       "repository": "bitcoinuniverseio/sentry",
       "sourceRef": "main",
-      "commit": "f0b92ef992e74a89ada1a0de4c1fd96ba255b45b",
-      "commitTimestamp": "2026-09-01T03:27:19Z",
+      "commit": "47cc0884bc489cec700f167aa71dbbb7ebc722a7",
+      "commitTimestamp": "2026-09-01T11:25:55Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -1471,7 +1480,7 @@
       },
       "lifecycle": "archived",
       "classification": "archive",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/archive/sentry/",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/",
       "releaseVersion": null,
       "chains": [
         {
@@ -1516,8 +1525,8 @@
     {
       "repository": "bitcoinuniverseio/bitcoin-indexer",
       "sourceRef": "develop",
-      "commit": "97e7c49ae9d5c719b84fb8999487ccfdf8c60e48",
-      "commitTimestamp": "2026-09-01T03:25:19Z",
+      "commit": "43830dba90812a5805ec519c3f7eaf567a9e3511",
+      "commitTimestamp": "2026-09-01T11:37:44Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -1525,7 +1534,7 @@
       },
       "lifecycle": "experimental",
       "classification": "implementation",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/infrastructure/bitcoin-indexer/",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/developers/interfaces/",
       "releaseVersion": null,
       "chains": [
         {
@@ -1572,8 +1581,8 @@
     {
       "repository": "bitcoinuniverseio/ord-dogecoin",
       "sourceRef": "develop",
-      "commit": "a82eebae655d7b341c4b69b80bdd638745bf97f4",
-      "commitTimestamp": "2026-09-01T03:56:23Z",
+      "commit": "3b76bdb35be2329b731eb3f60b6fc2f8a4f456a2",
+      "commitTimestamp": "2026-09-01T11:29:28Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -1581,7 +1590,7 @@
       },
       "lifecycle": "experimental",
       "classification": "implementation",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/infrastructure/ord-dogecoin/",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/developers/interfaces/",
       "releaseVersion": null,
       "chains": [
         {
@@ -1630,8 +1639,8 @@
     {
       "repository": "bitcoinuniverseio/btc_stamps",
       "sourceRef": "main",
-      "commit": "dcb1e8a4183b33e139e90fc6f70698d1e50e1a12",
-      "commitTimestamp": "2026-09-01T04:10:49Z",
+      "commit": "4ee875d5f83bf7cfecd19caa350a7fd5b48fcd3a",
+      "commitTimestamp": "2026-09-01T11:37:39Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -1639,7 +1648,7 @@
       },
       "lifecycle": "experimental",
       "classification": "implementation",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/infrastructure/btc-stamps/",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/developers/interfaces/",
       "releaseVersion": null,
       "chains": [
         {
@@ -1686,19 +1695,42 @@
     {
       "repository": "bitcoinuniverseio/mempool",
       "sourceRef": "develop",
-      "commit": "532621a682bdc52436d1a2a3bee016071cee260d",
-      "commitTimestamp": "2026-08-31T22:09:05Z",
+      "commit": "9936eb7a29e8aaa3857a86fe363d529df121b243",
+      "commitTimestamp": "2026-09-01T11:37:29Z",
       "manifest": {
-        "present": false,
-        "valid": false,
+        "present": true,
+        "valid": true,
         "error": null
       },
-      "lifecycle": null,
-      "classification": null,
-      "documentationUrl": null,
-      "releaseVersion": null,
-      "chains": [],
-      "audiences": [],
+      "lifecycle": "stable",
+      "classification": "infrastructure",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/developers/interfaces/",
+      "releaseVersion": "2026.08.29.2",
+      "chains": [
+        {
+          "chain": "bitcoin",
+          "networks": [
+            "mainnet"
+          ]
+        },
+        {
+          "chain": "dogecoin",
+          "networks": [
+            "mainnet"
+          ]
+        },
+        {
+          "chain": "zcash",
+          "networks": [
+            "mainnet"
+          ]
+        }
+      ],
+      "audiences": [
+        "user",
+        "app-developer",
+        "infrastructure-operator"
+      ],
       "contracts": {
         "openapi": [],
         "asyncapi": [],
@@ -1708,8 +1740,8 @@
       },
       "specifications": [],
       "statusSources": [],
-      "lastVerified": null,
-      "lastVerifiedAgeDays": null,
+      "lastVerified": "2026-09-01T02:00:00Z",
+      "lastVerifiedAgeDays": 0,
       "releases": [
         {
           "tag": "universe-2026.08.29.2",
@@ -1738,15 +1770,14 @@
         "sitemap.xml": false
       },
       "problems": [
-        "no docs.manifest.json, so the portal cannot ingest this repository",
         "missing SUPPORT.md"
       ]
     },
     {
       "repository": "bitcoinuniverseio/stampchain.io",
       "sourceRef": "dev",
-      "commit": "5ba049e4e4ca0dda241d8da3555577d8f6a01e18",
-      "commitTimestamp": "2026-09-01T02:02:11Z",
+      "commit": "dcd1c649c035978468c21241b06cd9ad4ac77081",
+      "commitTimestamp": "2026-09-01T11:27:29Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -1754,7 +1785,7 @@
       },
       "lifecycle": "experimental",
       "classification": "infrastructure",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/infrastructure/stampchain-io/",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/developers/interfaces/",
       "releaseVersion": null,
       "chains": [
         {
@@ -1801,8 +1832,8 @@
     {
       "repository": "bitcoinuniverseio/alkanes-rs",
       "sourceRef": "main",
-      "commit": "bae37400d142680342f5c03e8251e1bdd4a78928",
-      "commitTimestamp": "2026-09-01T02:29:39Z",
+      "commit": "fd0a5d2e6e9614816a039c44ef564ef7434a0d4b",
+      "commitTimestamp": "2026-09-01T11:43:35Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -1810,7 +1841,7 @@
       },
       "lifecycle": "experimental",
       "classification": "implementation",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/infrastructure/alkanes-rs/",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/developers/interfaces/",
       "releaseVersion": null,
       "chains": [
         {
@@ -1859,19 +1890,29 @@
     {
       "repository": "bitcoinuniverseio/index-witness-circles",
       "sourceRef": "main",
-      "commit": "508861a572b989b82db2aa0cc46f36315a36630e",
-      "commitTimestamp": "2026-08-31T15:06:04Z",
+      "commit": "9bc5490f7dc0197c425a41a1b3687ecc057f0ac6",
+      "commitTimestamp": "2026-09-01T11:50:58Z",
       "manifest": {
-        "present": false,
-        "valid": false,
+        "present": true,
+        "valid": true,
         "error": null
       },
-      "lifecycle": null,
-      "classification": null,
-      "documentationUrl": null,
+      "lifecycle": "experimental",
+      "classification": "indexer",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/witness-circles/",
       "releaseVersion": null,
-      "chains": [],
-      "audiences": [],
+      "chains": [
+        {
+          "chain": "bitcoin",
+          "networks": [
+            "mainnet"
+          ]
+        }
+      ],
+      "audiences": [
+        "indexer-operator",
+        "app-developer"
+      ],
       "contracts": {
         "openapi": [],
         "asyncapi": [],
@@ -1881,8 +1922,8 @@
       },
       "specifications": [],
       "statusSources": [],
-      "lastVerified": null,
-      "lastVerifiedAgeDays": null,
+      "lastVerified": "2026-09-01T02:00:00Z",
+      "lastVerifiedAgeDays": 0,
       "releases": [],
       "governance": {
         "README.md": true,
@@ -1896,7 +1937,6 @@
         "sitemap.xml": false
       },
       "problems": [
-        "no docs.manifest.json, so the portal cannot ingest this repository",
         "missing CONTRIBUTING.md",
         "missing SUPPORT.md"
       ]
@@ -1904,8 +1944,8 @@
     {
       "repository": "bitcoinuniverseio/index-tandem",
       "sourceRef": "main",
-      "commit": "2f8d4ef91894587348fb81c4a858a4359d503caa",
-      "commitTimestamp": "2026-09-01T02:29:50Z",
+      "commit": "cde19ae31ab638c706843c416aae6a69462ddc73",
+      "commitTimestamp": "2026-09-01T11:27:33Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -1913,7 +1953,7 @@
       },
       "lifecycle": "experimental",
       "classification": "indexer",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/infrastructure/index-tandem/",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/developers/interfaces/",
       "releaseVersion": null,
       "chains": [
         {
@@ -1960,8 +2000,8 @@
     {
       "repository": "bitcoinuniverseio/tandem-verifier-rs",
       "sourceRef": "main",
-      "commit": "6b11d82acf0020390d80fbe4c65594702288a1d3",
-      "commitTimestamp": "2026-09-01T02:06:05Z",
+      "commit": "aa72212cf801d3052ef8a450650d2327bd7fc582",
+      "commitTimestamp": "2026-09-01T11:32:04Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -1969,7 +2009,7 @@
       },
       "lifecycle": "experimental",
       "classification": "implementation",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/infrastructure/tandem-verifier-rs/",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/developers/interfaces/",
       "releaseVersion": null,
       "chains": [
         {
@@ -2015,8 +2055,8 @@
     {
       "repository": "bitcoinuniverseio/index-patina",
       "sourceRef": "main",
-      "commit": "0f5fe6d48624525ac242bc5eab2dd39be25fc8d6",
-      "commitTimestamp": "2026-09-01T03:32:44Z",
+      "commit": "fa1e2e02bbd8d1b69f8b9ca7bb3d3aaafed262c2",
+      "commitTimestamp": "2026-09-01T11:37:34Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -2024,7 +2064,7 @@
       },
       "lifecycle": "stable",
       "classification": "indexer",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/infrastructure/index-patina/",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/developers/interfaces/",
       "releaseVersion": "0.2.0",
       "chains": [
         {
@@ -2079,8 +2119,8 @@
     {
       "repository": "bitcoinuniverseio/universe-ci-actions",
       "sourceRef": "main",
-      "commit": "fd406c34c10a8275c370e22531e1c3d4aa32a901",
-      "commitTimestamp": "2026-09-01T02:50:49Z",
+      "commit": "8f98110ebf947e07907e51c871718e41bfe139ff",
+      "commitTimestamp": "2026-09-01T11:30:50Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -2088,7 +2128,7 @@
       },
       "lifecycle": "stable",
       "classification": "ci",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/infrastructure/universe-ci-actions/",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/developers/interfaces/",
       "releaseVersion": "1",
       "chains": [],
       "audiences": [
@@ -2126,8 +2166,8 @@
     {
       "repository": "bitcoinuniverseio/docs-index-doge-tap",
       "sourceRef": "main",
-      "commit": "84f1350077553dce1dc788b95484239f0f7530eb",
-      "commitTimestamp": "2026-09-01T03:27:24Z",
+      "commit": "23bff76eb0e96cc9b5fd9133204ed92001d903ca",
+      "commitTimestamp": "2026-09-01T11:25:58Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -2135,7 +2175,7 @@
       },
       "lifecycle": "archived",
       "classification": "archive",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/archive/docs-index-doge-tap/",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/tap_doge/",
       "releaseVersion": null,
       "chains": [
         {
