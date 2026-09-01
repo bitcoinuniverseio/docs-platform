@@ -14,10 +14,9 @@ concurrency:
 
 jobs:
   checks:
-    # cpu=2+8 is the size the spot pool actually serves. Asking for a larger
-    # instance leaves the job queued indefinitely, because spot-only means
-    # there is no on-demand fallback to rescue it.
-    runs-on: runs-on=${{ github.run_id }}-checks/runner=universe-hosted/cpu=2+8/env=production
+    # universe-fast currently has eligible Spot capacity for this browser-heavy
+    # gate. The profile remains Spot-only with no on-demand fallback.
+    runs-on: runs-on=${{ github.run_id }}-checks/runner=universe-fast/cpu=4+16/env=production
     steps:
       - uses: actions/checkout@v4
       - uses: bitcoinuniverseio/universe-ci-actions/universe-node-env@main
