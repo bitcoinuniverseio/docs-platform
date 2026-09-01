@@ -32,7 +32,7 @@ commit.
 
 ## By hand
 
-Both scripts need an ssh target and key:
+Both scripts need an SSH target and either a key or a protected password:
 
 ```bash
 export DOCS_HOST=root@<documentation-host>
@@ -53,14 +53,18 @@ reach a retained release, so lowering it shortens how far back you can go.
 
 ## Required secrets
 
-The deploy workflow reads two repository secrets, which an operator provisions:
+The deploy workflow reads these protected production environment secrets:
 
 | Secret | What it is |
 | --- | --- |
 | `DOCS_HOST` | ssh target for the documentation host, as `user@host` |
 | `DOCS_DEPLOY_KEY` | private key authorised for that target |
+| `DOCS_DEPLOY_PASSWORD` | existing target password, used only when no deploy key is configured |
 
 Use a key scoped to this deployment rather than a shared administrative key,
 and give it write access to the release directory and nothing else. The
 workflow writes the key to the runner, uses it, and removes it in an `always`
-step so it does not survive the job.
+step so it does not survive the job. Password authentication is supported for
+an existing credential when a scoped key is not available; the password stays
+in the protected production environment and is passed to `sshpass` through its
+environment interface, never the command line.

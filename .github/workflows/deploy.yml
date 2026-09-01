@@ -48,17 +48,29 @@ jobs:
       - name: Accessibility gate
         run: node packages/docs-quality/bin/check-accessibility.mjs --dist apps/portal/dist
 
-      - name: Provide the deploy key
+      - name: Prepare SSH authentication
+        env:
+          DOCS_DEPLOY_KEY: ${{ secrets.DOCS_DEPLOY_KEY }}
+          DOCS_DEPLOY_PASSWORD: ${{ secrets.DOCS_DEPLOY_PASSWORD }}
         run: |
-          install -m 700 -d ~/.ssh
-          printf '%s\n' "${{ secrets.DOCS_DEPLOY_KEY }}" > ~/.ssh/docs_deploy
-          chmod 600 ~/.ssh/docs_deploy
+          if [ -n "$DOCS_DEPLOY_KEY" ]; then
+            install -m 700 -d ~/.ssh
+            printf '%s\n' "$DOCS_DEPLOY_KEY" > ~/.ssh/docs_deploy
+            chmod 600 ~/.ssh/docs_deploy
+          elif [ -n "$DOCS_DEPLOY_PASSWORD" ]; then
+            sudo apt-get update
+            sudo apt-get install -y sshpass
+          else
+            echo "DOCS_DEPLOY_KEY or DOCS_DEPLOY_PASSWORD is required" >&2
+            exit 2
+          fi
 
       - name: Deploy
         if: ${{ inputs.rollback_to == '' }}
         env:
           DOCS_HOST: ${{ secrets.DOCS_HOST }}
           DOCS_SSH_KEY: /home/runner/.ssh/docs_deploy
+          DOCS_PASSWORD: ${{ secrets.DOCS_DEPLOY_PASSWORD }}
         run: bash tooling/deploy/deploy.sh apps/portal/dist "${{ github.sha }}"
 
       - name: Roll back
@@ -66,6 +78,7 @@ jobs:
         env:
           DOCS_HOST: ${{ secrets.DOCS_HOST }}
           DOCS_SSH_KEY: /home/runner/.ssh/docs_deploy
+          DOCS_PASSWORD: ${{ secrets.DOCS_DEPLOY_PASSWORD }}
         run: bash tooling/deploy/rollback.sh "${{ inputs.rollback_to }}"
 
       - name: Remove the deploy key

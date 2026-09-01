@@ -10,7 +10,8 @@
 #
 # Required environment:
 #   DOCS_HOST        ssh target, for example root@example
-#   DOCS_SSH_KEY     path to the private key
+#   DOCS_SSH_KEY     path to the private key, or
+#   DOCS_PASSWORD    password supplied through a protected secret
 # Optional:
 #   RELEASES         release root (default /home/bitcoinuniverse/docs-releases)
 #   KEEP             releases to retain (default 5)
@@ -22,7 +23,28 @@ SHA=${2:?usage: deploy.sh <dist-dir> <commit-sha>}
 RELEASES=${RELEASES:-/home/bitcoinuniverse/docs-releases}
 KEEP=${KEEP:-5}
 : "${DOCS_HOST:?DOCS_HOST is required}"
-: "${DOCS_SSH_KEY:?DOCS_SSH_KEY is required}"
+DOCS_SSH_KEY=${DOCS_SSH_KEY:-}
+DOCS_PASSWORD=${DOCS_PASSWORD:-}
+
+SSH=(ssh)
+SCP=(scp)
+if [ -f "$DOCS_SSH_KEY" ]; then
+  SSH+=(-i "$DOCS_SSH_KEY")
+  SCP+=(-i "$DOCS_SSH_KEY")
+elif [ -n "$DOCS_PASSWORD" ]; then
+  command -v sshpass >/dev/null || {
+    echo "sshpass is required for password authentication" >&2
+    exit 2
+  }
+  export SSHPASS="$DOCS_PASSWORD"
+  SSH=(sshpass -e ssh)
+  SCP=(sshpass -e scp)
+else
+  echo "DOCS_SSH_KEY or DOCS_PASSWORD is required" >&2
+  exit 2
+fi
+SSH+=(-o StrictHostKeyChecking=accept-new)
+SCP+=(-o StrictHostKeyChecking=accept-new)
 
 if [[ ! "$SHA" =~ ^[0-9a-f]{40}$ ]]; then
   echo "commit must be a full 40-hex sha, got: $SHA" >&2
@@ -33,18 +55,16 @@ if [[ ! -f "$DIST/index.html" ]]; then
   exit 2
 fi
 
-SSH="ssh -i $DOCS_SSH_KEY -o StrictHostKeyChecking=accept-new"
-
 echo "$SHA" > "$DIST/RELEASE"
 TAR=$(mktemp -t portal-XXXXXX.tgz)
 trap 'rm -f "$TAR"' EXIT
 tar -C "$DIST" -czf "$TAR" .
 
 echo "uploading $(du -h "$TAR" | cut -f1) for $SHA"
-scp -i "$DOCS_SSH_KEY" -o StrictHostKeyChecking=accept-new "$TAR" "$DOCS_HOST:/tmp/portal-$SHA.tgz"
+"${SCP[@]}" "$TAR" "$DOCS_HOST:/tmp/portal-$SHA.tgz"
 
 # shellcheck disable=SC2087
-$SSH "$DOCS_HOST" bash -s <<EOF
+"${SSH[@]}" "$DOCS_HOST" bash -s <<EOF
 set -euo pipefail
 RELEASES="$RELEASES"
 SHA="$SHA"
@@ -79,7 +99,7 @@ EOF
 
 echo "verifying"
 for path in / /protocols/ /pagefind/pagefind.js /RELEASE; do
-  code=$($SSH "$DOCS_HOST" "curl -s -o /dev/null -w '%{http_code}' -H 'Host: docs.bitcoinuniverse.io' http://127.0.0.1$path")
+  code=$("${SSH[@]}" "$DOCS_HOST" "curl -s -o /dev/null -w '%{http_code}' -H 'Host: docs.bitcoinuniverse.io' http://127.0.0.1$path")
   echo "  $path -> $code"
   if [ "$code" != "200" ]; then
     echo "verification failed on $path; roll back with tooling/deploy/rollback.sh" >&2
@@ -87,7 +107,7 @@ for path in / /protocols/ /pagefind/pagefind.js /RELEASE; do
   fi
 done
 
-live=$($SSH "$DOCS_HOST" "curl -s -H 'Host: docs.bitcoinuniverse.io' http://127.0.0.1/RELEASE")
+live=$("${SSH[@]}" "$DOCS_HOST" "curl -s -H 'Host: docs.bitcoinuniverse.io' http://127.0.0.1/RELEASE")
 if [ "$live" != "$SHA" ]; then
   echo "live release is $live, expected $SHA" >&2
   exit 1
