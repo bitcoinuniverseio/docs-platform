@@ -1,0 +1,17 @@
+{
+  "name": "@universe/docs-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Read-only Model Context Protocol server over the public Bitcoin Universe documentation estate.",
+  "type": "module",
+  "bin": {
+    "universe-docs-mcp": "./bin/server.mjs"
+  },
+  "scripts": {
+    "start": "node bin/server.mjs",
+    "test": "node test/server.test.mjs"
+  },
+  "dependencies": {
+    "@universe/ecosystem-registry": "workspace:*"
+  }
+}

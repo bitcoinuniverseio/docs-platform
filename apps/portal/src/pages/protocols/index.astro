@@ -1,0 +1,145 @@
+---
+// The Protocol Atlas index. One row per protocol, grouped by chain, with the
+// support state that the Core protocol registry actually records.
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { Aside } from '@astrojs/starlight/components';
+import { protocols, chains, provenance, AVAILABILITY_LABELS } from '@universe/ecosystem-registry';
+import { withBase } from '../../lib/paths';
+
+const shortCommit = provenance.sourceCommit.slice(0, 12);
+
+const byChain = chains.map((chain) => ({
+  chain,
+  entries: protocols
+    .filter((p) => p.chain === chain.id)
+    .sort((a, b) => a.name.localeCompare(b.name)),
+}));
+
+function supportCell(protocol) {
+  if (!protocol.marketplace) {
+    return protocol.universeImplementation ? 'Indexed, no trade path' : 'Documented only';
+  }
+  return AVAILABILITY_LABELS[protocol.marketplace.availability]?.label
+    ?? protocol.marketplace.availability;
+}
+---
+
+<StarlightPage
+  frontmatter={{
+    title: 'Protocol Atlas',
+    description:
+      'Every protocol Bitcoin Universe authors, implements, or indexes, with its carrier, origin, and the support our products actually implement.',
+    tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 2 },
+  }}
+>
+  <p class="lede">
+    {protocols.length} protocols across {chains.length} chains. Each row links to a dossier built from
+    the same registry our products run on, so the support column is a statement about code that
+    exists, not a marketing claim.
+  </p>
+
+  <Aside type="caution" title="Implemented is not the same as available">
+    <p>
+      This Atlas records what our products implement. Whether a protocol is switched on in
+      production right now is a separate question answered by <a href={withBase("/status/")}>status</a>. A
+      protocol can be fully implemented and still be gated off, and a read-only protocol is one we
+      deliberately do not let you trade.
+    </p>
+  </Aside>
+
+  {
+    byChain.map(({ chain, entries }) => (
+      <>
+        <h2 id={chain.id}>{chain.name}</h2>
+        <p class="chain-note">{chain.note}</p>
+        <div class="scroll-x">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Protocol</th>
+                <th scope="col">Carrier</th>
+                <th scope="col">Origin</th>
+                <th scope="col">In our products</th>
+              </tr>
+            </thead>
+            <tbody>
+              {entries.map((protocol) => (
+                <tr>
+                  <th scope="row">
+                    <a href={withBase(`/protocols/${protocol.id}/`)}>{protocol.name}</a>
+                  </th>
+                  <td>{protocol.carrier}</td>
+                  <td>
+                    {protocol.origin.kind === 'universe-original'
+                      ? 'Bitcoin Universe'
+                      : protocol.origin.kind === 'universe-view'
+                        ? 'Universe read path'
+                        : (protocol.origin.creator ?? 'External')}
+                  </td>
+                  <td>{supportCell(protocol)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </>
+    ))
+  }
+
+  <h2 id="how-to-read-this">How to read this table</h2>
+  <dl>
+    <dt>Enabled</dt>
+    <dd>{AVAILABILITY_LABELS.enabled.summary}</dd>
+    <dt>Read only</dt>
+    <dd>{AVAILABILITY_LABELS['read-only'].summary}</dd>
+    <dt>Feature gated</dt>
+    <dd>{AVAILABILITY_LABELS['feature-gated'].summary}</dd>
+    <dt>Indexed, no trade path</dt>
+    <dd>
+      A Universe indexer covers this protocol, but no product implements buying or selling it.
+    </dd>
+    <dt>Documented only</dt>
+    <dd>
+      We publish a specification or reference for it. No Universe indexer or product surface
+      implements it today.
+    </dd>
+  </dl>
+
+  <p class="provenance">
+    Support states generated from <code>{provenance.sourcePath}</code> in{' '}
+    <a href={`https://github.com/${provenance.repository}/commit/${provenance.sourceCommit}`}>
+      {provenance.repository} at {shortCommit}
+    </a>.
+  </p>
+</StarlightPage>
+
+<style>
+  .lede {
+    font-size: var(--sl-text-lg);
+    color: var(--sl-color-white);
+  }
+  .chain-note {
+    color: var(--sl-color-gray-2);
+  }
+  /* Wide tables scroll inside their own box so the page never scrolls sideways. */
+  .scroll-x {
+    overflow-x: auto;
+    margin-bottom: 2rem;
+  }
+  .scroll-x table {
+    margin: 0;
+    min-width: 40rem;
+  }
+  .provenance {
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-2);
+  }
+  dl dt {
+    font-weight: 600;
+    margin-top: 0.75rem;
+  }
+  dl dd {
+    margin: 0.15rem 0 0;
+    color: var(--sl-color-gray-2);
+  }
+</style>

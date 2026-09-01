@@ -1,0 +1,39 @@
+{
+  "description": "The chains Bitcoin Universe operates on, the networks supported on each, and the properties that change how protocols behave. Shared definitions so that every documentation surface uses the same words for the same thing.",
+  "chains": [
+    {
+      "id": "bitcoin",
+      "name": "Bitcoin",
+      "ticker": "BTC",
+      "networks": ["mainnet", "testnet4", "signet", "regtest"],
+      "blockTargetMinutes": 10,
+      "finality": "Probabilistic. Depth is confidence, never a guarantee, and a reorganisation can undo recent blocks.",
+      "dataCarriers": [
+        "Witness data, used by inscription envelopes and OP_DROP",
+        "OP_RETURN outputs, used by runestones and several token protocols",
+        "Bare multisig and other unprunable outputs, used by Bitcoin Stamps"
+      ],
+      "note": "Most protocols in the Atlas live here. Protocol state on Bitcoin is almost always computed by indexers rather than enforced by consensus, which is why indexer agreement matters as much as the chain itself."
+    },
+    {
+      "id": "dogecoin",
+      "name": "Dogecoin",
+      "ticker": "DOGE",
+      "networks": ["mainnet", "testnet"],
+      "blockTargetMinutes": 1,
+      "finality": "Probabilistic, with a one-minute block target, so the same confirmation count represents much less elapsed work than on Bitcoin.",
+      "dataCarriers": ["Witness data, used by Doginals inscription envelopes"],
+      "note": "The inscription model carries over from Bitcoin, but the faster block target and different fee market change practical guidance about waiting for confirmations."
+    },
+    {
+      "id": "zcash",
+      "name": "Zcash",
+      "ticker": "ZEC",
+      "networks": ["mainnet", "testnet"],
+      "blockTargetMinutes": 1.25,
+      "finality": "Probabilistic.",
+      "dataCarriers": ["Transparent transaction data used by Zerdinals and Z-Runes"],
+      "note": "Zcash has both transparent and shielded activity. Protocol records that depend on public data can only be derived from transparent activity, and this distinction is load-bearing rather than a detail."
+    }
+  ]
+}

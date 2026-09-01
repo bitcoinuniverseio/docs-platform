@@ -1,0 +1,104 @@
+---
+// Renders what a protocol can and cannot do in Universe products, including the
+// reason for every unsupported action. The reasons are the useful part: a table
+// of green ticks teaches nothing, a stated limitation teaches the reader where
+// the edges are.
+interface Props {
+  marketplace: {
+    owner: string | null;
+    availability: string;
+    mode: string | null;
+    featureGate: string | null;
+    actions: {
+      supported: Array<{ action: string; mode: string | null }>;
+      unsupported: Array<{ action: string; reason: string }>;
+    };
+  };
+}
+
+const { marketplace } = Astro.props;
+const { supported, unsupported } = marketplace.actions;
+---
+
+<div class="capability">
+  {
+    supported.length > 0 && (
+      <>
+        <h3 id="supported-actions">Implemented</h3>
+        <ul class="cap-list cap-yes">
+          {supported.map((entry) => (
+            <li>
+              <code>{entry.action}</code>
+              {entry.mode && <span class="cap-mode">{entry.mode}</span>}
+            </li>
+          ))}
+        </ul>
+      </>
+    )
+  }
+
+  {
+    unsupported.length > 0 && (
+      <>
+        <h3 id="not-implemented">Not implemented, and why</h3>
+        <dl class="cap-reasons">
+          {unsupported.map((entry) => (
+            <>
+              <dt>
+                <code>{entry.action}</code>
+              </dt>
+              <dd>{entry.reason}</dd>
+            </>
+          ))}
+        </dl>
+      </>
+    )
+  }
+</div>
+
+<style>
+  .cap-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+  }
+  .cap-list li {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.35rem;
+    border: 1px solid var(--sl-color-green-high, var(--sl-color-gray-5));
+    background: var(--sl-color-gray-6);
+    margin: 0;
+  }
+  .cap-list code {
+    background: none;
+    padding: 0;
+    font-size: var(--sl-text-sm);
+  }
+  .cap-mode {
+    font-size: var(--sl-text-xs);
+    color: var(--sl-color-gray-3);
+  }
+  .cap-reasons {
+    margin: 0 0 1rem;
+  }
+  .cap-reasons dt {
+    font-weight: 600;
+    margin-top: 0.9rem;
+  }
+  .cap-reasons dd {
+    margin: 0.2rem 0 0;
+    padding-left: 0;
+    color: var(--sl-color-gray-2);
+  }
+  @media (max-width: 30rem) {
+    .cap-list {
+      flex-direction: column;
+    }
+  }
+</style>
