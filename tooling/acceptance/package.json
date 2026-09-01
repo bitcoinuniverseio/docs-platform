@@ -1,0 +1,10 @@
+{
+  "name": "@universe/acceptance-sweep",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Automated acceptance sweep across every published Bitcoin Universe documentation site.",
+  "type": "module",
+  "scripts": {
+    "sweep": "node sweep.mjs"
+  }
+}
