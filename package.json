@@ -1,0 +1,24 @@
+{
+  "name": "docs-platform",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The Bitcoin Universe documentation platform: portal, design system, content schemas, search, and release tooling for docs.bitcoinuniverse.io",
+  "type": "module",
+  "engines": {
+    "node": ">=24 <25",
+    "pnpm": ">=10"
+  },
+  "packageManager": "pnpm@10.34.5",
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild", "sharp"]
+  },
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "typecheck": "pnpm -r typecheck",
+    "validate:manifests": "node packages/content-schema/bin/validate-manifest.mjs",
+    "sync:lock": "node tooling/sync/bin/sync.mjs lock",
+    "sync:fetch": "node tooling/sync/bin/sync.mjs fetch",
+    "sync:verify": "node tooling/sync/bin/sync.mjs verify"
+  }
+}

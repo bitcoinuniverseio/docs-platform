@@ -1,0 +1,13 @@
+{
+  "name": "@universe/docs-sync",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Pinned-source synchronization for the Bitcoin Universe documentation portal",
+  "type": "module",
+  "bin": {
+    "docs-sync": "./bin/sync.mjs"
+  },
+  "scripts": {
+    "test": "node test/sync.test.mjs"
+  }
+}

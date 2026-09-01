@@ -1,0 +1,32 @@
+name: ci
+
+on:
+  push:
+    branches: [develop, main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    runs-on: runs-on=${{ github.run_id }}-checks/runner=universe-hosted/cpu=4+16/env=production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bitcoinuniverseio/universe-ci-actions/universe-node-env@main
+      - name: Install pnpm
+        run: npm install -g pnpm@10.34.5
+      - name: Install locked dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Workspace tests (manifest validator, sync registry)
+        run: pnpm test
+      - name: Build the portal (validates every internal link and anchor)
+        run: pnpm --filter @universe/docs-portal build
+      - name: Search index exists
+        run: test -f apps/portal/dist/pagefind/pagefind.js
+      - name: Sitemap exists
+        run: test -f apps/portal/dist/sitemap-index.xml

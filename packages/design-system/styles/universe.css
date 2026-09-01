@@ -1,0 +1,189 @@
+/*
+ * Bitcoin Universe documentation design system.
+ *
+ * One recognizable identity across every documentation surface: quiet paper
+ * surfaces, a single Bitcoin-amber mark, square geometry, hairline edges, no
+ * shadows. Light is the primary experience; dark is a first-class sibling
+ * built to the same WCAG 2.2 AA contrast floor, not an inversion.
+ *
+ * Structural rules (table scrolling, focus, reduced motion) are shared with
+ * the Zerdinals docs implementation, which proved them against axe with every
+ * rule enabled at 375 and 1440 in both themes.
+ */
+
+:root {
+  --sl-font: 'Geist Variable', system-ui, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --sl-font-mono: 'Geist Mono Variable', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+
+  /* Square geometry everywhere. */
+  --sl-border-radius: 0;
+}
+
+/* Light: paper ground, amber reserved for marks and focus; text amber is the
+   darkened variant so contrast holds on paper. */
+:root[data-theme='light'] {
+  --sl-color-accent-low: #fdeed6;
+  --sl-color-accent: #8a5300;
+  --sl-color-accent-high: #5c3700;
+  --sl-color-white: #14161a;
+  --sl-color-gray-1: #22252b;
+  --sl-color-gray-2: #494e57;
+  --sl-color-gray-3: #5d636d;
+  --sl-color-gray-4: #858b96;
+  --sl-color-gray-5: #d6dae0;
+  --sl-color-gray-6: #ffffff;
+  --sl-color-gray-7: #eceef1;
+  --sl-color-black: #f6f7f9;
+
+  --sl-color-bg: #f6f7f9;
+  --sl-color-bg-nav: #f6f7f9;
+  --sl-color-bg-sidebar: #f6f7f9;
+  --sl-color-bg-inline-code: #eceef1;
+  --sl-color-hairline: #d6dae0;
+  --sl-color-hairline-light: #d6dae0;
+  --sl-color-hairline-shade: #d6dae0;
+
+  --sl-color-text: #494e57;
+  --sl-color-text-accent: #8a5300;
+  --sl-color-text-invert: #f6f7f9;
+}
+
+/* Dark: warm graphite ground, amber mark. */
+:root[data-theme='dark'] {
+  --sl-color-accent-low: #3a2600;
+  --sl-color-accent: #8a5300;
+  --sl-color-accent-high: #ffb84d;
+  --sl-color-white: #f5f6f8;
+  --sl-color-gray-1: #e1e4e9;
+  --sl-color-gray-2: #aab1bc;
+  --sl-color-gray-3: #7e8794;
+  --sl-color-gray-4: #464d59;
+  --sl-color-gray-5: #262b33;
+  --sl-color-gray-6: #13161b;
+  --sl-color-gray-7: #0f1216;
+  --sl-color-black: #0c0e11;
+
+  --sl-color-bg: #0c0e11;
+  --sl-color-bg-nav: #0c0e11;
+  --sl-color-bg-sidebar: #0c0e11;
+  --sl-color-bg-inline-code: #181c22;
+  --sl-color-hairline: #262b33;
+  --sl-color-hairline-light: #262b33;
+  --sl-color-hairline-shade: #262b33;
+
+  --sl-color-text: #aab1bc;
+  --sl-color-text-accent: #ffb84d;
+  --sl-color-text-invert: #0c0e11;
+}
+
+/* Square geometry: no rounded panels, no shadows. */
+.sl-markdown-content code,
+.sl-markdown-content pre,
+.starlight-aside,
+.card,
+article.card,
+button,
+dialog,
+input,
+kbd,
+.sl-link-button,
+.pagination-links a,
+site-search button[data-open-modal],
+starlight-menu-button button,
+starlight-theme-select select {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Title weight without a second display face: keep the font budget small. */
+.site-title span {
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--sl-color-white);
+}
+.sl-markdown-content h1,
+h1[data-page-title],
+.hero h1 {
+  font-weight: 680;
+  letter-spacing: -0.02em;
+}
+
+/* Body text rhythm: prose leading 1.55, bounded measure. */
+.sl-markdown-content {
+  line-height: 1.55;
+}
+.sl-markdown-content :is(p, li) {
+  max-width: 72ch;
+}
+
+/* Chain literals: full-width scroll containers rather than wrapped hashes. */
+.sl-markdown-content pre {
+  border: 1px solid var(--sl-color-hairline);
+}
+
+/* Tables: hairline grid, no zebra tint. Wide tables scroll inside their own
+   focusable region instead of the page. */
+.sl-markdown-content .table-scroll {
+  overflow-x: auto;
+  max-width: 100%;
+}
+.sl-markdown-content .table-scroll:focus-visible {
+  outline: 2px solid var(--sl-color-text-accent);
+  outline-offset: 2px;
+}
+.sl-markdown-content table {
+  border-collapse: collapse;
+  display: table;
+  overflow: visible;
+  width: max-content;
+  min-width: 100%;
+}
+.sl-markdown-content :is(th, td) {
+  border: 1px solid var(--sl-color-hairline);
+}
+.sl-markdown-content tr:nth-child(2n) {
+  background: transparent;
+}
+
+/* Asides: square, hairline, label in tracking caps. State hues hold AA in
+   both themes and states never rely on color alone. */
+.starlight-aside {
+  border-inline-start-width: 2px;
+}
+.starlight-aside__title {
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  font-size: var(--sl-text-xs);
+}
+:root[data-theme='dark'] .starlight-aside--caution {
+  --sl-color-asides-text-accent: #ffd37c;
+  border-color: #ffd37c;
+}
+:root[data-theme='dark'] .starlight-aside--danger {
+  --sl-color-asides-text-accent: #ff7a72;
+  border-color: #ff7a72;
+}
+:root[data-theme='dark'] .starlight-aside--note {
+  --sl-color-asides-text-accent: #7cc4ff;
+  border-color: #7cc4ff;
+}
+:root[data-theme='dark'] .starlight-aside--tip {
+  --sl-color-asides-text-accent: #ffb84d;
+  border-color: #ffb84d;
+}
+
+/* Focus: visible 2px focus ring everywhere. */
+:focus-visible {
+  outline: 2px solid var(--sl-color-text-accent);
+  outline-offset: 2px;
+}
+
+/* Reduced motion: nothing animates for decoration. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
