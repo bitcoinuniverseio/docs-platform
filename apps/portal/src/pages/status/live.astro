@@ -1,0 +1,210 @@
+---
+// The live status dashboard.
+//
+// Static-first: with JavaScript off, this page still explains what is measured,
+// which public endpoints report it, and how to read the answer. With JavaScript
+// on, it reads those same public endpoints in the reader's own browser and fills
+// in the current values. Nothing is proxied through this site, so the reader sees
+// exactly what the API says rather than a cached claim we made earlier.
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { Aside } from '@astrojs/starlight/components';
+import { products } from '@universe/ecosystem-registry';
+
+const monitored = products.filter((product) => product.statusEndpoints.length > 0);
+---
+
+<StarlightPage
+  frontmatter={{
+    title: 'Live status',
+    description:
+      'Current availability of Bitcoin Universe public endpoints, read directly from those endpoints in your browser.',
+    tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 2 },
+  }}
+>
+  <p class="lede">
+    This page reads public health endpoints from your browser and shows what they return right now.
+    It does not cache a result on our side, so what you see is the service's own answer.
+  </p>
+
+  <Aside type="caution" title="Implemented, enabled, and healthy are three different things">
+    <p>
+      The <a href="/protocols/">Protocol Atlas</a> records what our code implements. This page
+      records what the running service reports. A protocol can be fully implemented, switched off by
+      an operator, and therefore correctly shown here as unavailable. Read both before concluding
+      that something is broken.
+    </p>
+  </Aside>
+
+  <h2 id="api">Public API</h2>
+
+  <noscript>
+    <p class="noscript-note">
+      Live values need JavaScript. You can read the same endpoints directly:
+    </p>
+    <ul>
+      {
+        monitored.flatMap((product) =>
+          product.statusEndpoints.map((endpoint) => (
+            <li>
+              <a href={endpoint}>
+                <code>{endpoint}</code>
+              </a>
+            </li>
+          )),
+        )
+      }
+    </ul>
+  </noscript>
+
+  <div id="status-root" data-endpoints={JSON.stringify(monitored.flatMap((p) => p.statusEndpoints))}>
+    <p class="status-pending" hidden>Reading public endpoints.</p>
+  </div>
+
+  <h2 id="what-is-measured">What each field means</h2>
+  <dl>
+    <dt><code>release</code></dt>
+    <dd>
+      The exact commit the running service was built from. Compare it with the repository to know
+      precisely which code answered you.
+    </dd>
+    <dt><code>marketplaceProfile</code></dt>
+    <dd>
+      Whether trading is enabled on the deployment. <code>read-only</code> means listings and
+      purchases are switched off regardless of what any protocol implements.
+    </dd>
+    <dt><code>mutationTraffic.ready</code></dt>
+    <dd>
+      Whether the service will accept an action that changes state. When false, the
+      <code>reasons</code> array names each unmet precondition.
+    </dd>
+    <dt><code>indexer-health</code> rows</dt>
+    <dd>
+      One row per protocol index, with the observation time, freshness limit, tip, and lag. A row
+      with <code>unknown</code> state and an old <code>observedAt</code> means the index has not
+      reported recently, which is not the same as the index reporting zero.
+    </dd>
+  </dl>
+
+  <h2 id="reading-a-stale-index">Reading a stale index</h2>
+  <p>
+    If an index has not reported since a date well in the past, treat every number derived from it as
+    unknown rather than current. Balances, supplies, and holder counts computed from a stale index
+    are stale too. This is why our products render an unavailable state rather than a zero: a zero
+    would be a claim, and we would not be able to support it.
+  </p>
+</StarlightPage>
+
+<script>
+  // Reads each declared public endpoint and renders what it says. Every failure
+  // mode is rendered as a stated failure, never as a blank or a zero.
+  const root = document.getElementById('status-root');
+  if (root) {
+    const endpoints = JSON.parse(root.dataset.endpoints || '[]');
+    const pending = root.querySelector('.status-pending');
+    if (pending) pending.hidden = false;
+
+    const esc = (value) => String(value ?? '').replace(/[<>&"]/g, (c) =>
+      ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' })[c],
+    );
+
+    function renderHealth(url, data) {
+      const rows = [];
+      if (typeof data.ok === 'boolean') {
+        rows.push(['Service healthy', data.ok ? 'yes' : 'no']);
+      }
+      if (data.release) rows.push(['Release commit', data.release.slice(0, 12)]);
+      if (data.marketplaceProfile) rows.push(['Marketplace profile', data.marketplaceProfile]);
+      if (data.readTraffic) rows.push(['Read traffic ready', data.readTraffic.ready ? 'yes' : 'no']);
+      if (data.mutationTraffic) {
+        rows.push(['Mutation traffic ready', data.mutationTraffic.ready ? 'yes' : 'no']);
+        const reasons = data.mutationTraffic.reasons || [];
+        if (reasons.length) {
+          rows.push(['Blocked by', reasons.join(', ')]);
+        }
+      }
+      if (typeof data.total === 'number' && Array.isArray(data.data)) {
+        const counts = data.data.reduce((acc, row) => {
+          const key = row.lastSuccess ? 'reporting' : 'not reporting';
+          acc[key] = (acc[key] || 0) + 1;
+          return acc;
+        }, {});
+        rows.push(['Protocol indexes', String(data.total)]);
+        rows.push([
+          'Index rows reporting',
+          `${counts.reporting || 0} reporting, ${counts['not reporting'] || 0} not reporting`,
+        ]);
+        const observed = data.data
+          .map((row) => row.observedAt)
+          .filter(Boolean)
+          .sort();
+        if (observed.length) {
+          rows.push(['Most recent index observation', observed[observed.length - 1]]);
+        }
+      }
+      return rows;
+    }
+
+    async function load() {
+      const parts = [];
+      for (const url of endpoints) {
+        try {
+          const response = await fetch(url, { headers: { accept: 'application/json' } });
+          if (!response.ok) {
+            parts.push(
+              `<h3><code>${esc(url)}</code></h3><p class="status-bad">Responded ${response.status}. Treat every value derived from this endpoint as unknown.</p>`,
+            );
+            continue;
+          }
+          const data = await response.json();
+          const rows = renderHealth(url, data);
+          parts.push(
+            `<h3><code>${esc(url)}</code></h3><div class="scroll-x"><table><tbody>${rows
+              .map(([k, v]) => `<tr><th scope="row">${esc(k)}</th><td>${esc(v)}</td></tr>`)
+              .join('')}</tbody></table></div>`,
+          );
+        } catch (error) {
+          parts.push(
+            `<h3><code>${esc(url)}</code></h3><p class="status-bad">Could not be read from your browser: ${esc(error.message)}. This may be a network or CORS restriction rather than an outage. Open the endpoint directly to check.</p>`,
+          );
+        }
+      }
+      root.innerHTML = parts.join('') || '<p>No public status endpoints are declared.</p>';
+    }
+
+    load();
+  }
+</script>
+
+<style>
+  .lede {
+    font-size: var(--sl-text-lg);
+    color: var(--sl-color-white);
+  }
+  .noscript-note {
+    color: var(--sl-color-gray-2);
+  }
+  .status-bad {
+    color: var(--sl-color-orange-high, var(--sl-color-white));
+  }
+  #status-root :global(.scroll-x) {
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+  }
+  #status-root :global(table) {
+    margin: 0;
+    min-width: 24rem;
+  }
+  #status-root :global(th[scope='row']) {
+    text-align: left;
+    white-space: nowrap;
+    padding-right: 1rem;
+  }
+  dl dt {
+    font-weight: 600;
+    margin-top: 0.9rem;
+  }
+  dl dd {
+    margin: 0.2rem 0 0;
+    color: var(--sl-color-gray-2);
+  }
+</style>

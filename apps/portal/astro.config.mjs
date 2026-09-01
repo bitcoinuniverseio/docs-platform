@@ -48,20 +48,26 @@ export default defineConfig({
         },
         {
           label: 'Products',
-          items: [{ label: 'Product catalog', slug: 'products' }],
+          items: [{ label: 'Product catalog', link: '/products/' }],
         },
         {
           label: 'Protocols',
-          items: [{ label: 'Protocol Atlas', slug: 'protocols' }],
+          items: [{ label: 'Protocol Atlas', link: '/protocols/' }],
         },
         {
           label: 'Developers',
           items: [{ label: 'Overview', slug: 'developers' }],
         },
         {
-          label: 'Status & Trust',
+          label: 'Chains',
+          items: [{ label: 'Chains and networks', link: '/chains/' }],
+        },
+        {
+          label: 'Status and trust',
           items: [
             { label: 'How to read our status', slug: 'status' },
+            { label: 'Live status', link: '/status/live/' },
+            { label: 'Documentation health', link: '/status/documentation-health/' },
             { label: 'Source provenance', slug: 'status/provenance' },
           ],
         },
@@ -73,6 +79,17 @@ export default defineConfig({
       plugins: [
         starlightLinksValidator({
           errorOnRelativeLinks: false,
+          // Catalog routes are generated from the ecosystem registry as custom
+          // Astro pages, so the validator cannot see them in the content
+          // collection. The registry test suite checks these links instead: it
+          // fails the build if a protocol or product id is missing or duplicated.
+          exclude: [
+            '/protocols/**',
+            '/products/**',
+            '/chains/**',
+            '/status/live/**',
+            '/status/documentation-health/**',
+          ],
         }),
       ],
     }),
