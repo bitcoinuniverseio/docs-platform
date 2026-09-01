@@ -1,0 +1,254 @@
+---
+// The API, SDK, schema, and specification directory.
+//
+// Built from what each repository declares in its own docs.manifest.json, not
+// from a list maintained here. If a repository does not declare a contract, this
+// page says so rather than inventing an entry, because an empty API page is worse
+// than an honest gap.
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { Aside } from '@astrojs/starlight/components';
+import health from '@universe/ecosystem-registry/data/docs-health.json' with { type: 'json' };
+import { withBase } from '../../lib/paths';
+
+type Repository = (typeof health.repositories)[number];
+type ContractKind = keyof Repository['contracts'];
+interface InterfaceEntry {
+  repository: string;
+  path: string;
+  lifecycle: string | null;
+  commit: string;
+}
+
+interface BlobEntry {
+  repository: string;
+  path: string;
+  commit: string;
+}
+
+const KINDS = [
+  { key: 'openapi', label: 'REST APIs', form: 'OpenAPI 3.1' },
+  { key: 'asyncapi', label: 'Event and WebSocket interfaces', form: 'AsyncAPI' },
+  { key: 'jsonSchema', label: 'Data models and payload schemas', form: 'JSON Schema' },
+  { key: 'cli', label: 'Command line interfaces', form: 'CLI reference' },
+  { key: 'sdk', label: 'SDKs', form: 'SDK' },
+] as const satisfies ReadonlyArray<{ key: ContractKind; label: string; form: string }>;
+
+const valid = health.repositories.filter((r) => r.manifest.valid);
+
+function entriesFor(kind: ContractKind): InterfaceEntry[] {
+  return valid
+    .flatMap((repo) =>
+      (repo.contracts[kind] as string[]).map((path: string) => ({
+        repository: repo.repository,
+        path,
+        lifecycle: repo.lifecycle,
+        commit: repo.commit,
+      })),
+    )
+    .sort((a, b) => a.repository.localeCompare(b.repository));
+}
+
+const sections = KINDS.map((kind) => ({ ...kind, entries: entriesFor(kind.key) }));
+
+const specifications = valid
+  .flatMap((repo) =>
+    (repo.specifications ?? []).map((path) => ({
+      repository: repo.repository,
+      path,
+      documentationUrl: repo.documentationUrl,
+      commit: repo.commit,
+    })),
+  )
+  .sort((a, b) => a.repository.localeCompare(b.repository));
+
+const statusEndpoints = valid
+  .flatMap((repo) => (repo.statusSources ?? []).map((url) => ({ repository: repo.repository, url })))
+  .sort((a, b) => a.repository.localeCompare(b.repository));
+
+const totalContracts = sections.reduce((sum, s) => sum + s.entries.length, 0);
+
+function blobUrl(entry: BlobEntry) {
+  return `https://github.com/${entry.repository}/blob/${entry.commit}/${entry.path}`;
+}
+---
+
+<StarlightPage
+  frontmatter={{
+    title: 'Interface directory',
+    description:
+      'Every API, schema, specification, and SDK the Bitcoin Universe estate publishes, with the repository that owns it and the exact commit each link points at.',
+    tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 2 },
+  }}
+>
+  <p class="lede">
+    {totalContracts} interface contracts and {specifications.length} specifications across{' '}
+    {valid.length} repositories. Every link points at an exact commit, so what you read is what that
+    repository published rather than whatever its branch happens to hold today.
+  </p>
+
+  <Aside type="note" title="This directory is derived, not maintained">
+    <p>
+      Entries come from what each repository declares in its own <code>docs.manifest.json</code>. A
+      repository that publishes an API without declaring it will not appear here, and that is a bug
+      in the repository rather than something to patch on this page. The{' '}
+      <a href={withBase('/status/documentation-health/')}>documentation health</a> page lists which
+      repositories are not yet wired in at all.
+    </p>
+  </Aside>
+
+  {
+    sections.map((section) => (
+      <>
+        <h2 id={section.key}>{section.label}</h2>
+        {section.entries.length === 0 ? (
+          <p>
+            No repository currently declares a contract of this kind. When one does, it appears here
+            automatically.
+          </p>
+        ) : (
+          <div class="scroll-x">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Repository</th>
+                  <th scope="col">Contract</th>
+                  <th scope="col">Form</th>
+                  <th scope="col">Lifecycle</th>
+                </tr>
+              </thead>
+              <tbody>
+                {section.entries.map((entry) => (
+                  <tr>
+                    <th scope="row">
+                      <a href={`https://github.com/${entry.repository}`}>
+                        {entry.repository.replace('bitcoinuniverseio/', '')}
+                      </a>
+                    </th>
+                    <td>
+                      <a href={blobUrl(entry)}>
+                        <code>{entry.path}</code>
+                      </a>
+                    </td>
+                    <td>{section.form}</td>
+                    <td>{entry.lifecycle}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </>
+    ))
+  }
+
+  <h2 id="specifications">Protocol specifications</h2>
+  <p>
+    Normative specification documents. These are the authority for protocol rules; the{' '}
+    <a href={withBase('/protocols/')}>Protocol Atlas</a> summarises and compares them but never
+    replaces them.
+  </p>
+  <div class="scroll-x">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Repository</th>
+          <th scope="col">Specification</th>
+          <th scope="col">Published at</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          specifications.map((entry) => (
+            <tr>
+              <th scope="row">
+                <a href={`https://github.com/${entry.repository}`}>
+                  {entry.repository.replace('bitcoinuniverseio/', '')}
+                </a>
+              </th>
+              <td>
+                <a href={blobUrl(entry)}>
+                  <code>{entry.path}</code>
+                </a>
+              </td>
+              <td>
+                {entry.documentationUrl ? (
+                  <a href={entry.documentationUrl}>site</a>
+                ) : (
+                  'repository only'
+                )}
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+
+  {
+    statusEndpoints.length > 0 && (
+      <>
+        <h2 id="status-endpoints">Public status endpoints</h2>
+        <p>
+          Endpoints repositories declare as safe to poll. Read{' '}
+          <a href={withBase('/status/live/')}>live status</a> for what the fields mean.
+        </p>
+        <ul>
+          {statusEndpoints.map((entry) => (
+            <li>
+              <a href={entry.url}>
+                <code>{entry.url}</code>
+              </a>{' '}
+              ({entry.repository.replace('bitcoinuniverseio/', '')})
+            </li>
+          ))}
+        </ul>
+      </>
+    )
+  }
+
+  <h2 id="conventions">Conventions that hold across the estate</h2>
+  <dl>
+    <dt>Indexer route prefixes</dt>
+    <dd>
+      An indexer serves under its repository name with the <code>index-</code> prefix removed. The
+      Patina indexer serves under <code>/patina/</code>.
+    </dd>
+    <dt>The contract wins</dt>
+    <dd>
+      Where a contract and its prose documentation disagree, the contract is correct and the prose is
+      a bug. Report it against the owning repository.
+    </dd>
+    <dt>Availability states are part of the interface</dt>
+    <dd>
+      Responses distinguish unavailable from empty and unknown from zero. Collapsing those into "no
+      results" corrupts anything computed downstream.
+    </dd>
+    <dt>No endpoint asks for key material</dt>
+    <dd>
+      Nothing in this estate asks for a seed phrase or a private key. Signing happens in your wallet.
+    </dd>
+  </dl>
+</StarlightPage>
+
+<style>
+  .lede {
+    font-size: var(--sl-text-lg);
+    color: var(--sl-color-white);
+  }
+  .scroll-x {
+    overflow-x: auto;
+    margin-bottom: 2rem;
+  }
+  .scroll-x table {
+    margin: 0;
+    min-width: 40rem;
+  }
+  dl dt {
+    font-weight: 600;
+    margin-top: 0.9rem;
+  }
+  dl dd {
+    margin: 0.2rem 0 0;
+    color: var(--sl-color-gray-2);
+  }
+</style>

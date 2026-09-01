@@ -1,0 +1,201 @@
+---
+// The aggregated changelog.
+//
+// Two different signals, kept separate because conflating them would misrepresent
+// how this estate actually ships:
+//
+//  1. Published releases. There are very few, and pretending otherwise by
+//     dressing up commits as releases would be dishonest.
+//  2. Documentation movement, which is the real change signal for most projects
+//     here because they deploy continuously rather than cutting tags.
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { Aside } from '@astrojs/starlight/components';
+import health from '@universe/ecosystem-registry/data/docs-health.json' with { type: 'json' };
+import { withBase } from '../lib/paths';
+
+const repos = health.repositories;
+
+const releases = repos
+  .flatMap((r) => (r.releases ?? []).map((rel) => ({ repository: r.repository, ...rel })))
+  .filter((r) => r.publishedAt)
+  .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+
+const releasingRepos = new Set(releases.map((r) => r.repository));
+
+const documentationMoves = repos
+  .filter((r) => r.commitTimestamp)
+  .sort((a, b) => b.commitTimestamp.localeCompare(a.commitTimestamp))
+  .slice(0, 25);
+
+const generated = new Date(health.generatedAt).toISOString().slice(0, 10);
+
+function day(value: string | null | undefined) {
+  return value ? value.slice(0, 10) : 'unknown';
+}
+---
+
+<StarlightPage
+  frontmatter={{
+    title: 'What changed',
+    description:
+      'Published releases across the Bitcoin Universe estate, and where documentation moved most recently, with the exact commit behind each.',
+    tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 2 },
+  }}
+>
+  <p class="lede">
+    Two separate signals: tagged releases, and documentation movement. They are not the same thing
+    here, and merging them into one feed would misrepresent how these projects ship.
+  </p>
+
+  <Aside type="note" title="Most projects here do not cut releases">
+    <p>
+      {releases.length} published releases exist across {repos.length} repositories, from{' '}
+      {releasingRepos.size} projects. The rest deploy continuously, so their real change signal is
+      the documentation commit rather than a version tag. Neither approach is wrong, but a reader
+      pinning a dependency needs to know which one a project uses before trusting a version number.
+    </p>
+  </Aside>
+
+  <h2 id="releases">Published releases</h2>
+  {
+    releases.length === 0 ? (
+      <p>No repository in the source registry has published a release.</p>
+    ) : (
+      <div class="scroll-x">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Published</th>
+              <th scope="col">Project</th>
+              <th scope="col">Release</th>
+              <th scope="col">Kind</th>
+            </tr>
+          </thead>
+          <tbody>
+            {releases.map((release) => (
+              <tr>
+                <td>{day(release.publishedAt)}</td>
+                <th scope="row">
+                  <a href={`https://github.com/${release.repository}`}>
+                    {release.repository.replace('bitcoinuniverseio/', '')}
+                  </a>
+                </th>
+                <td>
+                  <a href={release.url}>
+                    <code>{release.tag}</code>
+                  </a>
+                </td>
+                <td>{release.prerelease ? 'prerelease' : 'release'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+
+  <h2 id="documentation">Documentation movement</h2>
+  <p>
+    The most recently updated documentation sources in the estate, newest first. Each links the exact
+    commit the portal has pinned, which is what its pages were built from.
+  </p>
+  <div class="scroll-x">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Updated</th>
+          <th scope="col">Project</th>
+          <th scope="col">Pinned commit</th>
+          <th scope="col">Lifecycle</th>
+          <th scope="col">Last verified</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          documentationMoves.map((repo) => (
+            <tr>
+              <td>{day(repo.commitTimestamp)}</td>
+              <th scope="row">
+                <a href={`https://github.com/${repo.repository}`}>
+                  {repo.repository.replace('bitcoinuniverseio/', '')}
+                </a>
+              </th>
+              <td>
+                <a href={`https://github.com/${repo.repository}/commit/${repo.commit}`}>
+                  <code>{repo.commit.slice(0, 10)}</code>
+                </a>
+              </td>
+              <td>{repo.lifecycle ?? 'not declared'}</td>
+              <td>
+                {repo.lastVerifiedAgeDays == null
+                  ? 'not recorded'
+                  : repo.lastVerifiedAgeDays === 0
+                    ? 'today'
+                    : `${repo.lastVerifiedAgeDays}d ago`}
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="how-to-read-a-version">How to read a version here</h2>
+  <dl>
+    <dt>A tagged release</dt>
+    <dd>
+      A deliberate, named version you can pin to. Only{' '}
+      {releasingRepos.size} projects publish these today.
+    </dd>
+    <dt>
+      <code>continuous</code>
+    </dt>
+    <dd>
+      The project declares no discrete versions and ships from its working branch. Its manifest
+      records the exact published commit instead, which is the thing to pin.
+    </dd>
+    <dt>An upstream tag on a fork</dt>
+    <dd>
+      Several repositories here derive from upstream projects. An upstream tag describes the upstream
+      release line, not a Bitcoin Universe release, so those projects declare themselves experimental
+      with an upstream attribution rather than borrowing a version they did not cut.
+    </dd>
+    <dt>Last verified</dt>
+    <dd>
+      When a maintainer last checked a manifest against reality. An old date does not mean the
+      documentation is wrong, but it does tell you how much weight to put on it.
+    </dd>
+  </dl>
+
+  <p class="provenance">
+    Generated from the documentation health audit on {generated}. Per-project detail is on{' '}
+    <a href={withBase('/status/documentation-health/')}>documentation health</a>.
+  </p>
+</StarlightPage>
+
+<style>
+  .lede {
+    font-size: var(--sl-text-lg);
+    color: var(--sl-color-white);
+  }
+  .scroll-x {
+    overflow-x: auto;
+    margin-bottom: 2rem;
+  }
+  .scroll-x table {
+    margin: 0;
+    min-width: 40rem;
+  }
+  .provenance {
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-2);
+  }
+  dl dt {
+    font-weight: 600;
+    margin-top: 0.9rem;
+  }
+  dl dd {
+    margin: 0.2rem 0 0;
+    color: var(--sl-color-gray-2);
+  }
+</style>

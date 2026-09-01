@@ -7,11 +7,19 @@ import starlightLinksValidator from 'starlight-links-validator';
 import rehypeTableScroll from '@universe/docs-design-system/integrations/rehype-table-scroll';
 import { codeBlockAccessibility } from '@universe/docs-design-system/integrations/ec-code-block-a11y';
 
+// The production home is docs.bitcoinuniverse.io. That domain currently serves a
+// GitBook site, so until it is cut over the portal also publishes to GitHub Pages
+// under a project path. Both builds come from this one config: set SITE_URL and
+// BASE_PATH for the Pages build, and the defaults produce the production build.
+const SITE_URL = process.env.SITE_URL ?? 'https://docs.bitcoinuniverse.io';
+const BASE_PATH = process.env.BASE_PATH ?? undefined;
+
 export default defineConfig({
   markdown: {
     rehypePlugins: [rehypeTableScroll],
   },
-  site: 'https://docs.bitcoinuniverse.io',
+  site: SITE_URL,
+  base: BASE_PATH,
   trailingSlash: 'ignore',
   integrations: [
     starlight({
@@ -41,6 +49,7 @@ export default defineConfig({
         {
           label: 'Start',
           items: [
+            { label: 'Ask Universe', link: '/ask/' },
             { label: 'What Bitcoin Universe is', slug: 'start/what-bitcoin-universe-is' },
             { label: 'Safety in sixty seconds', slug: 'start/safety' },
             { label: 'Choose your path', slug: 'start/choose-your-path' },
@@ -48,23 +57,31 @@ export default defineConfig({
         },
         {
           label: 'Products',
-          items: [{ label: 'Product catalog', slug: 'products' }],
+          items: [{ label: 'Product catalog', link: '/products/' }],
         },
         {
           label: 'Protocols',
-          items: [{ label: 'Protocol Atlas', slug: 'protocols' }],
+          items: [{ label: 'Protocol Atlas', link: '/protocols/' }],
         },
         {
           label: 'Developers',
           items: [
             { label: 'Overview', slug: 'developers' },
             { label: 'Wallet provider API', slug: 'developers/wallet-provider-api' },
+            { label: 'Interface directory', link: '/developers/interfaces/' },
           ],
         },
         {
-          label: 'Status & Trust',
+          label: 'Chains',
+          items: [{ label: 'Chains and networks', link: '/chains/' }],
+        },
+        {
+          label: 'Status and trust',
           items: [
             { label: 'How to read our status', slug: 'status' },
+            { label: 'Live status', link: '/status/live/' },
+            { label: 'Documentation health', link: '/status/documentation-health/' },
+            { label: 'What changed', link: '/changelog/' },
             { label: 'Source provenance', slug: 'status/provenance' },
           ],
         },
@@ -76,6 +93,20 @@ export default defineConfig({
       plugins: [
         starlightLinksValidator({
           errorOnRelativeLinks: false,
+          // Catalog routes are generated from the ecosystem registry as custom
+          // Astro pages, so the validator cannot see them in the content
+          // collection. The registry test suite checks these links instead: it
+          // fails the build if a protocol or product id is missing or duplicated.
+          exclude: [
+            '/protocols/**',
+            '/products/**',
+            '/chains/**',
+            '/status/live/**',
+            '/status/documentation-health/**',
+            '/developers/interfaces/**',
+            '/ask/**',
+            '/changelog/**',
+          ],
         }),
       ],
     }),
