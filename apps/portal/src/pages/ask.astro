@@ -1,0 +1,412 @@
+---
+// Ask Universe.
+//
+// This retrieves from published documentation and cites what it found. It does
+// not generate prose, and it says so plainly, because a confident paragraph with
+// no source behind it is the failure mode that matters most in documentation
+// about irreversible money.
+//
+// Two retrieval layers, in order:
+//  1. The structured registry, for questions the estate can answer exactly
+//     ("can I buy a rune", "what carries BRC-20"). These answers are derived from
+//     product code and carry the source commit.
+//  2. Pagefind, the same local index that backs site search, for everything else.
+//
+// When neither has a usable answer it abstains and says where a human should look
+// instead of guessing.
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { Aside } from '@astrojs/starlight/components';
+import { protocols, products, provenance } from '@universe/ecosystem-registry';
+import { withBase } from '../lib/paths';
+
+// A compact fact index shipped to the browser. Small enough to inline, and it
+// means the exact-answer path needs no network call at all.
+const factIndex = {
+  provenance: {
+    repository: provenance.repository,
+    commit: provenance.sourceCommit,
+    short: provenance.sourceCommit.slice(0, 12),
+  },
+  protocols: protocols.map((p) => ({
+    id: p.id,
+    name: p.name,
+    aliases: p.aliases,
+    chain: p.chain,
+    carrier: p.carrier,
+    purpose: p.purpose,
+    operations: p.operations,
+    site: p.documentationSite,
+    url: `/protocols/${p.id}/`,
+    availability: p.marketplace?.availability ?? null,
+    surfaces: p.surfaces.map((s) => ({ label: s.label, actions: s.actions })),
+    unsupported: p.marketplace?.actions.unsupported ?? [],
+  })),
+  products: products.map((p) => ({
+    id: p.id,
+    name: p.name,
+    tagline: p.tagline,
+    site: p.documentationSite,
+    url: `/products/${p.id}/`,
+  })),
+};
+---
+
+<StarlightPage
+  frontmatter={{
+    title: 'Ask Universe',
+    description:
+      'Ask a question about the Bitcoin Universe estate and get an answer drawn from published documentation, with the source for every claim.',
+    tableOfContents: false,
+  }}
+>
+  <p class="lede">
+    Ask about a protocol, a product, or whether something is supported. Answers come from published
+    documentation and the product capability registry, and every one shows its source.
+  </p>
+
+  <Aside type="note" title="This retrieves, it does not write">
+    <p>
+      Ask Universe finds and quotes what is already published. It does not compose new prose about
+      how anything works. When nothing published answers your question it says so rather than
+      filling the gap, because a confident paragraph with nothing behind it is the worst possible
+      outcome for documentation about irreversible transactions.
+    </p>
+  </Aside>
+
+  <form id="ask-form" role="search">
+    <label for="ask-input">Your question</label>
+    <div class="ask-row">
+      <input
+        id="ask-input"
+        name="q"
+        type="search"
+        autocomplete="off"
+        placeholder="Can I sell a Rune in Core?"
+        aria-describedby="ask-hint"
+      />
+      <button type="submit">Ask</button>
+    </div>
+    <p id="ask-hint" class="hint">
+      Try: "what carries BRC-20", "can I buy a rune", "which chains do you support", "how do I back
+      up my wallet".
+    </p>
+  </form>
+
+  <div id="ask-answer" aria-live="polite" aria-atomic="false"></div>
+
+  <noscript>
+    <p>
+      Ask Universe needs JavaScript. Without it, use the search in the header, or start from the{' '}
+      <a href={withBase('/protocols/')}>Protocol Atlas</a> and the{' '}
+      <a href={withBase('/products/')}>product catalog</a>.
+    </p>
+  </noscript>
+
+  <h2 id="what-it-can-answer">What it answers well</h2>
+  <ul>
+    <li>
+      Whether a Universe product implements a given action for a given protocol, and the recorded
+      reason when it does not.
+    </li>
+    <li>What carries a protocol, which chain it lives on, and where its specification is.</li>
+    <li>Which product does what, and where its documentation lives.</li>
+  </ul>
+
+  <h2 id="what-it-cannot-answer">What it will not answer</h2>
+  <ul>
+    <li>
+      Whether something is working right now. That is live state, reported at{' '}
+      <a href={withBase('/status/live/')}>live status</a>, not documentation.
+    </li>
+    <li>Anything about your specific transaction, balance, or wallet.</li>
+    <li>Anything not published. It abstains rather than guessing.</li>
+  </ul>
+
+  <script is:inline type="application/json" id="ask-facts" set:html={JSON.stringify(factIndex)}></script>
+</StarlightPage>
+
+<script>
+  interface ProtocolFact {
+    id: string;
+    name: string;
+    aliases: string[];
+    chain: string;
+    carrier: string;
+    purpose: string;
+    operations: string[];
+    site: string | null;
+    url: string;
+    availability: string | null;
+    surfaces: Array<{ label: string; actions: string[] }>;
+    unsupported: Array<{ action: string; reason: string }>;
+  }
+
+  interface AskFacts {
+    provenance: { repository: string; commit: string; short: string };
+    protocols: ProtocolFact[];
+  }
+
+  interface Answer {
+    heading: string;
+    body: string;
+  }
+
+  interface PagefindResultData {
+    url: string;
+    excerpt: string;
+    meta?: { title?: string };
+  }
+
+  interface PagefindResult {
+    data(): Promise<PagefindResultData>;
+  }
+
+  interface PagefindApi {
+    options(options: { baseUrl: string }): Promise<void>;
+    search(query: string): Promise<{ results: PagefindResult[] }>;
+  }
+
+  const factsElement = document.getElementById('ask-facts');
+  const form = document.getElementById('ask-form');
+  const input = document.getElementById('ask-input');
+  const out = document.getElementById('ask-answer');
+  if (!(factsElement instanceof HTMLScriptElement)) throw new Error('Ask facts are unavailable');
+  if (!(form instanceof HTMLFormElement)) throw new Error('Ask form is unavailable');
+  if (!(input instanceof HTMLInputElement)) throw new Error('Ask input is unavailable');
+  if (!(out instanceof HTMLElement)) throw new Error('Ask output is unavailable');
+
+  const answerOut = out;
+  const facts = JSON.parse(factsElement.textContent ?? '{}') as AskFacts;
+  const base = document.querySelector('base')?.getAttribute('href') ?? '/';
+
+  const HTML_ESCAPES: Record<string, string> = {
+    '<': '&lt;',
+    '>': '&gt;',
+    '&': '&amp;',
+    '"': '&quot;',
+  };
+  const esc = (value: unknown) =>
+    String(value ?? '').replace(/[<>&"]/g, (character) => HTML_ESCAPES[character] ?? character);
+
+  const href = (path: string) => (base.endsWith('/') ? base.slice(0, -1) : base) + path;
+
+  // Action words a reader might use, mapped to the registry's action names.
+  const ACTION_WORDS: Record<string, string> = {
+    buy: 'buy', purchase: 'buy', bid: 'make-offer', offer: 'make-offer',
+    sell: 'sell', list: 'list', listing: 'list', delist: 'unlist', unlist: 'unlist',
+    cancel: 'unlist', settle: 'settle', trade: 'buy', swap: 'buy',
+    mint: 'mint', deploy: 'deploy', etch: 'etch', inscribe: 'inscribe',
+    transfer: 'transfer', send: 'transfer', create: 'mint',
+  };
+
+  function findProtocol(q: string): ProtocolFact | null {
+    const words = q.split(/[^a-z0-9-]+/).filter(Boolean);
+    let best: { p: ProtocolFact; score: number } | null = null;
+    for (const p of facts.protocols) {
+      const names = [p.id, p.name.toLowerCase(), ...(p.aliases ?? [])].map((n) => n.toLowerCase());
+      for (const n of names) {
+        const compact = n.replace(/[^a-z0-9]/g, '');
+        const hit = words.some((w) => w === n || w.replace(/[^a-z0-9]/g, '') === compact);
+        if (hit) {
+          const score = n.length;
+          if (!best || score > best.score) best = { p, score };
+        }
+      }
+    }
+    return best?.p ?? null;
+  }
+
+  function findAction(q: string): string | null {
+    for (const word of q.split(/[^a-z-]+/).filter(Boolean)) {
+      if (ACTION_WORDS[word]) return ACTION_WORDS[word];
+    }
+    return null;
+  }
+
+  function citation(text: string, url: string): string {
+    return `<p class="ask-cite">Source: <a href="${esc(url)}">${esc(text)}</a>, generated from <code>${esc(facts.provenance.repository)}</code> at <code>${esc(facts.provenance.short)}</code>.</p>`;
+  }
+
+  // Layer 1: exact answers from the registry.
+  function structuredAnswer(q: string): Answer | null {
+    const protocol = findProtocol(q);
+    if (!protocol) return null;
+    const action = findAction(q);
+
+    if (action) {
+      const surfaces = protocol.surfaces.filter((s) => s.actions.includes(action));
+      const reason = protocol.unsupported.find((u) => u.action === action);
+      if (surfaces.length > 0) {
+        const where = surfaces.map((s) => `<strong>${esc(s.label)}</strong>`).join(' and ');
+        return {
+          heading: `Yes. ${esc(protocol.name)} supports ${esc(action)} in ${where}.`,
+          body:
+            `<p>This states what the product code implements. Whether it is switched on in production is a separate question answered on <a href="${href('/status/live/')}">live status</a>.</p>` +
+            citation(`${protocol.name} dossier`, href(protocol.url)),
+        };
+      }
+      if (reason) {
+        return {
+          heading: `No. ${esc(protocol.name)} does not support ${esc(action)}.`,
+          body:
+            `<blockquote><p>${esc(reason.reason)}</p></blockquote>` +
+            `<p>That is the reason recorded in the product's own protocol registry, not a summary of it.</p>` +
+            citation(`${protocol.name} dossier`, href(protocol.url)),
+        };
+      }
+      return {
+        heading: `No Universe product implements ${esc(action)} for ${esc(protocol.name)}.`,
+        body:
+          `<p>Nothing is recorded either way for that action, so treat it as unavailable rather than assuming it works.</p>` +
+          citation(`${protocol.name} dossier`, href(protocol.url)),
+      };
+    }
+
+    const availability = protocol.availability
+      ? `In Universe products it is currently <strong>${esc(protocol.availability)}</strong>.`
+      : 'No Universe product implements a trade path for it.';
+    return {
+      heading: esc(protocol.name),
+      body:
+        `<p>${esc(protocol.purpose)}</p>` +
+        `<p>Chain: ${esc(protocol.chain)}. Carried by ${esc(protocol.carrier)}.` +
+        (protocol.operations.length ? ` Operations: ${esc(protocol.operations.join(', '))}.` : '') +
+        `</p><p>${availability}</p>` +
+        (protocol.site
+          ? `<p>Its own documentation, which is the authority on it, is at <a href="${esc(protocol.site)}">${esc(protocol.site)}</a>.</p>`
+          : '') +
+        citation(`${protocol.name} dossier`, href(protocol.url)),
+    };
+  }
+
+  // Layer 2: the local Pagefind index that backs site search.
+  async function searchAnswer(q: string): Promise<Answer | null> {
+    try {
+      const pagefind = (await import(
+        /* @vite-ignore */ href('/pagefind/pagefind.js')
+      )) as unknown as PagefindApi;
+      await pagefind.options({ baseUrl: base });
+      const search = await pagefind.search(q);
+      const results = await Promise.all(search.results.slice(0, 4).map((r) => r.data()));
+      if (results.length === 0) return null;
+      const items = results
+        .map(
+          (r) =>
+            `<li><a href="${esc(r.url)}">${esc(r.meta?.title ?? r.url)}</a><p>${r.excerpt}</p></li>`,
+        )
+        .join('');
+      return {
+        heading: 'Found in published documentation',
+        body: `<p>No exact registry answer matched, so here are the closest published passages.</p><ul class="ask-hits">${items}</ul>`,
+      };
+    } catch {
+      return null;
+    }
+  }
+
+  function abstain(): Answer {
+    return {
+      heading: 'Nothing published answers that',
+      body:
+        `<p>Rather than guess, here is where to look. The <a href="${href('/protocols/')}">Protocol Atlas</a> covers every protocol we document, and the <a href="${href('/products/')}">product catalog</a> points at each product's own documentation, which is the authority for it. For whether something is working right now, see <a href="${href('/status/live/')}">live status</a>.</p>` +
+        `<p>If you expected an answer here, that is a documentation gap worth reporting on the owning repository.</p>`,
+    };
+  }
+
+  function render(answer: Answer, question: string): void {
+    answerOut.innerHTML =
+      `<section class="ask-result"><h2>${answer.heading}</h2>${answer.body}` +
+      `<p class="ask-asked">You asked: ${esc(question)}</p></section>`;
+  }
+
+  form.addEventListener('submit', async (event: SubmitEvent) => {
+    event.preventDefault();
+    const question = input.value.trim();
+    if (!question) return;
+    answerOut.innerHTML = '<p class="ask-working">Looking through published documentation.</p>';
+    const q = question.toLowerCase();
+
+    const structured = structuredAnswer(q);
+    if (structured) return render(structured, question);
+
+    const found = await searchAnswer(question);
+    render(found ?? abstain(), question);
+  });
+</script>
+
+<style>
+  .lede {
+    font-size: var(--sl-text-lg);
+    color: var(--sl-color-white);
+  }
+  #ask-form {
+    margin: 1.5rem 0;
+  }
+  #ask-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+  }
+  .ask-row {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  #ask-input {
+    flex: 1 1 18rem;
+    min-width: 0;
+    padding: 0.6rem 0.75rem;
+    border-radius: 0.4rem;
+    border: 1px solid var(--sl-color-gray-4);
+    background: var(--sl-color-black);
+    color: var(--sl-color-white);
+    font: inherit;
+  }
+  #ask-form button {
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.4rem;
+    border: 1px solid var(--sl-color-text-accent);
+    background: var(--sl-color-text-accent);
+    color: var(--sl-color-black);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  #ask-form button:hover {
+    background: var(--sl-color-accent-high);
+  }
+  .hint {
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+    margin-top: 0.5rem;
+  }
+  .ask-result {
+    margin: 1.5rem 0;
+    padding: 1.25rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.5rem;
+    background: var(--sl-color-gray-6);
+  }
+  .ask-result :global(h2) {
+    margin-top: 0;
+  }
+  .ask-result :global(blockquote) {
+    margin: 0.75rem 0;
+  }
+  .ask-result :global(.ask-cite),
+  .ask-asked {
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+  }
+  .ask-result :global(.ask-hits) {
+    padding-left: 1.1rem;
+  }
+  .ask-result :global(.ask-hits p) {
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-2);
+    margin: 0.2rem 0 0.7rem;
+  }
+  .ask-working {
+    color: var(--sl-color-gray-2);
+  }
+</style>

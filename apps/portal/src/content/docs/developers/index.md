@@ -7,6 +7,8 @@ Bitcoin Universe development is contract-first: services and documentation are g
 
 ## Where interfaces live
 
+The [interface directory](/developers/interfaces/) lists every API, schema, specification, and SDK the estate publishes, with the repository that owns it and the exact commit each link points at. It is derived from what repositories declare, so it shows real gaps rather than a tidy list.
+
 | Interface | Contract form | Where |
 | --- | --- | --- |
 | Product REST APIs | OpenAPI 3.1 | Declared in each repository's `docs.manifest.json` under `contracts.openapi` |

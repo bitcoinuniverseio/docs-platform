@@ -1,0 +1,117 @@
+---
+// The product catalog. Discovery only: each product's own documentation site
+// remains the authority on what it does and how to use it.
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { products, protocolsForProduct, getChain } from '@universe/ecosystem-registry';
+import { withBase } from '../../lib/paths';
+
+const rows = products.map((product) => ({
+  product,
+  protocolCount: protocolsForProduct(product.id).length,
+  chainNames: product.chains.map((c) => getChain(c)?.name ?? c).join(', '),
+}));
+
+const audienceGroups = [
+  {
+    id: 'holding-and-using',
+    title: 'If you are holding or using assets',
+    ids: ['wallet', 'core'],
+    note: 'Start with the wallet that holds your keys, then the application you explore and trade in.',
+  },
+  {
+    id: 'creating',
+    title: 'If you are creating something',
+    ids: ['inscribe', 'forked-felines', 'drops'],
+    note: 'Creation studios and the collections built with them.',
+  },
+  {
+    id: 'trading',
+    title: 'If you are trading',
+    ids: ['core', 'stampdex'],
+    note: 'Two venues with different settlement models. Read the fee and custody sections of each.',
+  },
+  {
+    id: 'zcash',
+    title: 'If you are on Zcash',
+    ids: ['zerdinals-and-zrunes'],
+    note: 'A separate chain, a separate application, and a transparent-versus-shielded distinction that matters.',
+  },
+];
+---
+
+<StarlightPage
+  frontmatter={{
+    title: 'Product catalog',
+    description:
+      'Every Bitcoin Universe product, what it is for, which chains it covers, and where its documentation lives.',
+    tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 2 },
+  }}
+>
+  <p class="lede">
+    {products.length} products. Each one owns its own documentation site; this catalog is how you
+    find the right one and see how it relates to the rest.
+  </p>
+
+  <h2 id="all-products">All products</h2>
+  <div class="scroll-x">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Product</th>
+          <th scope="col">What it is for</th>
+          <th scope="col">Chains</th>
+          <th scope="col">Protocols</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          rows.map(({ product, protocolCount, chainNames }) => (
+            <tr>
+              <th scope="row">
+                <a href={withBase(`/products/${product.id}/`)}>{product.name}</a>
+              </th>
+              <td>{product.tagline}</td>
+              <td>{chainNames}</td>
+              <td>{protocolCount > 0 ? protocolCount : 'See its docs'}</td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="by-what-you-are-doing">By what you are doing</h2>
+  {
+    audienceGroups.map((group) => (
+      <>
+        <h3 id={group.id}>{group.title}</h3>
+        <p>{group.note}</p>
+        <ul>
+          {group.ids.map((id) => {
+            const product = products.find((p) => p.id === id);
+            return product ? (
+              <li>
+                <a href={withBase(`/products/${product.id}/`)}>{product.name}</a>: {product.tagline}
+              </li>
+            ) : null;
+          })}
+        </ul>
+      </>
+    ))
+  }
+</StarlightPage>
+
+<style>
+  .lede {
+    font-size: var(--sl-text-lg);
+    color: var(--sl-color-white);
+  }
+  .scroll-x {
+    overflow-x: auto;
+    margin-bottom: 2rem;
+  }
+  .scroll-x table {
+    margin: 0;
+    min-width: 42rem;
+  }
+</style>
