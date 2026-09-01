@@ -1,7 +1,7 @@
 {
   "description": "Standing documentation health across every repository in the portal source registry. A missing manifest is a finding, not an error: it records that a repository is not yet wired into the estate.",
   "generatedBy": "tooling/sync/bin/audit.mjs",
-  "generatedAt": "2026-09-01T04:09:40.253Z",
+  "generatedAt": "2026-09-01T04:15:18.377Z",
   "summary": {
     "total": 38,
     "ingestable": 36,
@@ -11,41 +11,47 @@
     {
       "repository": "bitcoinuniverseio/docs-wallet",
       "sourceRef": "main",
-      "commit": "85fe11df189087037878f0889b58dae0c8bd1651",
-      "commitTimestamp": "2026-09-01T03:34:06Z",
+      "commit": "c50efdb219d9f887dabb852f9e539564a11b8fb8",
+      "commitTimestamp": "2026-09-01T04:10:30Z",
       "manifest": {
         "present": true,
         "valid": true,
         "error": null
       },
-      "lifecycle": "stable",
+      "lifecycle": "experimental",
       "classification": "product-docs",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/products/wallet/",
-      "releaseVersion": "1.7.5.8",
+      "documentationUrl": "https://bitcoinuniverseio.github.io/docs-wallet",
+      "releaseVersion": null,
       "chains": [
         {
           "chain": "bitcoin",
           "networks": [
-            "mainnet"
+            "mainnet",
+            "testnet",
+            "testnet4",
+            "signet"
           ]
         },
         {
           "chain": "dogecoin",
           "networks": [
-            "mainnet"
+            "mainnet",
+            "testnet"
           ]
         },
         {
           "chain": "zcash",
           "networks": [
-            "mainnet"
+            "mainnet",
+            "testnet"
           ]
         }
       ],
       "audiences": [
         "user",
         "collector",
-        "app-developer"
+        "app-developer",
+        "security-verifier"
       ],
       "contracts": {
         "openapi": [],
@@ -56,24 +62,21 @@
       },
       "specifications": [],
       "statusSources": [],
-      "lastVerified": "2026-09-01T02:00:00Z",
+      "lastVerified": "2026-09-01T00:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
-        "SECURITY.md": false,
-        "CONTRIBUTING.md": false,
-        "SUPPORT.md": false
+        "SECURITY.md": true,
+        "CONTRIBUTING.md": true,
+        "SUPPORT.md": true
       },
       "machineReadable": {
         "llms.txt": true,
         "robots.txt": false,
         "sitemap.xml": false
       },
-      "problems": [
-        "missing SECURITY.md",
-        "missing CONTRIBUTING.md",
-        "missing SUPPORT.md"
-      ]
+      "problems": []
     },
     {
       "repository": "bitcoinuniverseio/docs-core",
@@ -119,6 +122,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": true,
@@ -172,6 +176,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": false,
@@ -227,6 +232,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": false,
@@ -283,6 +289,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": true,
@@ -338,6 +345,7 @@
       ],
       "lastVerified": "2026-09-01T03:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": true,
@@ -389,6 +397,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": false,
@@ -409,8 +418,8 @@
     {
       "repository": "bitcoinuniverseio/op-drop",
       "sourceRef": "main",
-      "commit": "066fd459f1127c24ba79cb832ebd8c4fe3410200",
-      "commitTimestamp": "2026-09-01T02:01:53Z",
+      "commit": "46a9b374eb33c4a8e0e550f6e0a892d352d9d8c6",
+      "commitTimestamp": "2026-09-01T04:11:19Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -418,20 +427,25 @@
       },
       "lifecycle": "experimental",
       "classification": "protocol",
-      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/op-drop/",
+      "documentationUrl": "https://docs.bitcoinuniverse.io/protocols/op-drop",
       "releaseVersion": null,
       "chains": [
         {
           "chain": "bitcoin",
           "networks": [
-            "mainnet"
+            "mainnet",
+            "testnet",
+            "signet",
+            "regtest"
           ]
         }
       ],
       "audiences": [
         "protocol-implementer",
         "app-developer",
-        "indexer-operator"
+        "indexer-operator",
+        "user",
+        "security-verifier"
       ],
       "contracts": {
         "openapi": [],
@@ -441,28 +455,27 @@
         "sdk": []
       },
       "specifications": [
+        "specification.html",
+        "test-vectors.html",
         "docs/protocols/op-drop-json.md",
         "docs/indexing-rules.md"
       ],
       "statusSources": [],
-      "lastVerified": "2026-09-01T02:00:00Z",
+      "lastVerified": "2026-09-01T00:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
-        "SECURITY.md": false,
-        "CONTRIBUTING.md": false,
-        "SUPPORT.md": false
+        "SECURITY.md": true,
+        "CONTRIBUTING.md": true,
+        "SUPPORT.md": true
       },
       "machineReadable": {
-        "llms.txt": false,
-        "robots.txt": false,
-        "sitemap.xml": false
+        "llms.txt": true,
+        "robots.txt": true,
+        "sitemap.xml": true
       },
-      "problems": [
-        "missing SECURITY.md",
-        "missing CONTRIBUTING.md",
-        "missing SUPPORT.md"
-      ]
+      "problems": []
     },
     {
       "repository": "bitcoinuniverseio/brc-20",
@@ -502,6 +515,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": true,
@@ -557,6 +571,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T01:16:47Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": true,
@@ -612,6 +627,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": true,
@@ -663,6 +679,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": false,
@@ -723,6 +740,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": true,
@@ -779,6 +797,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T00:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": true,
@@ -830,6 +849,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": false,
@@ -885,6 +905,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": false,
@@ -945,6 +966,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T00:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": true,
@@ -996,6 +1018,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": false,
@@ -1051,6 +1074,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": false,
@@ -1110,6 +1134,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": true,
@@ -1168,6 +1193,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": true,
@@ -1222,6 +1248,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": true,
@@ -1285,6 +1312,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": true,
@@ -1346,6 +1374,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T01:18:25Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": true,
@@ -1406,6 +1435,15 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [
+        {
+          "tag": "patina-1.1.0",
+          "name": "PATINA protocol",
+          "publishedAt": "2026-08-02T07:36:03Z",
+          "prerelease": false,
+          "url": "https://github.com/bitcoinuniverseio/patina/releases/tag/patina-1.1.0"
+        }
+      ],
       "governance": {
         "README.md": true,
         "SECURITY.md": true,
@@ -1457,6 +1495,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": false,
@@ -1512,6 +1551,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": false,
@@ -1569,6 +1609,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": false,
@@ -1589,8 +1630,8 @@
     {
       "repository": "bitcoinuniverseio/btc_stamps",
       "sourceRef": "main",
-      "commit": "077e21e11b0c82bceaf3d35d6aa825e43dab90bd",
-      "commitTimestamp": "2026-09-01T02:42:38Z",
+      "commit": "dcb1e8a4183b33e139e90fc6f70698d1e50e1a12",
+      "commitTimestamp": "2026-09-01T04:10:49Z",
       "manifest": {
         "present": true,
         "valid": true,
@@ -1626,6 +1667,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": true,
@@ -1668,6 +1710,22 @@
       "statusSources": [],
       "lastVerified": null,
       "lastVerifiedAgeDays": null,
+      "releases": [
+        {
+          "tag": "universe-2026.08.29.2",
+          "name": "The socket nothing was watching, and a 500 that should have been a 404",
+          "publishedAt": "2026-08-29T13:17:05Z",
+          "prerelease": false,
+          "url": "https://github.com/bitcoinuniverseio/mempool/releases/tag/universe-2026.08.29.2"
+        },
+        {
+          "tag": "universe-2026.08.29",
+          "name": "Universe Explorer becomes a three-chain explorer",
+          "publishedAt": "2026-08-29T08:55:20Z",
+          "prerelease": false,
+          "url": "https://github.com/bitcoinuniverseio/mempool/releases/tag/universe-2026.08.29"
+        }
+      ],
       "governance": {
         "README.md": true,
         "SECURITY.md": true,
@@ -1724,6 +1782,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": true,
@@ -1779,6 +1838,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": false,
@@ -1823,6 +1883,7 @@
       "statusSources": [],
       "lastVerified": null,
       "lastVerifiedAgeDays": null,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": true,
@@ -1879,6 +1940,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": true,
@@ -1933,6 +1995,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": true,
@@ -1988,6 +2051,15 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [
+        {
+          "tag": "index-patina-0.2.0",
+          "name": "PATINA indexer",
+          "publishedAt": "2026-08-02T07:36:15Z",
+          "prerelease": false,
+          "url": "https://github.com/bitcoinuniverseio/index-patina/releases/tag/index-patina-0.2.0"
+        }
+      ],
       "governance": {
         "README.md": true,
         "SECURITY.md": true,
@@ -2033,6 +2105,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": false,
@@ -2087,6 +2160,7 @@
       "statusSources": [],
       "lastVerified": "2026-09-01T02:00:00Z",
       "lastVerifiedAgeDays": 0,
+      "releases": [],
       "governance": {
         "README.md": true,
         "SECURITY.md": false,
