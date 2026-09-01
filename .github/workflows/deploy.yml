@@ -22,7 +22,7 @@ concurrency:
 
 jobs:
   deploy:
-    runs-on: runs-on=${{ github.run_id }}-deploy/runner=universe-fast/cpu=4+16/env=production
+    runs-on: [self-hosted, linux-ultra]
     environment: production
     steps:
       - uses: actions/checkout@v4
