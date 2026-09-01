@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "docs-platform",
+  "name": "Documentation platform",
+  "classification": "infrastructure",
+  "repository": "bitcoinuniverseio/docs-platform",
+  "documentationUrl": "https://docs.bitcoinuniverse.io/status/provenance/",
+  "docsRoot": ".",
+  "sourceRef": "main",
+  "releasedRef": "7cc126cd8c117e82513828797fe0520528eb8849",
+  "releaseVersion": "continuous",
+  "lifecycle": "stable",
+  "chains": [],
+  "audiences": [
+    "app-developer",
+    "infrastructure-operator"
+  ],
+  "owners": [
+    "bitcoinuniverseio"
+  ],
+  "lastVerified": {
+    "commit": "7cc126cd8c117e82513828797fe0520528eb8849",
+    "timestamp": "2026-09-01T12:40:00Z"
+  },
+  "securityClassification": "public"
+}
