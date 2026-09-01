@@ -1,0 +1,262 @@
+---
+// One dossier page per protocol, generated from the ecosystem registry.
+// Everything on this page is either narrative data reviewed by a maintainer or a
+// field generated from the Core protocol registry at a recorded commit. Nothing
+// is inferred at build time.
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { Aside } from '@astrojs/starlight/components';
+import CapabilityTable from '../../components/CapabilityTable.astro';
+import {
+  protocols,
+  provenance,
+  getChain,
+  AVAILABILITY_LABELS,
+  MODE_LABELS,
+} from '@universe/ecosystem-registry';
+
+export function getStaticPaths() {
+  return protocols.map((protocol) => ({
+    params: { id: protocol.id },
+    props: { protocol },
+  }));
+}
+
+const { protocol } = Astro.props;
+const chain = getChain(protocol.chain);
+const availability = protocol.marketplace
+  ? AVAILABILITY_LABELS[protocol.marketplace.availability]
+  : null;
+const shortCommit = provenance.sourceCommit.slice(0, 12);
+
+const originLine = (() => {
+  const o = protocol.origin;
+  if (o.kind === 'universe-original') {
+    return `An original Bitcoin Universe protocol, published ${o.year}.`;
+  }
+  if (o.kind === 'universe-view') {
+    return 'A Bitcoin Universe read path, not a separate protocol.';
+  }
+  return `Created outside Bitcoin Universe by ${o.creator}${o.year ? `, ${o.year}` : ''}.`;
+})();
+---
+
+<StarlightPage
+  frontmatter={{
+    title: protocol.name,
+    description: protocol.purpose,
+    tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 3 },
+  }}
+>
+  <p class="lede">{protocol.purpose}</p>
+
+  <dl class="facts">
+    <div>
+      <dt>Chain</dt>
+      <dd>{chain ? chain.name : protocol.chain}</dd>
+    </div>
+    <div>
+      <dt>Carrier</dt>
+      <dd>{protocol.carrier}</dd>
+    </div>
+    {
+      protocol.ownershipModel && (
+        <div>
+          <dt>Ownership model</dt>
+          <dd>{protocol.ownershipModel}</dd>
+        </div>
+      )
+    }
+    {
+      protocol.decimals && protocol.decimals !== 'none' && (
+        <div>
+          <dt>Decimals</dt>
+          <dd>{protocol.decimals}</dd>
+        </div>
+      )
+    }
+    {
+      protocol.operations.length > 0 && (
+        <div>
+          <dt>Operations</dt>
+          <dd>{protocol.operations.join(', ')}</dd>
+        </div>
+      )
+    }
+    {
+      protocol.aliases.length > 0 && (
+        <div>
+          <dt>Also written</dt>
+          <dd>{protocol.aliases.join(', ')}</dd>
+        </div>
+      )
+    }
+  </dl>
+
+  <h2 id="where-it-came-from">Where it came from</h2>
+  <p>{originLine}</p>
+  {protocol.origin.note && <p>{protocol.origin.note}</p>}
+
+  <h2 id="where-the-specification-lives">Where the specification lives</h2>
+  <p>
+    {
+      protocol.documentationSite ? (
+        <>
+          The specification and reference documentation for {protocol.name} live in{' '}
+          <a href={`https://github.com/${protocol.repository}`}>{protocol.repository}</a> and are
+          published at <a href={protocol.documentationSite}>{protocol.documentationSite}</a>. That
+          site is the authority. This page exists so you can find it and compare it with the rest of
+          the estate.
+        </>
+      ) : (
+        <>
+          {protocol.name} has no Bitcoin Universe specification repository. Its specification is{' '}
+          {protocol.specificationHome}.
+        </>
+      )
+    }
+  </p>
+  {
+    protocol.universeImplementation && (
+      <p>
+        Bitcoin Universe indexes or implements it in <strong>{protocol.universeImplementation}</strong>.
+      </p>
+    )
+  }
+
+  {
+    protocol.marketplace ? (
+      <>
+        <h2 id="support-in-universe-products">Support in Bitcoin Universe products</h2>
+        <Aside type={protocol.marketplace.availability === 'enabled' ? 'note' : 'caution'} title={availability?.label ?? protocol.marketplace.availability}>
+          <p>{availability?.summary}</p>
+          <p>
+            Execution model: {MODE_LABELS[protocol.marketplace.mode] ?? protocol.marketplace.mode}.
+            {protocol.marketplace.featureGate && (
+              <> This surface sits behind the <code>{protocol.marketplace.featureGate}</code> feature gate.</>
+            )}
+          </p>
+        </Aside>
+
+        {protocol.surfaces.length > 0 && (
+          <>
+            <h3 id="where-it-appears">Where it appears</h3>
+            <ul>
+              {protocol.surfaces.map((surface) => (
+                <li>
+                  <strong>{surface.label}</strong>: {surface.actions.join(', ')}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+
+        <CapabilityTable marketplace={protocol.marketplace} />
+      </>
+    ) : (
+      <>
+        <h2 id="support-in-universe-products">Support in Bitcoin Universe products</h2>
+        <p>
+          {protocol.name} has no marketplace entry in the Core protocol registry, so no Bitcoin
+          Universe product implements a trade path for it. Where a Universe indexer exists, the data
+          is available through that indexer rather than through a product surface.
+        </p>
+      </>
+    )
+  }
+
+  {
+    (protocol.indexer || protocol.confirmation || protocol.reorg) && (
+      <>
+        <h2 id="operational-behaviour">Operational behaviour</h2>
+        {protocol.indexer && (
+          <>
+            <h3 id="indexing">Indexing</h3>
+            <p>
+              State is read from <strong>{protocol.indexer.primary}</strong>.
+              {protocol.indexer.fallbacks?.length > 0 && (
+                <> Supporting reads come from {protocol.indexer.fallbacks.join(', ')}.</>
+              )}
+            </p>
+            {protocol.indexer.mutationGate && (
+              <p>
+                <strong>What must be true before any change is accepted:</strong>{' '}
+                {protocol.indexer.mutationGate}
+              </p>
+            )}
+          </>
+        )}
+        {protocol.confirmation && (
+          <>
+            <h3 id="confirmation">Confirmation</h3>
+            <p>{protocol.confirmation.policy}</p>
+            {protocol.confirmation.settlementMinConfirmations != null && (
+              <p>
+                Settlement requires at least{' '}
+                {protocol.confirmation.settlementMinConfirmations} confirmation
+                {protocol.confirmation.settlementMinConfirmations === 1 ? '' : 's'}.
+              </p>
+            )}
+          </>
+        )}
+        {protocol.reorg && (
+          <>
+            <h3 id="reorganisation">Reorganisation</h3>
+            <p>{protocol.reorg.policy}</p>
+          </>
+        )}
+        {protocol.freshness && (
+          <>
+            <h3 id="freshness">Freshness</h3>
+            <p>{protocol.freshness.policy}</p>
+          </>
+        )}
+      </>
+    )
+  }
+
+  <h2 id="provenance">Provenance</h2>
+  <p class="provenance">
+    Capability facts on this page were generated from{' '}
+    <code>{provenance.sourcePath}</code> in{' '}
+    <a href={`https://github.com/${provenance.repository}/commit/${provenance.sourceCommit}`}>
+      {provenance.repository} at {shortCommit}
+    </a>
+    . Implemented behaviour is not the same as production availability: see{' '}
+    <a href="/status/">how to read our status</a>.
+  </p>
+</StarlightPage>
+
+<style>
+  .lede {
+    font-size: var(--sl-text-lg);
+    color: var(--sl-color-white);
+  }
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: 0.75rem 1.5rem;
+    margin: 1.5rem 0 2rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.5rem;
+    background: var(--sl-color-gray-6);
+  }
+  .facts div {
+    margin: 0;
+  }
+  .facts dt {
+    font-size: var(--sl-text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--sl-color-gray-3);
+    margin: 0;
+  }
+  .facts dd {
+    margin: 0.15rem 0 0;
+    color: var(--sl-color-white);
+  }
+  .provenance {
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-2);
+  }
+</style>
