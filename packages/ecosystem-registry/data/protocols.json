@@ -15,7 +15,10 @@
         "note": "Ordinal theory numbers individual satoshis and lets arbitrary content be inscribed onto them."
       },
       "purpose": "Assigns a stable ordinal number to every satoshi and attaches content to individual satoshis, producing digital artifacts that move as ordinary UTXOs.",
-      "operations": ["inscribe", "transfer"],
+      "operations": [
+        "inscribe",
+        "transfer"
+      ],
       "repository": null,
       "documentationSite": null,
       "specificationHome": "Ordinal theory handbook, maintained upstream",
@@ -35,7 +38,11 @@
         "note": "An experiment in fungible tokens expressed entirely as inscribed JSON, indexed off-chain."
       },
       "purpose": "Fungible tokens defined by inscribed JSON operations, where balances are computed by indexers rather than enforced by consensus.",
-      "operations": ["deploy", "mint", "transfer"],
+      "operations": [
+        "deploy",
+        "mint",
+        "transfer"
+      ],
       "repository": "bitcoinuniverseio/brc-20",
       "documentationSite": "https://bitcoinuniverseio.github.io/brc-20/",
       "specificationHome": "bitcoinuniverseio/brc-20",
@@ -55,7 +62,11 @@
         "note": "Activated at block 840,000. Designed to be UTXO-native and to avoid the junk-UTXO problem of inscription-based tokens."
       },
       "purpose": "UTXO-native fungible tokens whose balances live in transaction outputs and move by ordinary spending, with etching, minting, and edicts encoded in a single OP_RETURN.",
-      "operations": ["etch", "mint", "transfer"],
+      "operations": [
+        "etch",
+        "mint",
+        "transfer"
+      ],
       "repository": "bitcoinuniverseio/runes",
       "documentationSite": "https://bitcoinuniverseio.github.io/runes/",
       "specificationHome": "bitcoinuniverseio/runes",
@@ -93,7 +104,10 @@
         "note": "Stores image data in transaction outputs that cannot be pruned, aiming for permanence stronger than witness data."
       },
       "purpose": "Immutable on-chain images stored in unprunable transaction outputs, indexed through the Counterparty data layer.",
-      "operations": ["stamp", "transfer"],
+      "operations": [
+        "stamp",
+        "transfer"
+      ],
       "repository": null,
       "documentationSite": null,
       "specificationHome": "bitcoinuniverseio/btc_stamps and bitcoinuniverseio/stampchain.io",
@@ -113,7 +127,11 @@
         "note": "A fungible-token layer built on the Stamps data-carrier model rather than on inscriptions."
       },
       "purpose": "Fungible tokens whose operations are stored in unprunable Stamps outputs and whose balances are computed by Stamps indexers.",
-      "operations": ["deploy", "mint", "transfer"],
+      "operations": [
+        "deploy",
+        "mint",
+        "transfer"
+      ],
       "repository": "bitcoinuniverseio/src-20",
       "documentationSite": "https://bitcoinuniverseio.github.io/src-20/",
       "specificationHome": "bitcoinuniverseio/src-20",
@@ -133,7 +151,10 @@
         "note": "Adds a naming layer to the Stamps data model."
       },
       "purpose": "On-chain names recorded through the Stamps data carrier, with ownership tracked by Stamps indexers.",
-      "operations": ["mint", "transfer"],
+      "operations": [
+        "mint",
+        "transfer"
+      ],
       "repository": "bitcoinuniverseio/src-101",
       "documentationSite": "https://bitcoinuniverseio.github.io/src-101/",
       "specificationHome": "bitcoinuniverseio/src-101",
@@ -153,7 +174,10 @@
         "note": "A general digital-object protocol using commit and reveal transactions."
       },
       "purpose": "Digital objects minted through commit and reveal, covering non-fungible items, realms, containers, and the data model that ARC-20 builds on.",
-      "operations": ["mint", "transfer"],
+      "operations": [
+        "mint",
+        "transfer"
+      ],
       "repository": "bitcoinuniverseio/atomicals-and-arc-20",
       "documentationSite": "https://bitcoinuniverseio.github.io/atomicals-and-arc-20/",
       "specificationHome": "bitcoinuniverseio/atomicals-and-arc-20",
@@ -173,7 +197,11 @@
         "note": "Tokens are satoshis. One token is one satoshi, so token supply is real bitcoin."
       },
       "purpose": "Fungible tokens where one token is exactly one satoshi, so balances move as coloured sats and splitting follows output ordering rules.",
-      "operations": ["deploy", "mint", "transfer"],
+      "operations": [
+        "deploy",
+        "mint",
+        "transfer"
+      ],
       "repository": "bitcoinuniverseio/atomicals-and-arc-20",
       "documentationSite": "https://bitcoinuniverseio.github.io/atomicals-and-arc-20/",
       "specificationHome": "bitcoinuniverseio/atomicals-and-arc-20",
@@ -186,9 +214,16 @@
       "chain": "bitcoin",
       "carrier": "Atomicals envelope",
       "family": "inscription",
-      "origin": { "kind": "external", "creator": "Arthur (atomicals.xyz)", "year": 2023 },
+      "origin": {
+        "kind": "external",
+        "creator": "Arthur (atomicals.xyz)",
+        "year": 2023
+      },
       "purpose": "Non-fungible Atomicals digital objects, including collection items minted through decentralised mint rules.",
-      "operations": ["mint", "transfer"],
+      "operations": [
+        "mint",
+        "transfer"
+      ],
       "repository": "bitcoinuniverseio/atomicals-and-arc-20",
       "documentationSite": "https://bitcoinuniverseio.github.io/atomicals-and-arc-20/",
       "specificationHome": "bitcoinuniverseio/atomicals-and-arc-20",
@@ -201,9 +236,16 @@
       "chain": "bitcoin",
       "carrier": "Atomicals envelope",
       "family": "naming",
-      "origin": { "kind": "external", "creator": "Arthur (atomicals.xyz)", "year": 2023 },
+      "origin": {
+        "kind": "external",
+        "creator": "Arthur (atomicals.xyz)",
+        "year": 2023
+      },
       "purpose": "Top-level names in the Atomicals naming system, claimed by satisfying the protocol's mint rules.",
-      "operations": ["mint", "transfer"],
+      "operations": [
+        "mint",
+        "transfer"
+      ],
       "repository": "bitcoinuniverseio/atomicals-and-arc-20",
       "documentationSite": "https://bitcoinuniverseio.github.io/atomicals-and-arc-20/",
       "specificationHome": "bitcoinuniverseio/atomicals-and-arc-20",
@@ -216,9 +258,16 @@
       "chain": "bitcoin",
       "carrier": "Atomicals envelope",
       "family": "naming",
-      "origin": { "kind": "external", "creator": "Arthur (atomicals.xyz)", "year": 2023 },
+      "origin": {
+        "kind": "external",
+        "creator": "Arthur (atomicals.xyz)",
+        "year": 2023
+      },
       "purpose": "Names minted underneath a Realm, subject to the rules the parent Realm publishes.",
-      "operations": ["mint", "transfer"],
+      "operations": [
+        "mint",
+        "transfer"
+      ],
       "repository": "bitcoinuniverseio/atomicals-and-arc-20",
       "documentationSite": "https://bitcoinuniverseio.github.io/atomicals-and-arc-20/",
       "specificationHome": "bitcoinuniverseio/atomicals-and-arc-20",
@@ -231,7 +280,11 @@
       "chain": "bitcoin",
       "carrier": "Atomicals envelope",
       "family": "execution",
-      "origin": { "kind": "external", "creator": "Arthur (atomicals.xyz)", "year": 2024 },
+      "origin": {
+        "kind": "external",
+        "creator": "Arthur (atomicals.xyz)",
+        "year": 2024
+      },
       "purpose": "The Atomicals virtual machine, an execution model layered on the Atomicals data format.",
       "operations": [],
       "repository": "bitcoinuniverseio/atomicals-and-arc-20",
@@ -253,7 +306,11 @@
         "note": "Smart contracts compiled to WebAssembly, with balances carried as protorunes."
       },
       "purpose": "A metaprotocol placing WebAssembly contract execution over Bitcoin, where token balances travel as protorunes in protostones.",
-      "operations": ["deploy", "execute", "transfer"],
+      "operations": [
+        "deploy",
+        "execute",
+        "transfer"
+      ],
       "repository": "bitcoinuniverseio/alkanes",
       "documentationSite": "https://bitcoinuniverseio.github.io/alkanes/",
       "specificationHome": "bitcoinuniverseio/alkanes",
@@ -266,9 +323,17 @@
       "chain": "bitcoin",
       "carrier": "OP_RETURN carrying a JSON payload",
       "family": "op-return",
-      "origin": { "kind": "external", "creator": "The Mezcal project", "year": 2025 },
+      "origin": {
+        "kind": "external",
+        "creator": "The Mezcal project",
+        "year": 2025
+      },
       "purpose": "A fungible-token protocol whose transfer instructions are written as a compact JSON payload in an OP_RETURN output.",
-      "operations": ["deploy", "mint", "transfer"],
+      "operations": [
+        "deploy",
+        "mint",
+        "transfer"
+      ],
       "repository": "bitcoinuniverseio/mezcal",
       "documentationSite": "https://bitcoinuniverseio.github.io/mezcal/",
       "specificationHome": "bitcoinuniverseio/mezcal",
@@ -288,7 +353,12 @@
         "note": "Extends the inscribed-token idea with authority-based operations and privileged mints."
       },
       "purpose": "An inscribed token protocol with a wider operation set than BRC-20, including token authority and privileged operations.",
-      "operations": ["deploy", "mint", "transfer", "authority"],
+      "operations": [
+        "deploy",
+        "mint",
+        "transfer",
+        "authority"
+      ],
       "repository": "bitcoinuniverseio/tap",
       "documentationSite": "https://bitcoinuniverseio.github.io/tap/",
       "specificationHome": "bitcoinuniverseio/tap",
@@ -301,9 +371,17 @@
       "chain": "dogecoin",
       "carrier": "Doginals inscription carrying a TAP envelope",
       "family": "inscription",
-      "origin": { "kind": "external", "creator": "The Trac ecosystem", "year": 2024 },
+      "origin": {
+        "kind": "external",
+        "creator": "The Trac ecosystem",
+        "year": 2024
+      },
       "purpose": "The TAP protocol as applied to Dogecoin inscriptions.",
-      "operations": ["deploy", "mint", "transfer"],
+      "operations": [
+        "deploy",
+        "mint",
+        "transfer"
+      ],
       "repository": "bitcoinuniverseio/tap-on-doge",
       "documentationSite": "https://bitcoinuniverseio.github.io/tap-on-doge/",
       "specificationHome": "bitcoinuniverseio/tap-on-doge",
@@ -316,9 +394,17 @@
       "chain": "bitcoin",
       "carrier": "Ordinals inscription referencing a deployed element",
       "family": "inscription",
-      "origin": { "kind": "external", "creator": "The Trac ecosystem", "year": 2023 },
+      "origin": {
+        "kind": "external",
+        "creator": "The Trac ecosystem",
+        "year": 2023
+      },
       "purpose": "Digital Matter Theory: tokens whose content is derived deterministically from block data rather than stored in each mint.",
-      "operations": ["deploy", "mint", "transfer"],
+      "operations": [
+        "deploy",
+        "mint",
+        "transfer"
+      ],
       "repository": null,
       "documentationSite": null,
       "specificationHome": "Maintained upstream by the Trac ecosystem",
@@ -331,9 +417,16 @@
       "chain": "bitcoin",
       "carrier": "Ordinals inscription of the form <block>.bitmap",
       "family": "naming",
-      "origin": { "kind": "external", "creator": "The Bitmap community", "year": 2023 },
+      "origin": {
+        "kind": "external",
+        "creator": "The Bitmap community",
+        "year": 2023
+      },
       "purpose": "Claims of Bitcoin blocks as addressable districts, established by the first valid inscription for a block number.",
-      "operations": ["mint", "transfer"],
+      "operations": [
+        "mint",
+        "transfer"
+      ],
       "repository": null,
       "documentationSite": null,
       "specificationHome": "Maintained upstream by the Bitmap community",
@@ -346,9 +439,16 @@
       "chain": "bitcoin",
       "carrier": "Ordinals inscription",
       "family": "inscription",
-      "origin": { "kind": "external", "creator": "The UNAT community", "year": 2024 },
+      "origin": {
+        "kind": "external",
+        "creator": "The UNAT community",
+        "year": 2024
+      },
       "purpose": "Natural-asset digital artifacts recorded through inscriptions and rendered from deterministic rules.",
-      "operations": ["mint", "transfer"],
+      "operations": [
+        "mint",
+        "transfer"
+      ],
       "repository": null,
       "documentationSite": null,
       "specificationHome": "Maintained upstream",
@@ -361,9 +461,16 @@
       "chain": "bitcoin",
       "carrier": "Ordinals inscription",
       "family": "naming",
-      "origin": { "kind": "external", "creator": "The Bitcoin names community", "year": 2023 },
+      "origin": {
+        "kind": "external",
+        "creator": "The Bitcoin names community",
+        "year": 2023
+      },
       "purpose": "Names claimed by inscription, resolved by first-valid-claim indexing rules.",
-      "operations": ["mint", "transfer"],
+      "operations": [
+        "mint",
+        "transfer"
+      ],
       "repository": null,
       "documentationSite": null,
       "specificationHome": "Maintained upstream",
@@ -376,9 +483,17 @@
       "chain": "bitcoin",
       "carrier": "Ordinals inscription",
       "family": "inscription",
-      "origin": { "kind": "external", "creator": "The BLOCK-20 community", "year": 2023 },
+      "origin": {
+        "kind": "external",
+        "creator": "The BLOCK-20 community",
+        "year": 2023
+      },
       "purpose": "A token protocol whose mint validity is tied to block-derived proof rather than open minting.",
-      "operations": ["deploy", "mint", "transfer"],
+      "operations": [
+        "deploy",
+        "mint",
+        "transfer"
+      ],
       "repository": "bitcoinuniverseio/block-20",
       "documentationSite": "https://bitcoinuniverseio.github.io/block-20/",
       "specificationHome": "bitcoinuniverseio/block-20",
@@ -389,11 +504,19 @@
       "capabilityId": "dust20",
       "name": "DUST-20",
       "chain": "bitcoin",
-      "carrier": "OP_RETURN",
-      "family": "op-return",
-      "origin": { "kind": "external", "creator": "The DUST-20 community", "year": 2024 },
-      "purpose": "A token protocol carried in OP_RETURN outputs with deterministic indexing rules.",
-      "operations": ["deploy", "mint", "transfer"],
+      "carrier": "Inscription for deploy and mint, then an ordinary spend for movement",
+      "family": "colored-sats",
+      "origin": {
+        "kind": "external",
+        "creator": "The DUST-20 community",
+        "year": 2024
+      },
+      "purpose": "Tokens whose units are carried by the satoshis holding them. A deploy inscription fixes how many satoshis back one unit, a mint inscription must sit in an output holding exactly that many, and movement is an ordinary spend whose output layout decides which whole units survive.",
+      "operations": [
+        "deploy",
+        "mint",
+        "transfer"
+      ],
       "repository": "bitcoinuniverseio/dust-20",
       "documentationSite": "https://bitcoinuniverseio.github.io/dust-20/",
       "specificationHome": "bitcoinuniverseio/dust-20",
@@ -406,9 +529,17 @@
       "chain": "bitcoin",
       "carrier": "OP_RETURN",
       "family": "op-return",
-      "origin": { "kind": "external", "creator": "The OP-20 community", "year": 2024 },
+      "origin": {
+        "kind": "external",
+        "creator": "The OP-20 community",
+        "year": 2024
+      },
       "purpose": "A token protocol using plain OP_RETURN data outputs as its only carrier.",
-      "operations": ["deploy", "mint", "transfer"],
+      "operations": [
+        "deploy",
+        "mint",
+        "transfer"
+      ],
       "repository": "bitcoinuniverseio/op-return",
       "documentationSite": "https://bitcoinuniverseio.github.io/op-return/",
       "specificationHome": "bitcoinuniverseio/op-return",
@@ -421,13 +552,20 @@
       "chain": "bitcoin",
       "carrier": "OP_RETURN",
       "family": "naming",
-      "origin": { "kind": "external", "creator": "The OP Names community", "year": 2024 },
+      "origin": {
+        "kind": "external",
+        "creator": "The OP Names community",
+        "year": 2024
+      },
       "purpose": "Names registered through OP_RETURN data outputs.",
-      "operations": ["register", "transfer"],
+      "operations": [
+        "register",
+        "transfer"
+      ],
       "repository": "bitcoinuniverseio/op-return",
       "documentationSite": "https://bitcoinuniverseio.github.io/op-return/",
       "specificationHome": "bitcoinuniverseio/op-return",
-      "universeImplementation": "bitcoinuniverseio/index-names"
+      "universeImplementation": "bitcoinuniverseio/index-op20 (the OP Names authority is colocated there, not in index-names)"
     },
     {
       "id": "op_inscriptions",
@@ -436,9 +574,16 @@
       "chain": "bitcoin",
       "carrier": "OP_RETURN",
       "family": "op-return",
-      "origin": { "kind": "external", "creator": "The OP Inscriptions community", "year": 2024 },
+      "origin": {
+        "kind": "external",
+        "creator": "The OP Inscriptions community",
+        "year": 2024
+      },
       "purpose": "Content records written directly into OP_RETURN outputs rather than witness data.",
-      "operations": ["inscribe", "transfer"],
+      "operations": [
+        "inscribe",
+        "transfer"
+      ],
       "repository": "bitcoinuniverseio/op-return",
       "documentationSite": "https://bitcoinuniverseio.github.io/op-return/",
       "specificationHome": "bitcoinuniverseio/op-return",
@@ -458,7 +603,10 @@
         "note": "An original Bitcoin Universe carrier design."
       },
       "purpose": "A data carrier that places payloads in script witness data removed from the stack by OP_DROP, giving a carrier distinct from both inscriptions and OP_RETURN.",
-      "operations": ["carry", "commit"],
+      "operations": [
+        "carry",
+        "commit"
+      ],
       "repository": "bitcoinuniverseio/op-drop",
       "documentationSite": "https://bitcoinuniverseio.github.io/op-drop/",
       "specificationHome": "bitcoinuniverseio/op-drop",
@@ -478,7 +626,11 @@
         "note": "The application protocol built on the OP_DROP carrier."
       },
       "purpose": "Media-first artifacts and agreements recorded through the OP_DROP carrier, including Drop Pacts.",
-      "operations": ["drop", "pact", "transfer"],
+      "operations": [
+        "drop",
+        "pact",
+        "transfer"
+      ],
       "repository": "bitcoinuniverseio/drops-protocol-docs",
       "documentationSite": "https://bitcoinuniverseio.github.io/drops-protocol-docs/",
       "specificationHome": "bitcoinuniverseio/drops-protocol-docs",
@@ -491,9 +643,16 @@
       "chain": "dogecoin",
       "carrier": "Witness-data inscription envelope on Dogecoin",
       "family": "inscription",
-      "origin": { "kind": "external", "creator": "The Dogecoin ordinals community", "year": 2023 },
+      "origin": {
+        "kind": "external",
+        "creator": "The Dogecoin ordinals community",
+        "year": 2023
+      },
       "purpose": "Ordinals-style inscriptions applied to Dogecoin.",
-      "operations": ["inscribe", "transfer"],
+      "operations": [
+        "inscribe",
+        "transfer"
+      ],
       "repository": null,
       "documentationSite": null,
       "specificationHome": "bitcoinuniverseio/ord-dogecoin",
@@ -506,9 +665,17 @@
       "chain": "dogecoin",
       "carrier": "Doginals inscription carrying a JSON payload",
       "family": "inscription",
-      "origin": { "kind": "external", "creator": "The Dogecoin ordinals community", "year": 2023 },
+      "origin": {
+        "kind": "external",
+        "creator": "The Dogecoin ordinals community",
+        "year": 2023
+      },
       "purpose": "The BRC-20 token model applied to Dogecoin inscriptions.",
-      "operations": ["deploy", "mint", "transfer"],
+      "operations": [
+        "deploy",
+        "mint",
+        "transfer"
+      ],
       "repository": null,
       "documentationSite": null,
       "specificationHome": "bitcoinuniverseio/ord-dogecoin",
@@ -521,9 +688,17 @@
       "chain": "bitcoin",
       "carrier": "Covenant-based UTXO tokens",
       "family": "covenant",
-      "origin": { "kind": "external", "creator": "The CAT protocol community", "year": 2024 },
+      "origin": {
+        "kind": "external",
+        "creator": "The CAT protocol community",
+        "year": 2024
+      },
       "purpose": "Fungible tokens enforced by covenant constructions rather than by indexer convention.",
-      "operations": ["deploy", "mint", "transfer"],
+      "operations": [
+        "deploy",
+        "mint",
+        "transfer"
+      ],
       "repository": null,
       "documentationSite": null,
       "specificationHome": "Maintained upstream",
@@ -536,9 +711,17 @@
       "chain": "bitcoin",
       "carrier": "Covenant-based UTXO tokens",
       "family": "covenant",
-      "origin": { "kind": "external", "creator": "The CAT protocol community", "year": 2024 },
+      "origin": {
+        "kind": "external",
+        "creator": "The CAT protocol community",
+        "year": 2024
+      },
       "purpose": "The non-fungible counterpart to CAT-20, using the same covenant model.",
-      "operations": ["deploy", "mint", "transfer"],
+      "operations": [
+        "deploy",
+        "mint",
+        "transfer"
+      ],
       "repository": null,
       "documentationSite": null,
       "specificationHome": "Maintained upstream",
@@ -551,9 +734,16 @@
       "chain": "bitcoin",
       "carrier": "Ordinal theory rarity classes",
       "family": "sat-rarity",
-      "origin": { "kind": "external", "creator": "Casey Rodarmor", "year": 2023 },
+      "origin": {
+        "kind": "external",
+        "creator": "Casey Rodarmor",
+        "year": 2023
+      },
       "purpose": "Satoshis distinguished by ordinal-theory rarity, such as block firsts and cycle boundaries, tracked as collectible outputs.",
-      "operations": ["identify", "transfer"],
+      "operations": [
+        "identify",
+        "transfer"
+      ],
       "repository": null,
       "documentationSite": null,
       "specificationHome": "Ordinal theory handbook, maintained upstream",
@@ -573,7 +763,11 @@
         "note": "A routing and evidence layer over openly published PSBT orders."
       },
       "purpose": "An order and evidence format for exchanging Ordinals using signed PSBTs, with verification against a local node rather than a trusted marketplace.",
-      "operations": ["publish", "route", "verify"],
+      "operations": [
+        "publish",
+        "route",
+        "verify"
+      ],
       "repository": "bitcoinuniverseio/ordex",
       "documentationSite": "https://bitcoinuniverseio.github.io/ordex/",
       "specificationHome": "bitcoinuniverseio/ordex",
@@ -592,7 +786,11 @@
         "year": 2025
       },
       "purpose": "Generative on-chain artwork whose output is derived deterministically from chain data, so every viewer renders the same result.",
-      "operations": ["mint", "render", "transfer"],
+      "operations": [
+        "mint",
+        "render",
+        "transfer"
+      ],
       "repository": "bitcoinuniverseio/chainbloom",
       "documentationSite": "https://bitcoinuniverseio.github.io/chainbloom/",
       "specificationHome": "bitcoinuniverseio/chainbloom",
@@ -612,7 +810,10 @@
         "note": "Digital artifacts native to Zcash, with transparent and shielded considerations."
       },
       "purpose": "Digital artifacts recorded on Zcash, with explicit handling of the difference between transparent and shielded activity.",
-      "operations": ["inscribe", "transfer"],
+      "operations": [
+        "inscribe",
+        "transfer"
+      ],
       "repository": "bitcoinuniverseio/docs-zerdinals-and-zrunes",
       "documentationSite": "https://bitcoinuniverseio.github.io/docs-zerdinals-and-zrunes/",
       "specificationHome": "bitcoinuniverseio/docs-zerdinals-and-zrunes",
@@ -631,7 +832,11 @@
         "year": 2025
       },
       "purpose": "Fungible tokens native to Zcash, including the ZRC-20 token standard.",
-      "operations": ["etch", "mint", "transfer"],
+      "operations": [
+        "etch",
+        "mint",
+        "transfer"
+      ],
       "repository": "bitcoinuniverseio/docs-zerdinals-and-zrunes",
       "documentationSite": "https://bitcoinuniverseio.github.io/docs-zerdinals-and-zrunes/",
       "specificationHome": "bitcoinuniverseio/docs-zerdinals-and-zrunes",
@@ -650,7 +855,11 @@
         "year": 2025
       },
       "purpose": "Membership records established by mutual witnessing, where a circle's state is derived from the commitments its members publish.",
-      "operations": ["open", "witness", "close"],
+      "operations": [
+        "open",
+        "witness",
+        "close"
+      ],
       "repository": "bitcoinuniverseio/witness-circles",
       "documentationSite": "https://bitcoinuniverseio.github.io/witness-circles/",
       "specificationHome": "bitcoinuniverseio/witness-circles",
@@ -669,7 +878,11 @@
         "year": 2025
       },
       "purpose": "Records whose validity depends on a matched pair of transactions, giving a two-sided commitment primitive with an independent verifier.",
-      "operations": ["propose", "pair", "verify"],
+      "operations": [
+        "propose",
+        "pair",
+        "verify"
+      ],
       "repository": "bitcoinuniverseio/tandem",
       "documentationSite": "https://bitcoinuniverseio.github.io/tandem/",
       "specificationHome": "bitcoinuniverseio/tandem",
@@ -688,7 +901,11 @@
         "year": 2025
       },
       "purpose": "A provenance layer that accumulates verifiable history over an existing artifact rather than creating a new asset.",
-      "operations": ["attest", "accrue", "verify"],
+      "operations": [
+        "attest",
+        "accrue",
+        "verify"
+      ],
       "repository": "bitcoinuniverseio/patina",
       "documentationSite": "https://bitcoinuniverseio.github.io/patina/",
       "specificationHome": "bitcoinuniverseio/patina",
@@ -701,9 +918,16 @@
       "chain": "bitcoin",
       "carrier": "Native transaction outputs",
       "family": "base-layer",
-      "origin": { "kind": "external", "creator": "Satoshi Nakamoto", "year": 2009 },
+      "origin": {
+        "kind": "external",
+        "creator": "Satoshi Nakamoto",
+        "year": 2009
+      },
       "purpose": "The base chain itself: plain value held in unspent transaction outputs, which every protocol above ultimately rides on.",
-      "operations": ["send", "receive"],
+      "operations": [
+        "send",
+        "receive"
+      ],
       "repository": null,
       "documentationSite": null,
       "specificationHome": "Bitcoin Core and the BIP process, maintained upstream",
