@@ -114,5 +114,29 @@ console.log(`not exactly one h1: ${noH1.length ? noH1.map((r) => `${r.name}(${r.
 console.log(`missing llms.txt: ${noLlms.length ? noLlms.map((r) => r.name).join(', ') : 'none'}`);
 console.log(`missing sitemap: ${noSitemap.length ? noSitemap.map((r) => r.name).join(', ') : 'none'}`);
 console.log(`404 not returning 404: ${bad404.length ? bad404.map((r) => `${r.name}(${r.notFound})`).join(', ') : 'none'}`);
+// Every URL the registry publishes must resolve. A dead one shipped for hours
+// because nothing checked it: forked-felines.art is NXDOMAIN, the real domain is
+// forkedfelines.art, and the wrong spelling came from a source document rather
+// than from anyone testing it.
+console.log('\n=== REGISTRY URLS ===');
+const { products, protocols } = await import('@universe/ecosystem-registry');
+const registryUrls = [
+  ...products.flatMap((p) => [p.liveUrl, p.documentationSite]),
+  ...protocols.map((p) => p.documentationSite),
+].filter(Boolean);
+
+const checked = new Set();
+let dead = 0;
+for (const url of registryUrls) {
+  if (checked.has(url)) continue;
+  checked.add(url);
+  const code = await statusOf(url);
+  if (code !== 200) {
+    dead += 1;
+    console.log(`  DEAD ${code}  ${url}`);
+  }
+}
+console.log(`  checked ${checked.size} registry URLs, ${dead} dead`);
+
 console.log('\nNOT CHECKED HERE: 320px reflow, keyboard journeys, colour contrast, reduced motion,');
 console.log('200% zoom, Lighthouse performance, cross browser behaviour. Those need a real browser.');

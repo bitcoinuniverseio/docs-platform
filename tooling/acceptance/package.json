@@ -6,5 +6,8 @@
   "type": "module",
   "scripts": {
     "sweep": "node sweep.mjs"
+  },
+  "dependencies": {
+    "@universe/ecosystem-registry": "workspace:*"
   }
 }
