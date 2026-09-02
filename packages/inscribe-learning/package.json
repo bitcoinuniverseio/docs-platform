@@ -34,7 +34,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "test": "node --test test/",
+    "test": "node --test test/*.test.ts",
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "generate:manifest": "node bin/generate-learning-manifest.mjs",
     "pack:deterministic": "node bin/pack-deterministic.mjs"
