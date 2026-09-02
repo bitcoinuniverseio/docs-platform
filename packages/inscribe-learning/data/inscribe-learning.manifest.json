@@ -4,7 +4,7 @@
   "generatorVersion": "1.0.0",
   "sourceCommits": {
     "inscribe": "caac2606a479a1551b97187d3e542adf7faf3df7",
-    "docs-platform": "4e1867c62ee0858434658ba931b983be5eab76b9",
+    "docs-platform": "ae8612704994ccf6e4fd64cda08c38183be00834",
     "docs-inscribe": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0"
   },
   "chain": "bitcoin",
@@ -109,7 +109,7 @@
         "wallet-safety",
         "workflow-send-assets"
       ],
-      "walkthroughId": "vw-ordinals-inscribe-text",
+      "walkthroughId": "vw-order-lifecycle",
       "practiceScenarioId": "ps-ordinals-inscribe-text",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
@@ -254,6 +254,7 @@
         "wallet-safety",
         "workflow-send-assets"
       ],
+      "walkthroughId": "vw-ordinals-transfer",
       "practiceScenarioId": "ps-transfer",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
@@ -358,6 +359,7 @@
         "tools-hub",
         "inscribe-text"
       ],
+      "walkthroughId": "vw-stamps-inscribe",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "inscribe",
@@ -461,6 +463,7 @@
         "tools-hub",
         "inscribe-files"
       ],
+      "walkthroughId": "vw-stamps-inscribe-file",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "inscribe",
@@ -683,6 +686,7 @@
         "mempool-map",
         "workflow-deploy-token"
       ],
+      "walkthroughId": "vw-brc20-mint",
       "practiceScenarioId": "ps-brc20-mint",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
@@ -799,6 +803,7 @@
         "mempool-map",
         "workflow-deploy-token"
       ],
+      "walkthroughId": "vw-brc20-transfer",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "transfer"
@@ -902,6 +907,7 @@
         "src20",
         "tools-hub"
       ],
+      "walkthroughId": "vw-src20-deploy",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "deploy"
@@ -1005,6 +1011,7 @@
         "src20",
         "tools-hub"
       ],
+      "walkthroughId": "vw-src20-mint",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "mint"
@@ -1108,6 +1115,7 @@
         "src20",
         "tools-hub"
       ],
+      "walkthroughId": "vw-src20-transfer",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "transfer"
@@ -1326,6 +1334,7 @@
         "asset-recovery",
         "wallet-safety"
       ],
+      "walkthroughId": "vw-runes-mint",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "mint"
@@ -1434,6 +1443,7 @@
         "asset-recovery",
         "wallet-safety"
       ],
+      "walkthroughId": "vw-runes-transfer",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "transfer"
@@ -1541,6 +1551,7 @@
       "guides": [
         "mezcal"
       ],
+      "walkthroughId": "vw-mezcal-etch",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "etch"
@@ -1648,6 +1659,7 @@
       "guides": [
         "mezcal"
       ],
+      "walkthroughId": "vw-mezcal-mint",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "mint"
@@ -1761,6 +1773,7 @@
       "guides": [
         "mezcal"
       ],
+      "walkthroughId": "vw-mezcal-transfer",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "transfer"
@@ -1869,6 +1882,7 @@
         "tap",
         "tap-doge"
       ],
+      "walkthroughId": "vw-tap-deploy",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "deploy"
@@ -1977,6 +1991,7 @@
         "tap",
         "tap-doge"
       ],
+      "walkthroughId": "vw-tap-mint",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "mint"
@@ -2091,6 +2106,7 @@
         "tap",
         "tap-doge"
       ],
+      "walkthroughId": "vw-tap-transfer",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "transfer"
@@ -2182,6 +2198,7 @@
         "custom-tx",
         "inscribe-text"
       ],
+      "walkthroughId": "vw-op-return-inscribe",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "inscribe",
@@ -2279,6 +2296,7 @@
         "custom-tx",
         "inscribe-files"
       ],
+      "walkthroughId": "vw-op-return-inscribe-file",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "inscribe",
@@ -2375,6 +2393,7 @@
         "op-return",
         "custom-tx"
       ],
+      "walkthroughId": "vw-op-return-deploy",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "deploy"
@@ -2470,6 +2489,7 @@
         "op-return",
         "custom-tx"
       ],
+      "walkthroughId": "vw-op-return-mint",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "mint"
@@ -2565,6 +2585,7 @@
         "op-return",
         "custom-tx"
       ],
+      "walkthroughId": "vw-op-return-transfer",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "transfer"
@@ -2672,6 +2693,7 @@
       "guides": [
         "inscribe-text"
       ],
+      "walkthroughId": "vw-op-drop-deploy",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "deploy"
@@ -2779,6 +2801,7 @@
       "guides": [
         "inscribe-text"
       ],
+      "walkthroughId": "vw-op-drop-mint",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "mint"
@@ -2882,6 +2905,7 @@
         "alkanes",
         "mempool-map"
       ],
+      "walkthroughId": "vw-alkanes-mint",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "mint"
@@ -2978,6 +3002,7 @@
       "guides": [
         "arc20"
       ],
+      "walkthroughId": "vw-arc20-deploy",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "deploy"
@@ -3074,6 +3099,7 @@
       "guides": [
         "arc20"
       ],
+      "walkthroughId": "vw-arc20-mint",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "mint"
@@ -3170,6 +3196,7 @@
       "guides": [
         "arc20"
       ],
+      "walkthroughId": "vw-arc20-transfer",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "transfer"
@@ -3277,6 +3304,7 @@
       "guides": [
         "block20"
       ],
+      "walkthroughId": "vw-block20-deploy",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "deploy"
@@ -3384,6 +3412,7 @@
       "guides": [
         "block20"
       ],
+      "walkthroughId": "vw-block20-mint",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "mint"
@@ -3497,6 +3526,7 @@
       "guides": [
         "block20"
       ],
+      "walkthroughId": "vw-block20-transfer",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "transfer"
@@ -3604,6 +3634,7 @@
       "guides": [
         "dust20"
       ],
+      "walkthroughId": "vw-dust20-deploy",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "deploy"
@@ -3711,6 +3742,7 @@
       "guides": [
         "dust20"
       ],
+      "walkthroughId": "vw-dust20-mint",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
         "action": "mint"
@@ -3846,6 +3878,7 @@
         "workflow-send-assets",
         "inscribe-basics"
       ],
+      "walkthroughId": "vw-ordinals-inscribe-batch",
       "practiceScenarioId": "ps-ordinals-batch",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
@@ -3984,6 +4017,7 @@
         "wallet-safety",
         "workflow-send-assets"
       ],
+      "walkthroughId": "vw-ordinals-collection",
       "practiceScenarioId": "ps-ordinals-collection",
       "recoveryOutcomeId": "recovery-order-in-progress",
       "intent": {
@@ -4056,7 +4090,7 @@
       "guides": [
         "first-inscription"
       ],
-      "walkthroughId": "vw-ordinals-inscribe-text",
+      "walkthroughId": "vw-alkanes-mint",
       "practiceScenarioId": "ps-ordinals-inscribe-text",
       "intent": {
         "action": "inscribe",
@@ -4122,7 +4156,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for ordinals"
         },
@@ -4178,7 +4212,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for stamps"
         },
@@ -4235,7 +4269,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for brc20"
         },
@@ -4292,7 +4326,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for src20"
         },
@@ -4348,7 +4382,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for runes"
         },
@@ -4402,7 +4436,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for mezcal"
         },
@@ -4458,7 +4492,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for tap"
         },
@@ -4514,7 +4548,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for op_return"
         },
@@ -4570,7 +4604,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for op_drop"
         },
@@ -4624,7 +4658,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for alkanes"
         },
@@ -4682,7 +4716,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for arc20"
         },
@@ -4738,7 +4772,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for block20"
         },
@@ -4793,7 +4827,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for dust20"
         },
@@ -4839,7 +4873,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for src101"
         }
@@ -4880,7 +4914,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for atomicals"
         }
@@ -4921,7 +4955,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for atomicals_nft"
         }
@@ -4962,7 +4996,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for realms"
         }
@@ -5004,7 +5038,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for avm"
         }
@@ -5046,7 +5080,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for tap_doge"
         }
@@ -5087,7 +5121,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for drops"
         }
@@ -5129,7 +5163,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for cat20"
         }
@@ -5169,7 +5203,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for cat721"
         }
@@ -5209,7 +5243,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for bitmap"
         }
@@ -5250,7 +5284,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for unat"
         }
@@ -5290,7 +5324,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for doginals"
         }
@@ -5330,7 +5364,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for drc20"
         }
@@ -5371,7 +5405,7 @@
         },
         {
           "repository": "docs-platform",
-          "commit": "4e1867c62ee0858434658ba931b983be5eab76b9",
+          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for chainbloom"
         }
@@ -8436,6 +8470,306 @@
   ],
   "walkthroughs": [
     {
+      "id": "vw-alkanes-mint",
+      "title": "Mint Alkanes walkthrough",
+      "workflowId": "wf-alkanes-mint",
+      "path": "/visual-guides/vw-alkanes-mint/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:31:47.752Z",
+      "lastVerifiedAt": "2026-09-02T20:31:47.752Z"
+    },
+    {
+      "id": "vw-arc20-deploy",
+      "title": "Deploy a token on ARC-20 walkthrough",
+      "workflowId": "wf-arc20-deploy",
+      "path": "/visual-guides/vw-arc20-deploy/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:31:56.358Z",
+      "lastVerifiedAt": "2026-09-02T20:31:56.358Z"
+    },
+    {
+      "id": "vw-arc20-mint",
+      "title": "Mint ARC-20 walkthrough",
+      "workflowId": "wf-arc20-mint",
+      "path": "/visual-guides/vw-arc20-mint/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:32:04.698Z",
+      "lastVerifiedAt": "2026-09-02T20:32:04.698Z"
+    },
+    {
+      "id": "vw-arc20-transfer",
+      "title": "Transfer ARC-20 walkthrough",
+      "workflowId": "wf-arc20-transfer",
+      "path": "/visual-guides/vw-arc20-transfer/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:32:12.919Z",
+      "lastVerifiedAt": "2026-09-02T20:32:12.919Z"
+    },
+    {
+      "id": "vw-block20-deploy",
+      "title": "Deploy a token on BLOCK-20 walkthrough",
+      "workflowId": "wf-block20-deploy",
+      "path": "/visual-guides/vw-block20-deploy/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:32:21.447Z",
+      "lastVerifiedAt": "2026-09-02T20:32:21.447Z"
+    },
+    {
+      "id": "vw-block20-mint",
+      "title": "Mint BLOCK-20 walkthrough",
+      "workflowId": "wf-block20-mint",
+      "path": "/visual-guides/vw-block20-mint/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:32:30.083Z",
+      "lastVerifiedAt": "2026-09-02T20:32:30.084Z"
+    },
+    {
+      "id": "vw-block20-transfer",
+      "title": "Transfer BLOCK-20 walkthrough",
+      "workflowId": "wf-block20-transfer",
+      "path": "/visual-guides/vw-block20-transfer/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:32:38.686Z",
+      "lastVerifiedAt": "2026-09-02T20:32:38.686Z"
+    },
+    {
+      "id": "vw-brc20-deploy",
+      "title": "Deploy a BRC-20 token",
+      "workflowId": "wf-brc20-deploy",
+      "path": "/visual-guides/vw-brc20-deploy/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "practiceScenarioId": "ps-brc20-deploy",
+      "lastCapturedAt": "2026-09-02T00:00:00.000Z",
+      "lastVerifiedAt": "2026-09-02T00:00:00.000Z"
+    },
+    {
+      "id": "vw-brc20-mint",
+      "title": "Mint BRC-20 walkthrough",
+      "workflowId": "wf-brc20-mint",
+      "path": "/visual-guides/vw-brc20-mint/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:28:27.843Z",
+      "lastVerifiedAt": "2026-09-02T20:28:27.843Z"
+    },
+    {
+      "id": "vw-brc20-transfer",
+      "title": "Transfer BRC-20 walkthrough",
+      "workflowId": "wf-brc20-transfer",
+      "path": "/visual-guides/vw-brc20-transfer/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:28:37.321Z",
+      "lastVerifiedAt": "2026-09-02T20:28:37.321Z"
+    },
+    {
+      "id": "vw-dust20-deploy",
+      "title": "Deploy a token on DUST-20 walkthrough",
+      "workflowId": "wf-dust20-deploy",
+      "path": "/visual-guides/vw-dust20-deploy/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:32:47.519Z",
+      "lastVerifiedAt": "2026-09-02T20:32:47.519Z"
+    },
+    {
+      "id": "vw-dust20-mint",
+      "title": "Mint DUST-20 walkthrough",
+      "workflowId": "wf-dust20-mint",
+      "path": "/visual-guides/vw-dust20-mint/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:32:56.716Z",
+      "lastVerifiedAt": "2026-09-02T20:32:56.716Z"
+    },
+    {
+      "id": "vw-mezcal-etch",
+      "title": "Etch a Rune on Mezcal walkthrough",
+      "workflowId": "wf-mezcal-etch",
+      "path": "/visual-guides/vw-mezcal-etch/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:29:38.661Z",
+      "lastVerifiedAt": "2026-09-02T20:29:38.661Z"
+    },
+    {
+      "id": "vw-mezcal-mint",
+      "title": "Mint Mezcal walkthrough",
+      "workflowId": "wf-mezcal-mint",
+      "path": "/visual-guides/vw-mezcal-mint/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:29:48.270Z",
+      "lastVerifiedAt": "2026-09-02T20:29:48.270Z"
+    },
+    {
+      "id": "vw-mezcal-transfer",
+      "title": "Transfer Mezcal walkthrough",
+      "workflowId": "wf-mezcal-transfer",
+      "path": "/visual-guides/vw-mezcal-transfer/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:29:58.116Z",
+      "lastVerifiedAt": "2026-09-02T20:29:58.116Z"
+    },
+    {
+      "id": "vw-op-drop-deploy",
+      "title": "Deploy a token on OP_DROP walkthrough",
+      "workflowId": "wf-op-drop-deploy",
+      "path": "/visual-guides/vw-op-drop-deploy/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:31:27.898Z",
+      "lastVerifiedAt": "2026-09-02T20:31:27.899Z"
+    },
+    {
+      "id": "vw-op-drop-mint",
+      "title": "Mint OP_DROP walkthrough",
+      "workflowId": "wf-op-drop-mint",
+      "path": "/visual-guides/vw-op-drop-mint/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:31:37.773Z",
+      "lastVerifiedAt": "2026-09-02T20:31:37.773Z"
+    },
+    {
+      "id": "vw-op-return-deploy",
+      "title": "Deploy a token on OP-20 walkthrough",
+      "workflowId": "wf-op-return-deploy",
+      "path": "/visual-guides/vw-op-return-deploy/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:30:58.126Z",
+      "lastVerifiedAt": "2026-09-02T20:30:58.126Z"
+    },
+    {
+      "id": "vw-op-return-inscribe",
+      "title": "Inscribe text on OP-20 walkthrough",
+      "workflowId": "wf-op-return-inscribe",
+      "path": "/visual-guides/vw-op-return-inscribe/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:30:37.998Z",
+      "lastVerifiedAt": "2026-09-02T20:30:37.998Z"
+    },
+    {
+      "id": "vw-op-return-inscribe-file",
+      "title": "Inscribe a file on OP-20 walkthrough",
+      "workflowId": "wf-op-return-inscribe-file",
+      "path": "/visual-guides/vw-op-return-inscribe-file/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:30:48.311Z",
+      "lastVerifiedAt": "2026-09-02T20:30:48.311Z"
+    },
+    {
+      "id": "vw-op-return-mint",
+      "title": "Mint OP-20 walkthrough",
+      "workflowId": "wf-op-return-mint",
+      "path": "/visual-guides/vw-op-return-mint/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:31:07.680Z",
+      "lastVerifiedAt": "2026-09-02T20:31:07.680Z"
+    },
+    {
+      "id": "vw-op-return-transfer",
+      "title": "Transfer OP-20 walkthrough",
+      "workflowId": "wf-op-return-transfer",
+      "path": "/visual-guides/vw-op-return-transfer/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:31:18.003Z",
+      "lastVerifiedAt": "2026-09-02T20:31:18.003Z"
+    },
+    {
+      "id": "vw-order-lifecycle",
+      "title": "Follow an order from created to completed",
+      "workflowId": "wf-ordinals-inscribe",
+      "path": "/visual-guides/vw-order-lifecycle/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 4,
+      "practiceScenarioId": "ps-order-lifecycle",
+      "lastCapturedAt": "2026-09-02T00:00:00.000Z",
+      "lastVerifiedAt": "2026-09-02T00:00:00.000Z"
+    },
+    {
+      "id": "vw-ordinals-collection",
+      "title": "Create a collection with a parent on Ordinals walkthrough",
+      "workflowId": "wf-ordinals-collection",
+      "path": "/visual-guides/vw-ordinals-collection/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:33:17.414Z",
+      "lastVerifiedAt": "2026-09-02T20:33:17.414Z"
+    },
+    {
+      "id": "vw-ordinals-inscribe",
+      "title": "Inscribe text on Ordinals walkthrough",
+      "workflowId": "wf-ordinals-inscribe",
+      "path": "/visual-guides/vw-ordinals-inscribe/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:27:49.340Z",
+      "lastVerifiedAt": "2026-09-02T20:27:49.340Z"
+    },
+    {
+      "id": "vw-ordinals-inscribe-batch",
+      "title": "Create a batch inscription on Ordinals walkthrough",
+      "workflowId": "wf-ordinals-inscribe-batch",
+      "path": "/visual-guides/vw-ordinals-inscribe-batch/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:33:05.445Z",
+      "lastVerifiedAt": "2026-09-02T20:33:05.445Z"
+    },
+    {
+      "id": "vw-ordinals-inscribe-file",
+      "title": "Inscribe your first file",
+      "workflowId": "wf-ordinals-inscribe-file",
+      "path": "/visual-guides/vw-ordinals-inscribe-file/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "practiceScenarioId": "ps-ordinals-inscribe-file",
+      "lastCapturedAt": "2026-09-02T00:00:00.000Z",
+      "lastVerifiedAt": "2026-09-02T00:00:00.000Z"
+    },
+    {
       "id": "vw-ordinals-inscribe-text",
       "title": "Inscribe your first text",
       "workflowId": "wf-ordinals-inscribe",
@@ -8448,26 +8782,25 @@
       "lastVerifiedAt": "2026-09-02T00:00:00.000Z"
     },
     {
-      "id": "vw-ordinals-inscribe-file",
-      "title": "Inscribe your first file",
-      "workflowId": "wf-ordinals-inscribe-file",
-      "path": "/visual-guides/vw-ordinals-inscribe-file/",
+      "id": "vw-ordinals-transfer",
+      "title": "Transfer Ordinals walkthrough",
+      "workflowId": "wf-ordinals-transfer",
+      "path": "/visual-guides/vw-ordinals-transfer/",
       "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
       "fixtureVersion": "1",
-      "steps": 6,
-      "practiceScenarioId": "ps-ordinals-inscribe-file",
-      "lastCapturedAt": "2026-09-02T00:00:00.000Z",
-      "lastVerifiedAt": "2026-09-02T00:00:00.000Z"
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:27:58.447Z",
+      "lastVerifiedAt": "2026-09-02T20:27:58.447Z"
     },
     {
-      "id": "vw-brc20-deploy",
-      "title": "Deploy a BRC-20 token",
-      "workflowId": "wf-brc20-deploy",
-      "path": "/visual-guides/vw-brc20-deploy/",
+      "id": "vw-payment-recovery",
+      "title": "Recover a payment problem",
+      "workflowId": "wf-ordinals-inscribe",
+      "path": "/visual-guides/vw-payment-recovery/",
       "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
       "fixtureVersion": "1",
-      "steps": 6,
-      "practiceScenarioId": "ps-brc20-deploy",
+      "steps": 3,
+      "practiceScenarioId": "ps-stuck-payment",
       "lastCapturedAt": "2026-09-02T00:00:00.000Z",
       "lastVerifiedAt": "2026-09-02T00:00:00.000Z"
     },
@@ -8478,34 +8811,120 @@
       "path": "/visual-guides/vw-runes-etch/",
       "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
       "fixtureVersion": "1",
-      "steps": 6,
+      "steps": 3,
       "practiceScenarioId": "ps-runes-etch",
       "lastCapturedAt": "2026-09-02T00:00:00.000Z",
       "lastVerifiedAt": "2026-09-02T00:00:00.000Z"
     },
     {
-      "id": "vw-order-lifecycle",
-      "title": "Follow an order from created to completed",
-      "workflowId": "wf-ordinals-inscribe",
-      "path": "/visual-guides/vw-order-lifecycle/",
+      "id": "vw-runes-mint",
+      "title": "Mint Runes walkthrough",
+      "workflowId": "wf-runes-mint",
+      "path": "/visual-guides/vw-runes-mint/",
       "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
       "fixtureVersion": "1",
-      "steps": 5,
-      "practiceScenarioId": "ps-order-lifecycle",
-      "lastCapturedAt": "2026-09-02T00:00:00.000Z",
-      "lastVerifiedAt": "2026-09-02T00:00:00.000Z"
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:29:17.969Z",
+      "lastVerifiedAt": "2026-09-02T20:29:17.969Z"
     },
     {
-      "id": "vw-payment-recovery",
-      "title": "Recover a payment problem",
-      "workflowId": "wf-ordinals-inscribe",
-      "path": "/visual-guides/vw-payment-recovery/",
+      "id": "vw-runes-transfer",
+      "title": "Transfer Runes walkthrough",
+      "workflowId": "wf-runes-transfer",
+      "path": "/visual-guides/vw-runes-transfer/",
       "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
       "fixtureVersion": "1",
-      "steps": 5,
-      "practiceScenarioId": "ps-stuck-payment",
-      "lastCapturedAt": "2026-09-02T00:00:00.000Z",
-      "lastVerifiedAt": "2026-09-02T00:00:00.000Z"
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:29:28.201Z",
+      "lastVerifiedAt": "2026-09-02T20:29:28.201Z"
+    },
+    {
+      "id": "vw-src20-deploy",
+      "title": "Deploy a token on SRC-20 walkthrough",
+      "workflowId": "wf-src20-deploy",
+      "path": "/visual-guides/vw-src20-deploy/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:28:47.015Z",
+      "lastVerifiedAt": "2026-09-02T20:28:47.015Z"
+    },
+    {
+      "id": "vw-src20-mint",
+      "title": "Mint SRC-20 walkthrough",
+      "workflowId": "wf-src20-mint",
+      "path": "/visual-guides/vw-src20-mint/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:28:56.414Z",
+      "lastVerifiedAt": "2026-09-02T20:28:56.414Z"
+    },
+    {
+      "id": "vw-src20-transfer",
+      "title": "Transfer SRC-20 walkthrough",
+      "workflowId": "wf-src20-transfer",
+      "path": "/visual-guides/vw-src20-transfer/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:29:06.222Z",
+      "lastVerifiedAt": "2026-09-02T20:29:06.222Z"
+    },
+    {
+      "id": "vw-stamps-inscribe",
+      "title": "Inscribe text on Bitcoin Stamps walkthrough",
+      "workflowId": "wf-stamps-inscribe",
+      "path": "/visual-guides/vw-stamps-inscribe/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:28:08.162Z",
+      "lastVerifiedAt": "2026-09-02T20:28:08.162Z"
+    },
+    {
+      "id": "vw-stamps-inscribe-file",
+      "title": "Inscribe a file on Bitcoin Stamps walkthrough",
+      "workflowId": "wf-stamps-inscribe-file",
+      "path": "/visual-guides/vw-stamps-inscribe-file/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:28:17.756Z",
+      "lastVerifiedAt": "2026-09-02T20:28:17.756Z"
+    },
+    {
+      "id": "vw-tap-deploy",
+      "title": "Deploy a token on TAP walkthrough",
+      "workflowId": "wf-tap-deploy",
+      "path": "/visual-guides/vw-tap-deploy/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:30:08.078Z",
+      "lastVerifiedAt": "2026-09-02T20:30:08.078Z"
+    },
+    {
+      "id": "vw-tap-mint",
+      "title": "Mint TAP walkthrough",
+      "workflowId": "wf-tap-mint",
+      "path": "/visual-guides/vw-tap-mint/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:30:18.270Z",
+      "lastVerifiedAt": "2026-09-02T20:30:18.270Z"
+    },
+    {
+      "id": "vw-tap-transfer",
+      "title": "Transfer TAP walkthrough",
+      "workflowId": "wf-tap-transfer",
+      "path": "/visual-guides/vw-tap-transfer/",
+      "captureCommit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+      "fixtureVersion": "1",
+      "steps": 3,
+      "lastCapturedAt": "2026-09-02T20:30:27.575Z",
+      "lastVerifiedAt": "2026-09-02T20:30:27.575Z"
     }
   ],
   "practiceScenarios": [
