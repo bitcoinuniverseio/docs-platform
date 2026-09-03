@@ -16,7 +16,7 @@ jobs:
   checks:
     # The accessibility pass needs a Linux browser host. Keep it on the
     # approved Ultra fleet, which already carries the pinned toolchain.
-    runs-on: [self-hosted, linux-ultra]
+    runs-on: [self-hosted, linux, x64, universe-linux]
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: bitcoinuniverseio/universe-ci-actions/universe-node-env@fd406c34c10a8275c370e22531e1c3d4aa32a901
