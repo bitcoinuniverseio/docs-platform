@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-02T17:42:15.189Z",
+  "generatedAt": "2026-09-14T18:22:42.094Z",
   "generatorVersion": "1.0.0",
   "sourceCommits": {
-    "inscribe": "caac2606a479a1551b97187d3e542adf7faf3df7",
-    "docs-platform": "ae8612704994ccf6e4fd64cda08c38183be00834",
-    "docs-inscribe": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0"
+    "inscribe": "d947a2f95200f27c25810f35a6644ba7094831b7",
+    "docs-platform": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
+    "docs-inscribe": "185e6d2f136b2f12aba40e30a220ec025247a391"
   },
   "chain": "bitcoin",
   "network": "mainnet",
@@ -127,19 +127,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "inscribe support for ordinals"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for ordinals"
         }
@@ -271,19 +271,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "transfer support for ordinals"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for ordinals"
         }
@@ -375,19 +375,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "inscribe support for stamps"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for stamps"
         }
@@ -479,19 +479,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "inscribe support for stamps"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for stamps"
         }
@@ -590,19 +590,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "deploy support for brc20"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for brc20"
         }
@@ -701,19 +701,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "mint support for brc20"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for brc20"
         }
@@ -817,19 +817,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "transfer support for brc20"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for brc20"
         }
@@ -921,19 +921,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "deploy support for src20"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for src20"
         }
@@ -1025,19 +1025,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "mint support for src20"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for src20"
         }
@@ -1129,19 +1129,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "transfer support for src20"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for src20"
         }
@@ -1239,19 +1239,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "etch support for runes"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for runes"
         }
@@ -1348,19 +1348,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "mint support for runes"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for runes"
         }
@@ -1457,19 +1457,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "transfer support for runes"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for runes"
         }
@@ -1565,19 +1565,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "etch support for mezcal"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for mezcal"
         }
@@ -1673,19 +1673,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "mint support for mezcal"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for mezcal"
         }
@@ -1787,19 +1787,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "transfer support for mezcal"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for mezcal"
         }
@@ -1896,19 +1896,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "deploy support for tap"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for tap"
         }
@@ -2005,19 +2005,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "mint support for tap"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for tap"
         }
@@ -2120,19 +2120,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "transfer support for tap"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for tap"
         }
@@ -2213,19 +2213,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "inscribe support for op_return"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for op_return"
         }
@@ -2311,19 +2311,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "inscribe support for op_return"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for op_return"
         }
@@ -2407,19 +2407,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "deploy support for op_return"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for op_return"
         }
@@ -2503,19 +2503,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "mint support for op_return"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for op_return"
         }
@@ -2599,19 +2599,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "transfer support for op_return"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for op_return"
         }
@@ -2707,19 +2707,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "deploy support for op_drop"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for op_drop"
         }
@@ -2815,19 +2815,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "mint support for op_drop"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for op_drop"
         }
@@ -2919,19 +2919,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "mint support for alkanes"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for alkanes"
         }
@@ -3016,19 +3016,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "deploy support for arc20"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for arc20"
         }
@@ -3113,19 +3113,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "mint support for arc20"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for arc20"
         }
@@ -3210,19 +3210,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "transfer support for arc20"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for arc20"
         }
@@ -3318,19 +3318,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "deploy support for block20"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for block20"
         }
@@ -3426,19 +3426,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "mint support for block20"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for block20"
         }
@@ -3540,19 +3540,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "transfer support for block20"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for block20"
         }
@@ -3648,19 +3648,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "deploy support for dust20"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for dust20"
         }
@@ -3756,19 +3756,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "mint support for dust20"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for dust20"
         }
@@ -3895,19 +3895,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "inscribe support for ordinals"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for ordinals"
         }
@@ -4035,19 +4035,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "inscribe support for ordinals"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee model and safety facts"
         },
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "backend/data/production-protocol-contract.json",
           "proves": "deployment state for ordinals"
         }
@@ -4105,7 +4105,7 @@
       "sources": [
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/learning-config.json",
           "proves": "practice-first learning route"
         }
@@ -4150,19 +4150,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for ordinals"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for ordinals"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee, batch, and collection facts for ordinals"
         }
@@ -4206,19 +4206,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for stamps"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for stamps"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee, batch, and collection facts for stamps"
         }
@@ -4263,19 +4263,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for brc20"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for brc20"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee, batch, and collection facts for brc20"
         }
@@ -4320,19 +4320,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for src20"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for src20"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee, batch, and collection facts for src20"
         }
@@ -4376,19 +4376,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for runes"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for runes"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee, batch, and collection facts for runes"
         }
@@ -4430,19 +4430,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for mezcal"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for mezcal"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee, batch, and collection facts for mezcal"
         }
@@ -4486,19 +4486,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for tap"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for tap"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee, batch, and collection facts for tap"
         }
@@ -4542,19 +4542,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for op_return"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for op_return"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee, batch, and collection facts for op_return"
         }
@@ -4580,14 +4580,14 @@
         "actionable": true
       },
       "contentRestrictions": [
-        "BIP-110 payload rules"
+        "OP_DROP protocol payload rules"
       ],
       "batch": false,
       "collection": false,
       "parent": false,
       "feeModel": "commit_reveal",
-      "outputValue": "BIP-110 drop outputs keep at least dust value that stays owned by the user.",
-      "transferModel": "Drop tokens move as inscribed outputs under BIP-110.",
+      "outputValue": "Drop outputs keep at least dust value that stays owned by the user.",
+      "transferModel": "Drop tokens move through their registered OP_DROP carrier.",
       "dependencies": [
         "index-drops-and-opdrop"
       ],
@@ -4598,19 +4598,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for op_drop"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for op_drop"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee, batch, and collection facts for op_drop"
         }
@@ -4652,19 +4652,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for alkanes"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for alkanes"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee, batch, and collection facts for alkanes"
         }
@@ -4710,19 +4710,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for arc20"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for arc20"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee, batch, and collection facts for arc20"
         }
@@ -4766,19 +4766,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for block20"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for block20"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee, batch, and collection facts for block20"
         }
@@ -4821,19 +4821,19 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for dust20"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for dust20"
         },
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "data/protocol-facts.json",
           "proves": "fee, batch, and collection facts for dust20"
         }
@@ -4867,13 +4867,13 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for src101"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for src101"
         }
@@ -4908,13 +4908,13 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for atomicals"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for atomicals"
         }
@@ -4949,13 +4949,13 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for atomicals_nft"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for atomicals_nft"
         }
@@ -4990,13 +4990,13 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for realms"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for realms"
         }
@@ -5032,13 +5032,13 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for avm"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for avm"
         }
@@ -5074,13 +5074,13 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for tap_doge"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for tap_doge"
         }
@@ -5115,13 +5115,13 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for drops"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for drops"
         }
@@ -5157,13 +5157,13 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for cat20"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for cat20"
         }
@@ -5197,13 +5197,13 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for cat721"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for cat721"
         }
@@ -5237,13 +5237,13 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for bitmap"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for bitmap"
         }
@@ -5278,13 +5278,13 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for unat"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for unat"
         }
@@ -5318,13 +5318,13 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for doginals"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for doginals"
         }
@@ -5358,13 +5358,13 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for drc20"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for drc20"
         }
@@ -5399,13 +5399,13 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/utils/ecosystemInboundIntent.ts",
           "proves": "creation operations for chainbloom"
         },
         {
           "repository": "docs-platform",
-          "commit": "ae8612704994ccf6e4fd64cda08c38183be00834",
+          "commit": "c38eae0833de17764d64f6f85fbc3901d9e005ac",
           "path": "packages/ecosystem-registry/data/capability-snapshot.json",
           "proves": "identity and chain for chainbloom"
         }
@@ -5453,7 +5453,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide getting-started"
         }
@@ -5495,7 +5495,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide connect-wallet"
         }
@@ -5544,7 +5544,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide navigation-and-search"
         }
@@ -5592,7 +5592,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide first-inscription"
         }
@@ -5644,7 +5644,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide inscribe-basics"
         }
@@ -5694,7 +5694,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide inscribe-text"
         }
@@ -5735,7 +5735,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide inscribe-files"
         }
@@ -5771,7 +5771,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide inscribe-names"
         }
@@ -5807,7 +5807,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide inscribe-parent-child"
         }
@@ -5843,7 +5843,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide inscribe-delegate"
         }
@@ -5879,7 +5879,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide inscribe-gallery"
         }
@@ -5907,7 +5907,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide inscribe-stamps"
         }
@@ -5953,7 +5953,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide inscribe-data-lab"
         }
@@ -6001,7 +6001,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide ord-studio"
         }
@@ -6053,9 +6053,43 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide avm-studio"
+        }
+      ]
+    },
+    {
+      "id": "recursive-apps",
+      "title": "Recursive Apps & Package Studio",
+      "category": "create",
+      "surface": "app",
+      "workspace": "recursive-apps",
+      "steps": [
+        {
+          "id": "recursive-apps_choose-an-application-archetype",
+          "title": "Choose an application archetype"
+        },
+        {
+          "id": "recursive-apps_author-manifest-and-code",
+          "title": "Author manifest and code"
+        },
+        {
+          "id": "recursive-apps_inspect-on-chain-package-registry",
+          "title": "Inspect on-chain package registry"
+        },
+        {
+          "id": "recursive-apps_plan-release-and-size-fees",
+          "title": "Plan release and size fees"
+        }
+      ],
+      "protocols": [],
+      "sources": [
+        {
+          "repository": "inscribe",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
+          "path": "frontend/src/features/docs/content",
+          "proves": "guide recursive-apps"
         }
       ]
     },
@@ -6103,7 +6137,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide protocols-overview"
         }
@@ -6152,7 +6186,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide brc20"
         }
@@ -6200,7 +6234,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide runes"
         }
@@ -6245,7 +6279,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide src20"
         }
@@ -6289,7 +6323,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide tap"
         }
@@ -6329,7 +6363,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide tap-doge"
         }
@@ -6373,7 +6407,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide cat20"
         }
@@ -6409,7 +6443,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide alkanes"
         }
@@ -6450,7 +6484,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide arc20"
         }
@@ -6490,7 +6524,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide src101"
         }
@@ -6536,7 +6570,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide mezcal"
         }
@@ -6581,7 +6615,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide op-return"
         }
@@ -6629,7 +6663,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide drops"
         }
@@ -6681,7 +6715,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide drop-pacts"
         }
@@ -6726,7 +6760,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide op-drop"
         }
@@ -6767,7 +6801,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide block20"
         }
@@ -6804,7 +6838,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide dust20"
         }
@@ -6846,7 +6880,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide tandem"
         }
@@ -6886,7 +6920,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide atomicals-nfts"
         }
@@ -6922,7 +6956,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide atomicals-realms"
         }
@@ -6964,9 +6998,65 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide witness-circles"
+        }
+      ]
+    },
+    {
+      "id": "taproot-assets",
+      "title": "Taproot Assets",
+      "category": "protocols",
+      "surface": "app",
+      "workspace": "taproot-assets",
+      "steps": [
+        {
+          "id": "taproot-assets_check-the-gateway-first",
+          "title": "Check the gateway first"
+        },
+        {
+          "id": "taproot-assets_quote-before-you-sign",
+          "title": "Quote before you sign"
+        },
+        {
+          "id": "taproot-assets_acknowledge-then-sign",
+          "title": "Acknowledge, then sign"
+        }
+      ],
+      "protocols": [],
+      "sources": [
+        {
+          "repository": "inscribe",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
+          "path": "frontend/src/features/docs/content",
+          "proves": "guide taproot-assets"
+        }
+      ]
+    },
+    {
+      "id": "rgb",
+      "title": "RGB",
+      "category": "protocols",
+      "surface": "app",
+      "workspace": "rgb",
+      "steps": [
+        {
+          "id": "rgb_understand-private-state",
+          "title": "Understand private state"
+        },
+        {
+          "id": "rgb_keep-revisions-moving-forward",
+          "title": "Keep revisions moving forward"
+        }
+      ],
+      "protocols": [],
+      "sources": [
+        {
+          "repository": "inscribe",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
+          "path": "frontend/src/features/docs/content",
+          "proves": "guide rgb"
         }
       ]
     },
@@ -7010,7 +7100,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide patina"
         }
@@ -7052,9 +7142,173 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide chainbloom"
+        }
+      ]
+    },
+    {
+      "id": "spark",
+      "title": "Spark Network Studio",
+      "category": "protocols",
+      "surface": "app",
+      "workspace": "spark",
+      "steps": [
+        {
+          "id": "spark_generate-a-deposit-address",
+          "title": "Generate a deposit address"
+        },
+        {
+          "id": "spark_transfer-statechain-leaves",
+          "title": "Transfer statechain leaves"
+        }
+      ],
+      "protocols": [],
+      "sources": [
+        {
+          "repository": "inscribe",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
+          "path": "frontend/src/features/docs/content",
+          "proves": "guide spark"
+        }
+      ]
+    },
+    {
+      "id": "babylon",
+      "title": "Babylon BTC Staking Studio",
+      "category": "protocols",
+      "surface": "app",
+      "workspace": "babylon",
+      "steps": [
+        {
+          "id": "babylon_select-a-finality-provider",
+          "title": "Select a finality provider"
+        },
+        {
+          "id": "babylon_sign-staking-psbt",
+          "title": "Sign staking PSBT"
+        }
+      ],
+      "protocols": [],
+      "sources": [
+        {
+          "repository": "inscribe",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
+          "path": "frontend/src/features/docs/content",
+          "proves": "guide babylon"
+        }
+      ]
+    },
+    {
+      "id": "private-payments",
+      "title": "Private Payments Center",
+      "category": "protocols",
+      "surface": "app",
+      "workspace": "private-payments",
+      "steps": [
+        {
+          "id": "private-payments_publish-silent-payment-address",
+          "title": "Publish silent payment address"
+        },
+        {
+          "id": "private-payments_initiate-payjoin-sessions",
+          "title": "Initiate Payjoin sessions"
+        }
+      ],
+      "protocols": [],
+      "sources": [
+        {
+          "repository": "inscribe",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
+          "path": "frontend/src/features/docs/content",
+          "proves": "guide private-payments"
+        }
+      ]
+    },
+    {
+      "id": "rgbpp-fiber",
+      "title": "RGB++ and Fiber Studio",
+      "category": "protocols",
+      "surface": "app",
+      "workspace": "rgbpp-fiber",
+      "steps": [
+        {
+          "id": "rgbpp-fiber_bind-and-transfer-isomorphic-assets",
+          "title": "Bind and transfer isomorphic assets"
+        },
+        {
+          "id": "rgbpp-fiber_open-fiber-payment-channels",
+          "title": "Open Fiber payment channels"
+        }
+      ],
+      "protocols": [],
+      "sources": [
+        {
+          "repository": "inscribe",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
+          "path": "frontend/src/features/docs/content",
+          "proves": "guide rgbpp-fiber"
+        }
+      ]
+    },
+    {
+      "id": "nostr",
+      "title": "Nostr Identity, Publishing and Asset Commerce Studio",
+      "category": "protocols",
+      "surface": "app",
+      "workspace": "nostr",
+      "steps": [
+        {
+          "id": "nostr_connect-nip-07-or-nip-46-signer",
+          "title": "Connect NIP-07 or NIP-46 signer"
+        },
+        {
+          "id": "nostr_trade-on-ordex-bound-marketplace",
+          "title": "Trade on OrdeX-bound marketplace"
+        }
+      ],
+      "protocols": [],
+      "sources": [
+        {
+          "repository": "inscribe",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
+          "path": "frontend/src/features/docs/content",
+          "proves": "guide nostr"
+        }
+      ]
+    },
+    {
+      "id": "protocol-assurance",
+      "title": "Protocol Assurance & Verification Lab",
+      "category": "protocols",
+      "surface": "app",
+      "workspace": "assurance",
+      "steps": [
+        {
+          "id": "protocol-assurance_perform-reproducible-byte-match-build",
+          "title": "Perform reproducible byte-match build"
+        },
+        {
+          "id": "protocol-assurance_run-static-invariant-checks",
+          "title": "Run static invariant checks"
+        },
+        {
+          "id": "protocol-assurance_simulate-deterministic-execution",
+          "title": "Simulate deterministic execution"
+        },
+        {
+          "id": "protocol-assurance_issue-dsse-signed-attestation",
+          "title": "Issue DSSE signed attestation"
+        }
+      ],
+      "protocols": [],
+      "sources": [
+        {
+          "repository": "inscribe",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
+          "path": "frontend/src/features/docs/content",
+          "proves": "guide protocol-assurance"
         }
       ]
     },
@@ -7104,7 +7358,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide portfolio"
         }
@@ -7150,7 +7404,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide explore-address"
         }
@@ -7196,7 +7450,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide watchlist"
         }
@@ -7246,7 +7500,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide activity-orders"
         }
@@ -7279,9 +7533,43 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide address-book"
+        }
+      ]
+    },
+    {
+      "id": "accounting-ledger",
+      "title": "Bitcoin Accounting & Evidence Ledger",
+      "category": "wallet",
+      "surface": "app",
+      "workspace": "accounting",
+      "steps": [
+        {
+          "id": "accounting-ledger_select-cost-basis-methodology",
+          "title": "Select cost basis methodology"
+        },
+        {
+          "id": "accounting-ledger_review-open-tax-lots",
+          "title": "Review open tax lots"
+        },
+        {
+          "id": "accounting-ledger_resolve-reconciliation-anomalies",
+          "title": "Resolve reconciliation anomalies"
+        },
+        {
+          "id": "accounting-ledger_generate-signed-evidence-bundles",
+          "title": "Generate signed evidence bundles"
+        }
+      ],
+      "protocols": [],
+      "sources": [
+        {
+          "repository": "inscribe",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
+          "path": "frontend/src/features/docs/content",
+          "proves": "guide accounting-ledger"
         }
       ]
     },
@@ -7335,7 +7623,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide mempool-map"
         }
@@ -7377,7 +7665,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide pending-tx-scanner"
         }
@@ -7411,7 +7699,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide ecosystem-hub"
         }
@@ -7450,7 +7738,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide tools-hub"
         }
@@ -7492,7 +7780,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide analytics"
         }
@@ -7544,7 +7832,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide duels-and-meme-map"
         }
@@ -7584,7 +7872,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide text-search"
         }
@@ -7633,7 +7921,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide custom-tx"
         }
@@ -7677,7 +7965,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide send-inscriptions"
         }
@@ -7719,7 +8007,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide utxo-split"
         }
@@ -7761,7 +8049,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide bump-stuck-tx"
         }
@@ -7806,9 +8094,43 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide asset-recovery"
+        }
+      ]
+    },
+    {
+      "id": "node-hub",
+      "title": "Sovereign Node & Indexer Hub",
+      "category": "advanced",
+      "surface": "app",
+      "workspace": "nodes",
+      "steps": [
+        {
+          "id": "node-hub_run-host-preflight-checks",
+          "title": "Run host preflight checks"
+        },
+        {
+          "id": "node-hub_select-a-stack-profile",
+          "title": "Select a stack profile"
+        },
+        {
+          "id": "node-hub_pair-host-agent-securely",
+          "title": "Pair host agent securely"
+        },
+        {
+          "id": "node-hub_verify-configuration-backups",
+          "title": "Verify configuration backups"
+        }
+      ],
+      "protocols": [],
+      "sources": [
+        {
+          "repository": "inscribe",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
+          "path": "frontend/src/features/docs/content",
+          "proves": "guide node-hub"
         }
       ]
     },
@@ -7847,7 +8169,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide fees-and-costs"
         }
@@ -7898,7 +8220,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide payments-and-confirmations"
         }
@@ -7935,7 +8257,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide fix-stuck-payment"
         }
@@ -7964,10 +8286,6 @@
           "title": "Read the asset preflight"
         },
         {
-          "id": "wallet-safety_use-the-bip-110-ready-checkbox",
-          "title": "Use the \"BIP-110 READY\" checkbox"
-        },
-        {
           "id": "wallet-safety_verify-the-address-and-network",
           "title": "Verify the address and network"
         }
@@ -7979,7 +8297,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide wallet-safety"
         }
@@ -8020,7 +8338,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide security-checklist"
         }
@@ -8064,7 +8382,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide workflow-deploy-token"
         }
@@ -8106,7 +8424,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide workflow-mint-token"
         }
@@ -8148,7 +8466,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide workflow-launch-collection"
         }
@@ -8192,7 +8510,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide workflow-send-assets"
         }
@@ -8234,7 +8552,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide workflow-recover-anything"
         }
@@ -8274,7 +8592,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide workflow-research-before-mint"
         }
@@ -8308,7 +8626,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide faq-general"
         }
@@ -8342,7 +8660,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide faq-orders-payments"
         }
@@ -8376,7 +8694,7 @@
       "sources": [
         {
           "repository": "inscribe",
-          "commit": "caac2606a479a1551b97187d3e542adf7faf3df7",
+          "commit": "d947a2f95200f27c25810f35a6644ba7094831b7",
           "path": "frontend/src/features/docs/content",
           "proves": "guide troubleshooting-errors"
         }
@@ -8393,7 +8711,7 @@
       "sources": [
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "src/content/docs/order-recovery.md",
           "proves": "public page"
         }
@@ -8410,7 +8728,7 @@
       "sources": [
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "src/content/docs/protocol-data-status.md",
           "proves": "public page"
         }
@@ -8427,7 +8745,7 @@
       "sources": [
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "src/content/docs/what-it-costs.md",
           "proves": "public page"
         }
@@ -8444,7 +8762,7 @@
       "sources": [
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "src/content/docs/asset-safety.md",
           "proves": "public page"
         }
@@ -8461,7 +8779,7 @@
       "sources": [
         {
           "repository": "docs-inscribe",
-          "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+          "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
           "path": "src/content/docs/workspaces.md",
           "proves": "public page"
         }
@@ -9346,13 +9664,13 @@
         "sources": [
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "data/recovery-decision-table.json",
             "proves": "diagnostic outcomes"
           },
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "src/content/docs/protocol-data-status.md",
             "proves": "order lifecycle and recovery semantics"
           }
@@ -9378,13 +9696,13 @@
         "sources": [
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "data/recovery-decision-table.json",
             "proves": "diagnostic outcomes"
           },
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "src/content/docs/protocol-data-status.md",
             "proves": "order lifecycle and recovery semantics"
           }
@@ -9411,13 +9729,13 @@
         "sources": [
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "data/recovery-decision-table.json",
             "proves": "diagnostic outcomes"
           },
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "src/content/docs/protocol-data-status.md",
             "proves": "order lifecycle and recovery semantics"
           }
@@ -9443,13 +9761,13 @@
         "sources": [
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "data/recovery-decision-table.json",
             "proves": "diagnostic outcomes"
           },
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "src/content/docs/protocol-data-status.md",
             "proves": "order lifecycle and recovery semantics"
           }
@@ -9477,13 +9795,13 @@
         "sources": [
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "data/recovery-decision-table.json",
             "proves": "diagnostic outcomes"
           },
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "src/content/docs/protocol-data-status.md",
             "proves": "order lifecycle and recovery semantics"
           }
@@ -9511,13 +9829,13 @@
         "sources": [
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "data/recovery-decision-table.json",
             "proves": "diagnostic outcomes"
           },
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "src/content/docs/protocol-data-status.md",
             "proves": "order lifecycle and recovery semantics"
           }
@@ -9545,13 +9863,13 @@
         "sources": [
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "data/recovery-decision-table.json",
             "proves": "diagnostic outcomes"
           },
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "src/content/docs/protocol-data-status.md",
             "proves": "order lifecycle and recovery semantics"
           }
@@ -9578,13 +9896,13 @@
         "sources": [
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "data/recovery-decision-table.json",
             "proves": "diagnostic outcomes"
           },
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "src/content/docs/protocol-data-status.md",
             "proves": "order lifecycle and recovery semantics"
           }
@@ -9612,13 +9930,13 @@
         "sources": [
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "data/recovery-decision-table.json",
             "proves": "diagnostic outcomes"
           },
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "src/content/docs/protocol-data-status.md",
             "proves": "order lifecycle and recovery semantics"
           }
@@ -9646,13 +9964,13 @@
         "sources": [
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "data/recovery-decision-table.json",
             "proves": "diagnostic outcomes"
           },
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "src/content/docs/protocol-data-status.md",
             "proves": "order lifecycle and recovery semantics"
           }
@@ -9678,13 +9996,13 @@
         "sources": [
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "data/recovery-decision-table.json",
             "proves": "diagnostic outcomes"
           },
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "src/content/docs/protocol-data-status.md",
             "proves": "order lifecycle and recovery semantics"
           }
@@ -9712,13 +10030,13 @@
         "sources": [
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "data/recovery-decision-table.json",
             "proves": "diagnostic outcomes"
           },
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "src/content/docs/protocol-data-status.md",
             "proves": "order lifecycle and recovery semantics"
           }
@@ -9746,13 +10064,13 @@
         "sources": [
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "data/recovery-decision-table.json",
             "proves": "diagnostic outcomes"
           },
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "src/content/docs/protocol-data-status.md",
             "proves": "order lifecycle and recovery semantics"
           }
@@ -9778,13 +10096,13 @@
         "sources": [
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "data/recovery-decision-table.json",
             "proves": "diagnostic outcomes"
           },
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "src/content/docs/protocol-data-status.md",
             "proves": "order lifecycle and recovery semantics"
           }
@@ -9813,13 +10131,13 @@
         "sources": [
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "data/recovery-decision-table.json",
             "proves": "diagnostic outcomes"
           },
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "src/content/docs/protocol-data-status.md",
             "proves": "order lifecycle and recovery semantics"
           }
@@ -9846,13 +10164,13 @@
         "sources": [
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "data/recovery-decision-table.json",
             "proves": "diagnostic outcomes"
           },
           {
             "repository": "docs-inscribe",
-            "commit": "d7bc6bff90f597adb6a23d9cd6dd9d633d2d9cc0",
+            "commit": "185e6d2f136b2f12aba40e30a220ec025247a391",
             "path": "src/content/docs/protocol-data-status.md",
             "proves": "order lifecycle and recovery semantics"
           }
