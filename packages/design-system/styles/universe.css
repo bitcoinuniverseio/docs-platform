@@ -145,6 +145,28 @@ h1[data-page-title],
   background: transparent;
 }
 
+/* The portal product directory is compact enough to wrap in its reading
+   column. Keep this one table fully readable instead of requiring a sideways
+   scroll just to compare a product with its destination. */
+.sl-markdown-content .portal-product-table {
+  max-inline-size: 100%;
+}
+.sl-markdown-content .portal-product-table table {
+  inline-size: 100%;
+  min-inline-size: 0;
+  table-layout: fixed;
+}
+.sl-markdown-content .portal-product-table th:first-child {
+  inline-size: 29%;
+}
+.sl-markdown-content .portal-product-table th:nth-child(2) {
+  inline-size: 45%;
+}
+.sl-markdown-content .portal-product-table :is(th, td) {
+  overflow-wrap: anywhere;
+  vertical-align: top;
+}
+
 /* Asides: square, hairline, label in tracking caps. State hues hold AA in
    both themes and states never rely on color alone. */
 .starlight-aside {

@@ -7,15 +7,22 @@ Bitcoin Universe builds products for creating, owning, trading, and verifying di
 
 ## The products
 
-| Product | What it does | Where |
-| --- | --- | --- |
-| **Core** | Explorer, portfolio, and marketplace across every supported protocol | [bitcoinuniverse.io](https://bitcoinuniverse.io) |
-| **Inscribe** | Creation studio for inscriptions, tokens, and mints | [inscribe.bitcoinuniverse.io](https://inscribe.bitcoinuniverse.io) |
-| **Wallet** | Browser wallet for Bitcoin digital artifacts | [docs-wallet](https://github.com/bitcoinuniverseio/docs-wallet) |
-| **StampDEX** | Trading venue for Bitcoin Stamps assets | [docs-stampdex](https://github.com/bitcoinuniverseio/docs-stampdex) |
-| **Zerdinals and Z-Runes** | Digital-artifact record on Zcash | [zrunes.io](https://zrunes.io) |
-| **Forked Felines** | Collection with on-chain artwork and provenance | [forked-felines.art](https://forked-felines.art) |
-| **Drops** | Media-first artifacts using the OP_DROP carrier | [drops-protocol-docs](https://github.com/bitcoinuniverseio/drops-protocol-docs) |
+<div class="portal-product-table">
+  <table>
+    <thead>
+      <tr><th scope="col">Product</th><th scope="col">What it does</th><th scope="col">Where</th></tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">Core</th><td>Explorer, portfolio, and marketplace across every supported protocol</td><td><a href="https://bitcoinuniverse.io">bitcoinuniverse.io</a></td></tr>
+      <tr><th scope="row">Inscribe</th><td>Creation studio for inscriptions, tokens, and mints</td><td><a href="https://inscribe.bitcoinuniverse.io">inscribe.bitcoinuniverse.io</a></td></tr>
+      <tr><th scope="row">Wallet</th><td>Browser wallet for Bitcoin digital artifacts</td><td><a href="https://github.com/bitcoinuniverseio/docs-wallet">docs-wallet</a></td></tr>
+      <tr><th scope="row">StampDEX</th><td>Trading venue for Bitcoin Stamps assets</td><td><a href="https://github.com/bitcoinuniverseio/docs-stampdex">docs-stampdex</a></td></tr>
+      <tr><th scope="row">Zerdinals and Z-Runes</th><td>Digital-artifact record on Zcash</td><td><a href="https://zrunes.io">zrunes.io</a></td></tr>
+      <tr><th scope="row">Forked Felines</th><td>Collection with on-chain artwork and provenance</td><td><a href="https://forked-felines.art">forked-felines.art</a></td></tr>
+      <tr><th scope="row">Drops</th><td>Media-first artifacts using the OP_DROP carrier</td><td><a href="https://github.com/bitcoinuniverseio/drops-protocol-docs">drops-protocol-docs</a></td></tr>
+    </tbody>
+  </table>
+</div>
 
 ## The protocols
 

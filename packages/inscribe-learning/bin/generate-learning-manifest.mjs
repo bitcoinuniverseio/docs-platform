@@ -95,10 +95,10 @@ function extractFrozenRecord(source, name) {
 }
 
 const inscribeFrontend = join(inscribePath, 'frontend')
-const dashboardRoutesSrc = readText(join(inscribeFrontend, 'src/utils/dashboardRoutes.ts'))
+const { DASHBOARD_ROUTE_MANIFEST } = await import(pathToFileURL(join(inscribeFrontend, 'src/routes/shippingRouteManifest.ts')).href)
 const intentSrc = readText(join(inscribeFrontend, 'src/utils/ecosystemInboundIntent.ts'))
 
-const VALID_MAIN_TABS = extractConstArray(dashboardRoutesSrc, 'VALID_MAIN_TABS')
+const VALID_MAIN_TABS = DASHBOARD_ROUTE_MANIFEST.map((route) => route.tab)
 const workspaceSlugs = new Set(VALID_MAIN_TABS.map((t) => t.replace(/_/g, '-')))
 const SUPPORTED_CREATION_ACTIONS = extractFrozenRecord(intentSrc, 'SUPPORTED_CREATION_ACTIONS')
 const PROTOCOL_TABS = extractFrozenRecord(intentSrc, 'PROTOCOL_TABS')
