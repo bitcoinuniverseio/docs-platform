@@ -55,12 +55,12 @@ export function estimateScriptLen(contentType: string, contentSizeBytes: number)
 }
 
 /**
- * Estimate the deployed BIP-110 op-drop inscription leaf. This mirrors the
+ * Estimate the deployed OP_DROP inscription leaf. This mirrors the
  * fixed marker/content-type/hash/payload layout in the backend so a
  * strict op-drop quote does not use the larger legacy Ordinals envelope.
  */
-export function estimateBip110OpDropScriptLen(jsonSizeBytes: number): number {
-  const markerBytes = new TextEncoder().encode('bip110-op-drop').length
+export function estimateOpDropScriptLen(jsonSizeBytes: number): number {
+  const markerBytes = 14 // Deployed carrier marker byte length
   const contentTypeBytes = new TextEncoder().encode('application/json').length
   const payloadBytes = Math.max(0, jsonSizeBytes)
 
