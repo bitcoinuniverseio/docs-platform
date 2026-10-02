@@ -16,7 +16,7 @@ jobs:
   checks:
     # The accessibility pass needs a Linux browser host. Keep it on the
     # approved Ultra fleet, which already carries the pinned toolchain.
-    runs-on: [self-hosted, linux, x64, universe-super]
+    runs-on: ${{ contains(fromJSON('["push","schedule","workflow_dispatch"]'), github.event_name) && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') && fromJSON('["self-hosted","universe-runners-1"]') || 'ubuntu-24.04' }}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: bitcoinuniverseio/universe-ci-actions/universe-node-env@fd406c34c10a8275c370e22531e1c3d4aa32a901
