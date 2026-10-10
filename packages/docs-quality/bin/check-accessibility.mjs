@@ -19,7 +19,8 @@
 //
 //   --dist    built site to serve and audit (default apps/portal/dist)
 //   --routes  comma separated subset, for a quick loop while fixing one page
-//   --port    port for the temporary static server
+//   --port    port for the temporary static server (default: a free port
+//             chosen by the OS, so parallel jobs on one host never collide)
 
 import { createRequire } from "node:module";
 import { createServer } from "node:http";
@@ -36,7 +37,7 @@ for (let i = 2; i < process.argv.length; i += 2) {
   args.set(process.argv[i].replace(/^--/, ""), process.argv[i + 1]);
 }
 const DIST = resolve(args.get("dist") ?? "apps/portal/dist");
-const PORT = Number(args.get("port") ?? 4330);
+const PORT = Number(args.get("port") ?? 0);
 
 if (!existsSync(join(DIST, "index.html"))) {
   console.error(`no built site at ${DIST}; run the portal build first`);
@@ -81,8 +82,8 @@ const server = createServer(async (req, res) => {
     res.end("not found");
   }
 });
-await new Promise((r) => server.listen(PORT, r));
-const BASE = `http://127.0.0.1:${PORT}`;
+await new Promise((r) => server.listen(PORT, "127.0.0.1", r));
+const BASE = `http://127.0.0.1:${server.address().port}`;
 
 const discovered = (await discoverRoutes(DIST)).sort();
 const routes = args.get("routes")
