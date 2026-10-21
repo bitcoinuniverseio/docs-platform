@@ -1,0 +1,71 @@
+# Dev auto-deploy: every push to develop publishes this app to
+# https://dev.docs.bitcoinuniverse.io (isolated from production).
+# Target: Hostinger user universe-dev, SSH forced command universe-dev-receive,
+# files under /opt/universe-dev/docs only. Server-side API paths on the dev host
+# are READ-ONLY gates to production (GET/HEAD/OPTIONS only, credentials stripped).
+# Fast path by design: build only, no test suite (tests run in CI).
+name: Dev deploy
+
+on:
+  push:
+    branches: [develop]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dev-deploy-docs
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, runners-4]
+    timeout-minutes: 25
+    env:
+      DEV_APP: docs
+      DEV_HOST: 82.29.173.47
+      DEV_URL: https://dev.docs.bitcoinuniverse.io
+      DEV_OUT: apps/portal/dist
+      DEV_KNOWN_HOST: "82.29.173.47 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG8F5cWsdbJpi3kIPRjBrCiDyCczb3Edgb9QSV59wKqG"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 1
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.19.0
+      - name: Pin npm 11.17.0
+        run: |
+          [ "$(npm -v)" = "11.17.0" ] || npm install -g npm@11.17.0 --no-audit --no-fund
+          node -v && npm -v
+      - name: Pin pnpm
+        run: '[ "$(pnpm -v 2>/dev/null)" = "10.34.5" ] || npm install -g pnpm@10.34.5 --no-audit --no-fund'
+      - name: Build dev bundle
+        run: |
+          set -euo pipefail
+          pnpm install --frozen-lockfile
+          pnpm --filter @universe/docs-portal build
+          test -f "$DEV_OUT/index.html"
+      - name: Publish to dev
+        env:
+          DEV_DEPLOY_SSH_KEY: ${{ secrets.DEV_DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          umask 077
+          key="$RUNNER_TEMP/dev-deploy-key"; kh="$RUNNER_TEMP/dev-known-hosts"
+          trap 'rm -f "$key" "$kh"' EXIT
+          printf '%s\n' "$DEV_DEPLOY_SSH_KEY" > "$key"
+          printf '%s\n' "$DEV_KNOWN_HOST" > "$kh"
+          tar -C "$DEV_OUT" -cz . | ssh -i "$key" -o IdentitiesOnly=yes -o BatchMode=yes \
+            -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$kh" -o ConnectTimeout=15 \
+            "universe-dev@$DEV_HOST" "deploy $DEV_APP $GITHUB_SHA"
+      - name: Verify dev URL serves this commit
+        run: |
+          for i in 1 2 3 4 5; do
+            live="$(curl -fsS "$DEV_URL/universe-dev-release.txt" || true)"
+            [ "$live" = "$GITHUB_SHA" ] && { echo "dev live at $live"; exit 0; }
+            sleep 3
+          done
+          echo "dev URL did not report $GITHUB_SHA (got '$live')"; exit 1
