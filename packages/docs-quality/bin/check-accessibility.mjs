@@ -37,6 +37,10 @@ for (let i = 2; i < process.argv.length; i += 2) {
 }
 const DIST = resolve(args.get("dist") ?? "apps/portal/dist");
 const PORT = Number(args.get("port") ?? 4330);
+if (args.has('routes') && !args.get('routes')?.trim()) {
+  console.log('accessibility: explicit empty route selection; skipped');
+  process.exit(0);
+}
 
 if (!existsSync(join(DIST, "index.html"))) {
   console.error(`no built site at ${DIST}; run the portal build first`);

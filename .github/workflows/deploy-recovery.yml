@@ -1,0 +1,51 @@
+name: Documentation publication recovery
+on:
+  workflow_run:
+    workflows: [Dev deploy, deploy]
+    types: [completed]
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: docs-recovery-${{ github.event.workflow_run.id }}
+  cancel-in-progress: false
+jobs:
+  provenance:
+    if: github.event.workflow_run.conclusion == 'failure' && github.run_attempt == 1
+    runs-on: [self-hosted, runners-4]
+    timeout-minutes: 3
+    outputs:
+      artifact_id: ${{ steps.resolve.outputs.artifact_id }}
+      run_id: ${{ steps.resolve.outputs.run_id }}
+      sha: ${{ steps.resolve.outputs.sha }}
+      target: ${{ steps.resolve.outputs.target }}
+      status_id: ${{ steps.resolve.outputs.status_id }}
+      runner_lost: ${{ steps.resolve.outputs.runner_lost }}
+      status_run: ${{ steps.resolve.outputs.status_run }}
+      publication_run: ${{ steps.resolve.outputs.publication_run }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.19.0
+      - id: resolve
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node tooling/deploy/resolve.mjs recovery
+  recover:
+    needs: provenance
+    uses: ./.github/workflows/deploy-publish.yml
+    with:
+      target: ${{ needs.provenance.outputs.target }}
+      sha: ${{ needs.provenance.outputs.sha }}
+      artifact_id: ${{ needs.provenance.outputs.artifact_id }}
+      run_id: ${{ needs.provenance.outputs.run_id }}
+      status_id: ${{ needs.provenance.outputs.status_id }}
+      runner_lost: ${{ needs.provenance.outputs.runner_lost }}
+      status_run: ${{ needs.provenance.outputs.status_run }}
+      publication_run: ${{ needs.provenance.outputs.publication_run }}
+      recovery: true
+    secrets: inherit

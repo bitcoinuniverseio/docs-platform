@@ -29,7 +29,10 @@ function walk(dir, out = []) {
   return out;
 }
 
-const files = roots.flatMap((root) => walk(root));
+// Deployment passes only existing changed source files. CI's default is all.
+const files = process.argv[2] === '--files-json'
+  ? JSON.parse(readFileSync(process.argv[3], 'utf8')).map(file => path.resolve(file))
+  : roots.flatMap((root) => walk(root));
 const problems = [];
 
 for (const file of files) {

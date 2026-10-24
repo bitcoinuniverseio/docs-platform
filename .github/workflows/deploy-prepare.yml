@@ -1,0 +1,106 @@
+name: Prepare documentation artifact
+on:
+  workflow_call:
+    inputs:
+      target:
+        required: true
+        type: string
+    outputs:
+      ship:
+        value: ${{ jobs.prepare.outputs.ship }}
+      artifact_id:
+        value: ${{ jobs.prepare.outputs.artifact_id }}
+permissions:
+  contents: read
+jobs:
+  prepare:
+    runs-on: [self-hosted, runners-4]
+    timeout-minutes: 15
+    outputs:
+      ship: ${{ steps.scope.outputs.ship }}
+      artifact_id: ${{ steps.accepted.outputs.artifact-id }}
+    env:
+      PLAYWRIGHT_BROWSERS_PATH: ${{ github.workspace }}/.cache/docs-deploy/browsers
+      npm_config_store_dir: ${{ github.workspace }}/.cache/docs-deploy/pnpm-store
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.19.0
+      - name: Confirm shipped scope before any installation
+        id: scope
+        env:
+          TARGET: ${{ inputs.target }}
+        run: node tooling/deploy/scope.mjs "$TARGET"
+      - name: Cache fingerprints
+        if: steps.scope.outputs.ship == 'true'
+        id: keys
+        run: |
+          mkdir -p .cache/docs-deploy
+          node tooling/deploy/prepare.mjs keys
+      - name: Pin pnpm
+        if: steps.scope.outputs.ship == 'true'
+        run: |
+          [ "$(npm -v)" = "11.17.0" ] || npm install -g npm@11.17.0 --no-audit --no-fund
+          [ "$(pnpm -v 2>/dev/null)" = "10.34.5" ] || npm install -g pnpm@10.34.5 --no-audit --no-fund
+      - name: Restore pnpm store
+        if: steps.scope.outputs.ship == 'true'
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+        with:
+          path: .cache/docs-deploy/pnpm-store
+          key: docs-store-${{ runner.os }}-${{ runner.arch }}-node24.19.0-pnpm10.34.5-${{ steps.keys.outputs.dependencies }}
+          restore-keys: docs-store-${{ runner.os }}-${{ runner.arch }}-node24.19.0-pnpm10.34.5-
+      - name: Link a valid frozen workspace installation even on store hit
+        if: steps.scope.outputs.ship == 'true'
+        run: pnpm install --frozen-lockfile --prefer-offline
+      - name: Restore verified portal output and generated state
+        if: steps.scope.outputs.ship == 'true'
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+        with:
+          path: |
+            .cache/docs-deploy/output
+            .cache/docs-deploy/*.tsbuildinfo
+            apps/portal/.astro
+            apps/portal/node_modules/.astro
+          key: docs-build-${{ runner.os }}-${{ runner.arch }}-node24.19.0-pnpm10.34.5-${{ steps.keys.outputs.build }}
+          restore-keys: docs-build-${{ runner.os }}-${{ runner.arch }}-node24.19.0-pnpm10.34.5-
+      - name: Affected checks and source pins only
+        if: steps.scope.outputs.ship == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node tooling/deploy/prepare.mjs checks
+      - name: Build or reuse verified portal output
+        if: steps.scope.outputs.ship == 'true'
+        run: node tooling/deploy/prepare.mjs build
+      - name: Read installed workspace browser revision
+        if: steps.scope.outputs.audit == 'true'
+        id: browser
+        run: node tooling/deploy/prepare.mjs browser-key
+      - name: Restore pinned Chromium
+        if: steps.scope.outputs.audit == 'true'
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684
+        with:
+          path: .cache/docs-deploy/browsers
+          key: docs-browser-${{ runner.os }}-${{ runner.arch }}-playwright${{ steps.browser.outputs.version }}-chromium${{ steps.browser.outputs.revision }}-${{ steps.keys.outputs.browser }}
+      - name: Install only workspace-pinned Chromium revision
+        if: steps.scope.outputs.audit == 'true'
+        run: pnpm --filter @universe/docs-quality exec playwright install chromium
+      - name: Audit selected routes in both themes and widths
+        if: steps.scope.outputs.audit == 'true'
+        run: node tooling/deploy/prepare.mjs audit
+      - name: Accept immutable SHA and configuration bound bytes
+        if: steps.scope.outputs.ship == 'true'
+        run: node tooling/deploy/prepare.mjs accept
+      - name: Durable accepted artifact
+        if: steps.scope.outputs.ship == 'true'
+        id: accepted
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: accepted-${{ github.run_id }}-${{ github.run_attempt }}
+          path: accepted/
+          retention-days: 30
+          if-no-files-found: error
+          compression-level: 0
