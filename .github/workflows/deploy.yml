@@ -1,100 +1,70 @@
 name: deploy
-
-# Production deploys only from main, and only the exact commit that passed.
-# Nothing is ever published from a working tree.
+# No main push can publish. Exact order, branch and protected environment required.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
     inputs:
+      confirm:
+        description: DEPLOY-PRODUCTION (or ROLLBACK-PRODUCTION for rollback)
+        required: true
+        type: string
       rollback_to:
-        description: "Commit to roll back to. Leave empty to deploy this ref."
+        description: Full target SHA of a previously accepted successful production run
         required: false
         type: string
-
+      artifact_run:
+        description: Original successful run ID, required for rollback
+        required: false
+        type: string
 permissions:
   contents: read
-
-# Never let two deploys race for the same symlink.
+  actions: read
 concurrency:
   group: deploy-production
   cancel-in-progress: false
-
 jobs:
-  deploy:
-    if: github.ref == 'refs/heads/main'
-    runs-on: [self-hosted, universe-runners-1]
-    environment: production
+  prepare:
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.confirm == 'DEPLOY-PRODUCTION' && inputs.rollback_to == '' && inputs.artifact_run == '' && github.run_attempt == 1
+    uses: ./.github/workflows/deploy-prepare.yml
+    with:
+      target: production
+  rollback-target:
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && github.run_attempt == 1 && ((inputs.confirm == 'ROLLBACK-PRODUCTION' && inputs.rollback_to != '') || (inputs.confirm == 'DEPLOY-PRODUCTION' && inputs.rollback_to == '' && inputs.artifact_run != ''))
+    runs-on: [self-hosted, runners-4]
+    outputs:
+      artifact_id: ${{ steps.resolve.outputs.artifact_id }}
+      run_id: ${{ steps.resolve.outputs.run_id }}
+      sha: ${{ steps.resolve.outputs.sha }}
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-      - uses: bitcoinuniverseio/universe-ci-actions/universe-node-env@fd406c34c10a8275c370e22531e1c3d4aa32a901
-
-      - name: Install pnpm
-        run: npm install -g pnpm@10.34.5
-
-      - name: Install locked dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Verify pinned sources still validate
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.19.0
+      - id: resolve
         env:
           GH_TOKEN: ${{ github.token }}
-        run: pnpm sync:verify
-
-      - name: Build the portal
-        run: pnpm --filter @universe/docs-portal build
-
-      - name: Install a browser for the accessibility audit
-        run: npx playwright install --with-deps chromium
-
-      - name: Accessibility gate
-        run: node packages/docs-quality/bin/check-accessibility.mjs --dist apps/portal/dist
-
-      - name: Prepare SSH authentication
-        env:
-          DOCS_DEPLOY_KEY: ${{ secrets.DOCS_DEPLOY_KEY }}
-          DOCS_DEPLOY_PASSWORD: ${{ secrets.DOCS_DEPLOY_PASSWORD }}
-        run: |
-          auth_dir="${RUNNER_TEMP}/docs-auth"
-          if [ -n "$DOCS_DEPLOY_KEY" ]; then
-            install -m 700 -d "$auth_dir"
-            printf '%s\n' "$DOCS_DEPLOY_KEY" > "$auth_dir/key"
-            chmod 600 "$auth_dir/key"
-          elif [ -n "$DOCS_DEPLOY_PASSWORD" ]; then
-            install -m 700 -d "$auth_dir"
-            printf '%s\n' '#!/usr/bin/env sh' 'printf "%s\\n" "$DOCS_PASSWORD"' > "$auth_dir/askpass"
-            chmod 700 "$auth_dir/askpass"
-          else
-            echo "DOCS_DEPLOY_KEY or DOCS_DEPLOY_PASSWORD is required" >&2
-            exit 2
-          fi
-
-      - name: Deploy
-        if: ${{ inputs.rollback_to == '' }}
-        env:
-          DOCS_HOST: ${{ secrets.DOCS_HOST }}
-          DOCS_SSH_KEY: ${{ runner.temp }}/docs-auth/key
-          DOCS_PASSWORD: ${{ secrets.DOCS_DEPLOY_PASSWORD }}
-          SSH_ASKPASS: ${{ runner.temp }}/docs-auth/askpass
-        run: bash tooling/deploy/deploy.sh apps/portal/dist "${{ github.sha }}"
-
-      - name: Roll back
-        if: ${{ inputs.rollback_to != '' }}
-        env:
-          DOCS_HOST: ${{ secrets.DOCS_HOST }}
-          DOCS_SSH_KEY: ${{ runner.temp }}/docs-auth/key
-          DOCS_PASSWORD: ${{ secrets.DOCS_DEPLOY_PASSWORD }}
-          SSH_ASKPASS: ${{ runner.temp }}/docs-auth/askpass
-        run: bash tooling/deploy/rollback.sh "${{ inputs.rollback_to }}"
-
-      - name: Remove deployment authentication helpers
-        if: always()
-        run: |
-          rm -f "${RUNNER_TEMP}/docs-auth/key" "${RUNNER_TEMP}/docs-auth/askpass"
-          rmdir "${RUNNER_TEMP}/docs-auth" 2>/dev/null || true
-
-      - name: Report what is live
-        run: |
-          live=$(curl -sf https://docs.bitcoinuniverse.io/RELEASE)
-          echo "live release: $live"
-          echo "### Documentation portal" >> "$GITHUB_STEP_SUMMARY"
-          echo "Live release: \`$live\`" >> "$GITHUB_STEP_SUMMARY"
+          ARTIFACT_RUN: ${{ inputs.artifact_run }}
+          ROLLBACK_SHA: ${{ inputs.rollback_to || github.sha }}
+        run: node tooling/deploy/resolve.mjs rollback
+  publish:
+    needs: [prepare, rollback-target]
+    if: always() && !cancelled() && inputs.rollback_to == '' && ((needs.prepare.result == 'success' && needs.prepare.outputs.ship == 'true') || needs.rollback-target.result == 'success')
+    uses: ./.github/workflows/deploy-publish.yml
+    with:
+      target: production
+      sha: ${{ github.sha }}
+      run_id: ${{ needs.rollback-target.outputs.run_id || github.run_id }}
+      artifact_id: ${{ needs.rollback-target.outputs.artifact_id || needs.prepare.outputs.artifact_id }}
+    secrets: inherit
+  rollback:
+    needs: rollback-target
+    if: inputs.rollback_to != '' && inputs.confirm == 'ROLLBACK-PRODUCTION'
+    uses: ./.github/workflows/deploy-publish.yml
+    with:
+      target: production
+      sha: ${{ needs.rollback-target.outputs.sha }}
+      run_id: ${{ needs.rollback-target.outputs.run_id }}
+      artifact_id: ${{ needs.rollback-target.outputs.artifact_id }}
+      rollback: true
+    secrets: inherit

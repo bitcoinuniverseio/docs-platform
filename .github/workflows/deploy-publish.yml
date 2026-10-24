@@ -1,0 +1,115 @@
+name: Publish accepted documentation bytes
+on:
+  workflow_call:
+    inputs:
+      target:
+        type: string
+        required: true
+      sha:
+        type: string
+        required: true
+      artifact_id:
+        type: string
+        required: true
+      run_id:
+        type: string
+        required: true
+      recovery:
+        type: boolean
+        default: false
+      rollback:
+        type: boolean
+        default: false
+      status_id:
+        type: string
+        default: ''
+      runner_lost:
+        type: string
+        default: 'false'
+      status_run:
+        type: string
+        default: ''
+      publication_run:
+        type: string
+        default: ''
+permissions:
+  contents: read
+  actions: read
+jobs:
+  publish:
+    if: >-
+      (inputs.recovery && github.event_name == 'workflow_run' && github.event.workflow_run.head_repository.full_name == github.repository) ||
+      (!inputs.recovery && inputs.target == 'dev' && github.ref == 'refs/heads/develop' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')) ||
+      (!inputs.recovery && inputs.target == 'production' && github.ref == 'refs/heads/main' && github.event_name == 'workflow_dispatch' &&
+      ((!inputs.rollback && github.event.inputs.confirm == 'DEPLOY-PRODUCTION') || (inputs.rollback && github.event.inputs.confirm == 'ROLLBACK-PRODUCTION')))
+    runs-on: [self-hosted, runners-4]
+    timeout-minutes: 5
+    environment: ${{ inputs.target == 'production' && 'production' || 'development' }}
+    # Shared with independent recovery, without increasing the fleet cap.
+    concurrency:
+      group: docs-publication-${{ inputs.target }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          # Recovery always uses trusted default-branch helpers.
+          ref: ${{ inputs.recovery && github.event.repository.default_branch || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: 24.19.0
+      - name: Verify GitHub digest and download accepted bytes
+        env:
+          ARTIFACT_ID: ${{ inputs.artifact_id }}
+          ARTIFACT_RUN: ${{ inputs.run_id }}
+          GH_TOKEN: ${{ github.token }}
+        run: node tooling/deploy/download.mjs accepted
+      - name: Verify and download publication evidence
+        if: inputs.recovery && inputs.status_id != ''
+        env:
+          STATUS_ID: ${{ inputs.status_id }}
+          STATUS_RUN: ${{ inputs.status_run }}
+          ARTIFACT_RUN: ${{ inputs.run_id }}
+          GH_TOKEN: ${{ github.token }}
+        run: node tooling/deploy/download.mjs status
+      - name: Record durable publication intent before touching the host
+        if: '!inputs.recovery'
+        env:
+          TARGET: ${{ inputs.target }}
+          TARGET_SHA: ${{ inputs.sha }}
+          ARTIFACT_RUN: ${{ inputs.run_id }}
+          ARTIFACT_ID: ${{ inputs.artifact_id }}
+          ROLLBACK: ${{ inputs.rollback }}
+        run: node tooling/deploy/intent.mjs
+      - name: Preserve publication intent independently of runner life
+        if: '!inputs.recovery'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: publication-intent-${{ github.run_id }}-${{ github.run_attempt }}
+          path: publication-intent/intent.json
+          retention-days: 30
+          if-no-files-found: error
+      - name: Publish accepted bytes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET: ${{ inputs.target }}
+          TARGET_SHA: ${{ inputs.sha }}
+          ARTIFACT_RUN: ${{ inputs.run_id }}
+          RECOVERY: ${{ inputs.recovery }}
+          ROLLBACK: ${{ inputs.rollback }}
+          RUNNER_LOST: ${{ inputs.runner_lost }}
+          HAS_STATUS: ${{ inputs.status_id != '' }}
+          PUBLICATION_RUN: ${{ inputs.publication_run }}
+          DEPLOY_KEY: ${{ (inputs.target == 'dev' && secrets.DEV_DEPLOY_SSH_KEY) || (inputs.target == 'production' && secrets.DOCS_DEPLOY_KEY) || '' }}
+          DOCS_HOST: ${{ secrets.DOCS_HOST }}
+          DOCS_PASSWORD: ${{ inputs.target == 'production' && secrets.DOCS_DEPLOY_PASSWORD || '' }}
+          KNOWN_HOSTS: ${{ inputs.target == 'dev' && '82.29.173.47 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG8F5cWsdbJpi3kIPRjBrCiDyCczb3Edgb9QSV59wKqG' || secrets.DOCS_KNOWN_HOSTS }}
+        run: node tooling/deploy/publish.mjs
+      - name: Preserve classified publication evidence
+        if: failure() && !inputs.recovery
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: publication-status-${{ github.run_id }}-${{ github.run_attempt }}
+          path: publication-status/status.json
+          if-no-files-found: ignore
+          retention-days: 30

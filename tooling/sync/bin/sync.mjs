@@ -17,6 +17,7 @@ import { execFileSync } from "node:child_process";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
+import { selectPins } from '../subset.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(here, "..", "..", "..");
@@ -136,12 +137,15 @@ function cmdFetch() {
 
 async function cmdVerify() {
   const lock = readJson(lockPath);
+  const args = process.argv.slice(3);
+  if (args.length && (args.length !== 2 || args[0] !== '--pins-file')) throw new Error('usage: verify [--pins-file <JSON array file>]');
+  const entries = selectPins(lock, readJson(registryPath), args.length ? readJson(args[1]) : undefined);
   let failures = 0;
   if (lock.schemaVersion !== 1) {
     console.error("lock schemaVersion must be 1");
     process.exit(1);
   }
-  for (const [repository, entry] of Object.entries(lock.sources)) {
+  for (const [repository, entry] of entries) {
     try {
       if (!/^[0-9a-f]{40}$/.test(entry.commit)) throw new Error("commit is not a 40-hex SHA");
       const manifestText = await rawFile(repository, entry.commit, "docs.manifest.json");
@@ -157,7 +161,7 @@ async function cmdVerify() {
     }
   }
   if (failures > 0) process.exit(1);
-  console.log(`\nverified ${Object.keys(lock.sources).length} pinned sources`);
+  console.log(`\nverified ${entries.length} pinned sources`);
 }
 
 const cmd = process.argv[2];

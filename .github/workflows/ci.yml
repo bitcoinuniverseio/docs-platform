@@ -19,6 +19,8 @@ jobs:
     runs-on: [self-hosted, universe-runners-1]
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
       - uses: bitcoinuniverseio/universe-ci-actions/universe-node-env@fd406c34c10a8275c370e22531e1c3d4aa32a901
       - name: Install pnpm
         run: npm install -g pnpm@10.34.5
@@ -26,6 +28,8 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Workspace tests (manifest validator, sync registry)
         run: pnpm test
+      - name: Deployment planner, cache, artifact and subset policy fixtures
+        run: node --test tooling/deploy/test/*.test.mjs tooling/sync/test/subset.test.mjs
       - name: Typecheck the workspace
         run: pnpm typecheck
       - name: Build the portal (validates every internal link and anchor)
