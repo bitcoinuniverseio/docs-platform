@@ -16,7 +16,7 @@ jobs:
   checks:
     # The accessibility pass needs a Linux browser host. Keep it on the
     # approved Ultra fleet, which already carries the pinned toolchain.
-    runs-on: [self-hosted, universe-runners-1]
+    runs-on: [self-hosted, Linux, X64, universe]
     steps:
       - name: Provide universe host tools
         uses: bitcoinuniverseio/universe-ci-actions/universe-host-tools@ca7d5a2893fd27f41c26f6b62549ccad8b3c46cb
