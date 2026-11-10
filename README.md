@@ -4,20 +4,9 @@ The Bitcoin Universe documentation platform: the portal at [docs.bitcoinuniverse
 
 ## How it works
 
-Every public `bitcoinuniverseio` repository owns its documentation and declares it in a root `docs.manifest.json`. This platform validates those manifests, pins each source repository to an exact commit in `sources.lock.json`, and builds one coherent portal from those pinned commits. Nothing here follows a moving branch, and every published page records the source commit it was built from.
+The portal builds its pages from content in this repository and from the local ecosystem registry. The source registry and lock file track repositories and their manifests, but the portal build does not currently ingest their checked-out content. Some documentation repositories are unpublished templates without manifests; do not assume they feed the portal.
 
-```
-source repos (docs.manifest.json)
-        |  validated against packages/content-schema
-        v
-sources.lock.json  (exact commit SHAs, manifest hashes)
-        |  tooling/sync fetch
-        v
-apps/portal  (Astro + Starlight, static build)
-        |
-        v
-docs.bitcoinuniverse.io
-```
+Separately, `tooling/sync` can validate manifests, pin source commits in `sources.lock.json`, and fetch those commits for inspection. A repository without a valid manifest cannot be locked by this tool. The existing lock is a historical snapshot, not evidence that its sources are included in the portal build.
 
 ## Workspace
 
@@ -76,7 +65,7 @@ pnpm sync:verify
 
 ## Branches and release
 
-`develop` is the working branch. Production deployments build only from the explicitly configured production ref with a verified `sources.lock.json`; every deployment records the exact portal commit and source commits it was built from.
+CI runs on pushes to `main` and `develop` and on pull requests. The production workflow targets `main`, verifies the pinned manifests, and builds the portal at the triggering commit. A push to `main` can initiate a production deployment, subject to the production environment’s protections.
 
 ## Contributing
 
