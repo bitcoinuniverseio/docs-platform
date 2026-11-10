@@ -34,27 +34,27 @@ function governanceSummary(record: HealthRecord) {
   frontmatter={{
     title: 'Documentation health',
     description:
-      'Which repositories in the Bitcoin Universe estate are wired into the documentation portal, which are not yet, and what each one is missing.',
+      'Manifest and governance file status for repositories in the documentation inventory.',
     tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 2 },
   }}
 >
   <p class="lede">
     {health.summary.ingestable} of {health.summary.total} repositories in the source registry publish
-    a valid documentation manifest. The rest are listed here with what they are missing.
+    a valid documentation manifest in the recorded snapshot. A valid manifest does not mean the
+    portal ingests that repository. The rest are listed here with what they are missing.
   </p>
 
   <Aside type="note" title="Why the gaps are published">
     <p>
-      A repository without a valid <code>docs.manifest.json</code> cannot be pinned to an exact commit
-      and therefore cannot be ingested by this portal. Hiding those rows would make the estate look
-      finished while readers hit dead ends. The gap list is the work list.
+      Source synchronization cannot lock a repository without a valid <code>docs.manifest.json</code>.
+      The portal does not currently ingest repository content through source synchronization.
     </p>
   </Aside>
 
   {
     notIngestable.length > 0 && (
       <>
-        <h2 id="not-yet-ingestable">Not yet ingestable ({notIngestable.length})</h2>
+        <h2 id="not-yet-ingestable">Missing or invalid manifest ({notIngestable.length})</h2>
         <div class="scroll-x">
           <table>
             <thead>
@@ -87,7 +87,7 @@ function governanceSummary(record: HealthRecord) {
     )
   }
 
-  <h2 id="ingestable">Wired into the portal ({ingestable.length})</h2>
+  <h2 id="ingestable">Valid manifest ({ingestable.length})</h2>
   <div class="scroll-x">
     <table>
       <thead>
@@ -128,7 +128,7 @@ function governanceSummary(record: HealthRecord) {
     <dt>Manifest present and valid</dt>
     <dd>
       A root <code>docs.manifest.json</code> that validates against the shared schema. Without it the
-      portal cannot pin the repository to an exact commit.
+      source synchronization cannot lock the repository.
     </dd>
     <dt>Lifecycle</dt>
     <dd>

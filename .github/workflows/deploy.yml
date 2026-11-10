@@ -1,6 +1,6 @@
 name: deploy
 
-# Production deploys only from main, and only the exact commit that passed.
+# Production deploys only from main, building the triggering commit.
 # Nothing is ever published from a working tree.
 on:
   push:
@@ -46,7 +46,7 @@ jobs:
         run: pnpm --filter @universe/docs-portal build
 
       - name: Install a browser for the accessibility audit
-        run: npx playwright install --with-deps chromium
+        run: pnpm --filter @universe/docs-quality exec playwright install chromium
 
       - name: Accessibility gate
         run: node packages/docs-quality/bin/check-accessibility.mjs --dist apps/portal/dist

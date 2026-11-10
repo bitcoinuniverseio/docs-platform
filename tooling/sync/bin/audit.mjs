@@ -100,7 +100,7 @@ async function auditRepository(entry) {
     () => null,
   );
   if (manifestText === null) {
-    record.problems.push('no docs.manifest.json, so the portal cannot ingest this repository');
+    record.problems.push('no docs.manifest.json, so source synchronization cannot lock this repository');
   } else {
     record.manifest.present = true;
     const result = validateManifestText(repository, manifestText);
@@ -187,7 +187,7 @@ async function main() {
   const ingestable = repositories.filter((r) => r.manifest.valid).length;
   const report = {
     description:
-      'Standing documentation health across every repository in the portal source registry. A missing manifest is a finding, not an error: it records that a repository is not yet wired into the estate.',
+      'Documentation health across the repository inventory. A valid manifest permits source synchronization but does not mean that the portal ingests the repository.',
     generatedBy: 'tooling/sync/bin/audit.mjs',
     generatedAt: new Date().toISOString(),
     summary: {
@@ -200,7 +200,7 @@ async function main() {
 
   writeFileSync(outPath, `${JSON.stringify(report, null, 2)}\n`);
   console.log(
-    `\nwrote docs-health.json: ${ingestable} of ${repositories.length} repositories are ingestable`,
+    `\nwrote docs-health.json: ${ingestable} of ${repositories.length} repositories have valid manifests`,
   );
 }
 
