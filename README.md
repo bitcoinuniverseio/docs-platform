@@ -67,6 +67,14 @@ pnpm sync:verify
 
 CI runs on pushes to `main` and `develop` and on pull requests. The production workflow targets `main`, verifies the pinned manifests, and builds the portal at the triggering commit. A push to `main` can initiate a production deployment, subject to the production environment’s protections.
 
+Core's assisted-action documentation is a development preview. Before publishing
+its coordinated update, verify the released Core behavior and pin the published
+`docs-core` commit through the existing sync tooling. Local implementation commits
+must not advance `sources.lock.json` or generated capability snapshots. Agent
+read tools do not enable new marketplace, signing or inscription capabilities.
+
+`develop` is the working branch. Production deployments build only from the explicitly configured production ref with a verified `sources.lock.json`; every deployment records the exact portal commit and source commits it was built from.
+
 ## Contributing
 
 See the organization [CONTRIBUTING.md](https://github.com/bitcoinuniverseio/.github/blob/main/CONTRIBUTING.md) and [documentation conventions](https://github.com/bitcoinuniverseio/.github/blob/main/docs/conventions.md). Vulnerabilities go through private reporting per [SECURITY.md](https://github.com/bitcoinuniverseio/.github/blob/main/SECURITY.md).

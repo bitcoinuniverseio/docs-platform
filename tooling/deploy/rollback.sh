@@ -10,7 +10,7 @@
 set -euo pipefail
 
 TARGET=${1:-}
-RELEASES=${RELEASES:-/home/bitcoinuniverse/docs-releases}
+RELEASES=${RELEASES:-/var/www/docs-releases}
 : "${DOCS_HOST:?DOCS_HOST is required}"
 DOCS_SSH_KEY=${DOCS_SSH_KEY:-}
 DOCS_PASSWORD=${DOCS_PASSWORD:-}
