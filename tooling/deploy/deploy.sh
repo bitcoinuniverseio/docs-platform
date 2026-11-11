@@ -13,21 +13,21 @@
 #   DOCS_SSH_KEY     path to the private key, or
 #   DOCS_PASSWORD    password supplied through a protected secret
 # Optional:
-#   RELEASES         release root (default /home/bitcoinuniverse/docs-releases)
+#   RELEASES         release root (default /var/www/docs-releases)
 #   KEEP             releases to retain (default 5)
 
 set -euo pipefail
 
 DIST=${1:?usage: deploy.sh <dist-dir> <commit-sha>}
 SHA=${2:?usage: deploy.sh <dist-dir> <commit-sha>}
-RELEASES=${RELEASES:-/home/bitcoinuniverse/docs-releases}
+RELEASES=${RELEASES:-/var/www/docs-releases}
 KEEP=${KEEP:-5}
 : "${DOCS_HOST:?DOCS_HOST is required}"
 DOCS_SSH_KEY=${DOCS_SSH_KEY:-}
 DOCS_PASSWORD=${DOCS_PASSWORD:-}
 
 SSH=(ssh)
-SCP=(scp)
+SCP=(scp -O)
 if [ -f "$DOCS_SSH_KEY" ]; then
   SSH+=(-i "$DOCS_SSH_KEY")
   SCP+=(-i "$DOCS_SSH_KEY")
@@ -40,7 +40,7 @@ elif [ -n "$DOCS_PASSWORD" ]; then
   export SSH_ASKPASS_REQUIRE=force
   export DISPLAY=${DISPLAY:-docs-deploy}
   SSH=(ssh -o BatchMode=no -o NumberOfPasswordPrompts=1)
-  SCP=(scp -o BatchMode=no -o NumberOfPasswordPrompts=1)
+  SCP=(scp -O -o BatchMode=no -o NumberOfPasswordPrompts=1)
 else
   echo "DOCS_SSH_KEY or DOCS_PASSWORD is required" >&2
   exit 2
