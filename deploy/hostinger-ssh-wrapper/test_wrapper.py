@@ -144,7 +144,7 @@ class WrapperTests(unittest.TestCase):
     def test_templates_match_current_scripts(self):
         for name, variable, value in [('deploy', 'SHA', A), ('rollback', 'TARGET', B)]:
             source = (HERE.parent.parent/'tooling/deploy'/ (name+'.sh')).read_text().split('<<EOF\n',1)[1].split('\nEOF',1)[0]+'\n'
-            source = source.replace('\\$', '$').replace('"$RELEASES"', '"/home/bitcoinuniverse/docs-releases"', 1).replace('"$'+variable+'"', '"'+value+'"',1).replace('KEEP="$KEEP"', 'KEEP="5"',1)
+            source = source.replace('\\$', '$').replace('"$RELEASES"', '"/var/www/docs-releases"', 1).replace('"$'+variable+'"', '"'+value+'"',1).replace('KEEP="$KEEP"', 'KEEP="5"',1)
             template = (HERE/(name+'.template')).read_text().replace('{'+variable.lower()+'}',value)
             self.assertEqual(source, template)
 

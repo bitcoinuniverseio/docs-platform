@@ -12,7 +12,7 @@ import tarfile
 import tempfile
 from pathlib import Path
 
-ROOT = Path('/home/bitcoinuniverse/docs-releases')
+ROOT = Path('/var/www/docs-releases')
 TEMPLATES = Path(__file__).resolve().parent
 SHA = re.compile(r'^[0-9a-f]{40}$')
 UPLOAD = re.compile(r'^scp -t /tmp/portal-([0-9a-f]{40})\.tgz$')

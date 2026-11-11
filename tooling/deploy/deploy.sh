@@ -13,14 +13,14 @@
 #   DOCS_SSH_KEY     path to the private key, or
 #   DOCS_PASSWORD    password supplied through a protected secret
 # Optional:
-#   RELEASES         release root (default /home/bitcoinuniverse/docs-releases)
+#   RELEASES         release root (default /var/www/docs-releases)
 #   KEEP             releases to retain (default 5)
 
 set -euo pipefail
 
 DIST=${1:?usage: deploy.sh <dist-dir> <commit-sha>}
 SHA=${2:?usage: deploy.sh <dist-dir> <commit-sha>}
-RELEASES=${RELEASES:-/home/bitcoinuniverse/docs-releases}
+RELEASES=${RELEASES:-/var/www/docs-releases}
 KEEP=${KEEP:-5}
 : "${DOCS_HOST:?DOCS_HOST is required}"
 DOCS_SSH_KEY=${DOCS_SSH_KEY:-}

@@ -1,5 +1,5 @@
 set -euo pipefail
-RELEASES="/home/bitcoinuniverse/docs-releases"
+RELEASES="/var/www/docs-releases"
 SHA="{sha}"
 KEEP="5"
 
