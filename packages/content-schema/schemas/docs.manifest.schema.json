@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://docs.bitcoinuniverse.io/schemas/docs.manifest.schema.json",
   "title": "Bitcoin Universe documentation manifest",
-  "description": "Root-level docs.manifest.json declared by every public bitcoinuniverseio repository. The portal at docs.bitcoinuniverse.io ingests documentation only from repositories with a valid manifest, pinned to exact commits in sources.lock.json.",
+  "description": "Schema for a repository's root-level docs.manifest.json. Source synchronization can validate and pin manifests; the portal does not currently ingest repository content through this mechanism.",
   "type": "object",
   "additionalProperties": false,
   "required": [

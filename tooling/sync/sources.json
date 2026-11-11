@@ -1,5 +1,5 @@
 {
-  "description": "Registry of every repository the portal ingests. sync.mjs lock resolves each sourceRef to an exact commit and validates its docs.manifest.json before anything is published.",
+  "description": "Repository inventory for documentation health and source synchronization. sync.mjs lock resolves each sourceRef and validates its manifest; the portal does not ingest these repositories.",
   "sources": [
     {
       "repository": "bitcoinuniverseio/.github",
