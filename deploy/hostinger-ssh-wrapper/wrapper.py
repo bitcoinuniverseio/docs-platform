@@ -21,6 +21,7 @@ MAX_EXPANDED = 1024 * 1024 * 1024
 MAX_MEMBERS = 50000
 MAX_SCRIPT = 16384
 CURL = '/usr/bin/curl'
+OWNER_UID = 0
 HOST = 'Host: docs.bitcoinuniverse.io'
 PATHS = ('/', '/protocols/', '/pagefind/pagefind.js', '/RELEASE')
 STATUS = "curl -s -o /dev/null -w '%{http_code}' -H 'Host: docs.bitcoinuniverse.io' http://127.0.0.1"
@@ -39,7 +40,7 @@ def root_check():
     path = ROOT
     while True:
         st = os.lstat(str(path))
-        require(stat.S_ISDIR(st.st_mode) and st.st_uid == 0 and not st.st_mode & 0o022,
+        require(stat.S_ISDIR(st.st_mode) and st.st_uid == OWNER_UID and not st.st_mode & 0o022,
                 'unsafe root or ancestor')
         if path == path.parent:
             break
@@ -57,11 +58,12 @@ def release_path(value):
 
 def safe_release(path):
     st = os.lstat(str(path))
-    require(stat.S_ISDIR(st.st_mode) and st.st_uid == 0 and not st.st_mode & 0o022, 'unsafe release directory')
+    require(stat.S_ISDIR(st.st_mode) and st.st_uid == OWNER_UID and st.st_mode & 0o7777 == 0o755, 'unsafe release directory')
     for base, dirs, files in os.walk(str(path), followlinks=False):
         for name in dirs + files:
             st = os.lstat(os.path.join(base, name))
-            require((stat.S_ISDIR(st.st_mode) or stat.S_ISREG(st.st_mode)) and st.st_uid == 0 and not st.st_mode & 0o022, 'unsafe release content')
+            mode = 0o755 if stat.S_ISDIR(st.st_mode) else 0o644
+            require((stat.S_ISDIR(st.st_mode) or stat.S_ISREG(st.st_mode)) and st.st_uid == OWNER_UID and st.st_mode & 0o7777 == mode, 'unsafe release content')
 
 def current():
     p = ROOT / 'current'
@@ -82,9 +84,11 @@ def previous():
     with open(str(p), 'rb') as f:
         data = f.read(256)
     try:
-        value = data.decode('ascii').strip()
+        value = data.decode('ascii')
     except UnicodeDecodeError:
         raise Refused('invalid PREVIOUS')
+    require(value.endswith('\n') and value.count('\n') == 1, 'invalid PREVIOUS')
+    value = value[:-1]
     if value == 'none':
         return 'none'
     require(value.startswith(str(ROOT) + '/') and SHA.fullmatch(value[len(str(ROOT))+1:]), 'invalid PREVIOUS')
@@ -146,6 +150,14 @@ def extract(archive, stage, sha):
     require(regular(stage / 'index.html') and regular(stage / 'RELEASE'), 'missing release files')
     with open(str(stage / 'RELEASE'), 'rb') as f:
         require(f.read(128) == (sha + '\n').encode(), 'wrong release marker')
+    # mkdir(parents=True) is affected by the inherited umask, including for
+    # implicit parents that never occur as explicit archive members.
+    for base, dirs, files in os.walk(str(stage), topdown=False, followlinks=False):
+        for name in files:
+            os.chmod(os.path.join(base, name), 0o644)
+        for name in dirs:
+            os.chmod(os.path.join(base, name), 0o755)
+        os.chmod(base, 0o755)
 
 def deploy(sha):
     release_path(sha)
@@ -216,6 +228,7 @@ def upload(sha, inp, out):
         if os.path.exists(temp): os.unlink(temp)
 
 def main():
+    os.umask(0o022)
     command = os.environ.get('SSH_ORIGINAL_COMMAND', '')
     require('\n' not in command and '\x00' not in command, 'invalid command')
     root_check()

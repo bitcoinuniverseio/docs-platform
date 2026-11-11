@@ -1,6 +1,7 @@
 import importlib.util
 import io
 import os
+import stat
 from pathlib import Path
 import tarfile
 import tempfile
@@ -56,6 +57,46 @@ class WrapperTests(unittest.TestCase):
                 self.archive(A, [(name, b'x', kind)])
                 with self.assertRaises(w.Refused): w.deploy(A)
                 self.assertFalse((w.ROOT/A).exists())
+    def test_restrictive_umask_produces_readable_release(self):
+        self.safe.stop()
+        with mock.patch.object(w, 'OWNER_UID', os.geteuid()):
+            self.archive(A, [('nested/deep/file.txt', b'content', None)])
+            old = os.umask(0o077)
+            try:
+                w.deploy(A)
+            finally:
+                os.umask(old)
+            root = w.ROOT / A
+            for base, dirs, files in os.walk(str(root)):
+                self.assertEqual(stat.S_IMODE(os.stat(base).st_mode), 0o755)
+                for name in dirs:
+                    self.assertEqual(stat.S_IMODE(os.stat(os.path.join(base, name)).st_mode), 0o755)
+                for name in files:
+                    self.assertEqual(stat.S_IMODE(os.stat(os.path.join(base, name)).st_mode), 0o644)
+            self.assertEqual(os.readlink(str(w.ROOT / 'current')), str(root))
+    def test_real_release_validation_rejects_symlinks_and_unreadable_content(self):
+        self.safe.stop()
+        with mock.patch.object(w, 'OWNER_UID', os.geteuid()):
+            self.archive(A); w.deploy(A)
+            release = w.ROOT / A
+            (release / 'link').symlink_to('/etc/passwd')
+            with self.assertRaises(w.Refused): w.current()
+            (release / 'link').unlink()
+            (release / 'index.html').chmod(0o600)
+            with self.assertRaises(w.Refused): w.current()
+    def test_invalid_archive_and_failed_switch_do_not_publish_partial_tree(self):
+        self.archive(A); w.deploy(A)
+        self.archive(B, [('nested/../../escape', b'x', None)])
+        with self.assertRaises(w.Refused): w.deploy(B)
+        self.assertEqual(os.readlink(str(w.ROOT/'current')), str(w.ROOT/A))
+        self.assertFalse((w.ROOT/B).exists())
+        self.assertFalse(list(w.ROOT.glob('.incoming-*')))
+        self.archive(B)
+        with mock.patch.object(w.os, 'replace', side_effect=OSError('switch failed')):
+            with self.assertRaises(OSError): w.deploy(B)
+        self.assertEqual(os.readlink(str(w.ROOT/'current')), str(w.ROOT/A))
+        self.assertEqual((w.ROOT/B/'RELEASE').read_text(), B+'\n')
+        self.assertFalse(list(w.ROOT.glob('.previous-*')))
     def test_limits_and_duplicate(self):
         self.archive(A, [('index.html', b'bad', None)])
         with self.assertRaises(w.Refused): w.deploy(A)
