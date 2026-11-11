@@ -27,7 +27,7 @@ DOCS_SSH_KEY=${DOCS_SSH_KEY:-}
 DOCS_PASSWORD=${DOCS_PASSWORD:-}
 
 SSH=(ssh)
-SCP=(scp)
+SCP=(scp -O)
 if [ -f "$DOCS_SSH_KEY" ]; then
   SSH+=(-i "$DOCS_SSH_KEY")
   SCP+=(-i "$DOCS_SSH_KEY")
@@ -40,7 +40,7 @@ elif [ -n "$DOCS_PASSWORD" ]; then
   export SSH_ASKPASS_REQUIRE=force
   export DISPLAY=${DISPLAY:-docs-deploy}
   SSH=(ssh -o BatchMode=no -o NumberOfPasswordPrompts=1)
-  SCP=(scp -o BatchMode=no -o NumberOfPasswordPrompts=1)
+  SCP=(scp -O -o BatchMode=no -o NumberOfPasswordPrompts=1)
 else
   echo "DOCS_SSH_KEY or DOCS_PASSWORD is required" >&2
   exit 2

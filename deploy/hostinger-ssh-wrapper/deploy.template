@@ -1,0 +1,30 @@
+set -euo pipefail
+RELEASES="/home/bitcoinuniverse/docs-releases"
+SHA="{sha}"
+KEEP="5"
+
+mkdir -p "$RELEASES"
+rm -rf "$RELEASES/$SHA.incoming"
+mkdir -p "$RELEASES/$SHA.incoming"
+tar -xzf /tmp/portal-$SHA.tgz -C "$RELEASES/$SHA.incoming"
+rm -f /tmp/portal-$SHA.tgz
+
+test -f "$RELEASES/$SHA.incoming/index.html"
+test "$(cat "$RELEASES/$SHA.incoming/RELEASE")" = "$SHA"
+
+rm -rf "$RELEASES/$SHA"
+mv "$RELEASES/$SHA.incoming" "$RELEASES/$SHA"
+chown -R bitcoinuniverse:bitcoinuniverse "$RELEASES/$SHA"
+
+PREVIOUS=$(readlink "$RELEASES/current" 2>/dev/null || echo none)
+ln -sfn "$RELEASES/$SHA" "$RELEASES/current.new"
+mv -Tf "$RELEASES/current.new" "$RELEASES/current"
+echo "$PREVIOUS" > "$RELEASES/PREVIOUS"
+echo "swapped: $PREVIOUS -> $RELEASES/$SHA"
+
+# Keep the most recent releases so a rollback always has somewhere to go.
+cd "$RELEASES"
+ls -1dt [0-9a-f]* 2>/dev/null | tail -n +$((KEEP + 1)) | while read -r old; do
+  [ "$old" = "$SHA" ] && continue
+  rm -rf "$old" && echo "pruned $old"
+done
