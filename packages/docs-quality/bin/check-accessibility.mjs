@@ -21,6 +21,9 @@
 //   --routes  comma separated subset, for a quick loop while fixing one page
 //   --port    port for the temporary static server (default: a free port
 //             chosen by the OS, so parallel jobs on one host never collide)
+//   --timeout per-page load budget in milliseconds (default 180000, or
+//             A11Y_NAV_TIMEOUT_MS). This bounds how long a page may take to
+//             load on a busy runner; it never relaxes what is checked.
 
 import { createRequire } from "node:module";
 import { createServer } from "node:http";
@@ -38,6 +41,15 @@ for (let i = 2; i < process.argv.length; i += 2) {
 }
 const DIST = resolve(args.get("dist") ?? "apps/portal/dist");
 const PORT = Number(args.get("port") ?? 0);
+// The gate runs on shared self-hosted runners that are often CPU-starved. On
+// such a host Playwright's 30 s default navigation timeout expired on healthy
+// static pages (/protocols/avm/ in run 42990743222, /ask/ in run 43043832639)
+// and the uncaught TimeoutError aborted the whole audit. A slow host is not an
+// accessibility defect, so give every page a generous load budget, retry a
+// timed-out load once, and report a page that still cannot load as a normal
+// failure instead of crashing before the other pages are audited.
+const NAV_TIMEOUT = Number(args.get("timeout") ?? process.env.A11Y_NAV_TIMEOUT_MS ?? 180000);
+const NAV_ATTEMPTS = 2;
 
 if (!existsSync(join(DIST, "index.html"))) {
   console.error(`no built site at ${DIST}; run the portal build first`);
@@ -95,6 +107,23 @@ const routes = args.get("routes")
 const WIDTHS = [375, 1440];
 const SCHEMES = ["light", "dark"];
 
+// Load a page and wait until it has stopped fetching, so late stylesheets,
+// fonts and scripts are in place before contrast and overflow are measured.
+// Same readiness condition as before ("networkidle"), with a longer budget and
+// one retry of a timed-out load.
+async function openPage(page, url) {
+  for (let attempt = 1; ; attempt += 1) {
+    try {
+      const response = await page.goto(url, { waitUntil: "load" });
+      await page.waitForLoadState("networkidle");
+      return response;
+    } catch (error) {
+      if (error?.name !== "TimeoutError" || attempt >= NAV_ATTEMPTS) throw error;
+      console.warn(`accessibility: ${url} did not settle within ${NAV_TIMEOUT}ms (attempt ${attempt} of ${NAV_ATTEMPTS}), retrying`);
+    }
+  }
+}
+
 const browser = await chromium.launch();
 const failures = [];
 let renders = 0;
@@ -106,9 +135,18 @@ for (const colorScheme of SCHEMES) {
       viewport: { width, height: 900 },
       reducedMotion: "reduce",
     });
+    context.setDefaultTimeout(NAV_TIMEOUT);
+    context.setDefaultNavigationTimeout(NAV_TIMEOUT);
     const page = await context.newPage();
     for (const route of routes) {
-      const response = await page.goto(`${BASE}${route}`, { waitUntil: "networkidle" });
+      let response;
+      try {
+        response = await openPage(page, `${BASE}${route}`);
+      } catch (error) {
+        if (error?.name !== "TimeoutError") throw error;
+        failures.push(`${colorScheme} ${width} ${route}: did not finish loading within ${NAV_TIMEOUT}ms after ${NAV_ATTEMPTS} attempts`);
+        continue;
+      }
       if (response === null || !response.ok()) {
         failures.push(`${colorScheme} ${width} ${route}: ${response?.status() ?? "no response"}`);
         continue;
