@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   deploy:
-    runs-on: [self-hosted, runners-4]
+    runs-on: [self-hosted, Linux, X64, universe]
     timeout-minutes: 25
     env:
       DEV_APP: docs
