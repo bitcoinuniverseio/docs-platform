@@ -89,7 +89,7 @@
     },
     {
       "id": "zerdinals-and-zrunes",
-      "name": "Zerdinals and Z-Runes",
+      "name": "Zordinals",
       "tagline": "Digital artifacts and fungible tokens native to Zcash.",
       "role": "The Zcash application and its protocol family, including the ZordiScan explorer, with explicit treatment of transparent and shielded activity.",
       "audiences": [
@@ -106,7 +106,7 @@
       "documentationSite": "https://bitcoinuniverseio.github.io/docs-zerdinals-and-zrunes/",
       "sourceRepository": "bitcoinuniverseio/zerdinals-and-zrunes",
       "sourceVisibility": "private",
-      "liveUrl": "https://zrunes.io",
+      "liveUrl": "https://zordinals.run",
       "statusEndpoints": []
     },
     {

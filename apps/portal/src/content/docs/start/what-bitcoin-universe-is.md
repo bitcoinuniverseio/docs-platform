@@ -17,7 +17,7 @@ Bitcoin Universe builds products for creating, owning, trading, and verifying di
       <tr><th scope="row">Inscribe</th><td>Creation studio for inscriptions, tokens, and mints</td><td><a href="https://inscribe.bitcoinuniverse.io">inscribe.bitcoinuniverse.io</a></td></tr>
       <tr><th scope="row">Wallet</th><td>Browser wallet for Bitcoin digital artifacts</td><td><a href="https://github.com/bitcoinuniverseio/docs-wallet">docs-wallet</a></td></tr>
       <tr><th scope="row">StampDEX</th><td>Trading venue for Bitcoin Stamps assets</td><td><a href="https://github.com/bitcoinuniverseio/docs-stampdex">docs-stampdex</a></td></tr>
-      <tr><th scope="row">Zerdinals and Z-Runes</th><td>Digital-artifact record on Zcash</td><td><a href="https://zrunes.io">zrunes.io</a></td></tr>
+      <tr><th scope="row">Zordinals</th><td>Digital-artifact record on Zcash</td><td><a href="https://zordinals.run">zordinals.run</a></td></tr>
       <tr><th scope="row">Forked Felines</th><td>Collection with on-chain artwork and provenance</td><td><a href="https://forked-felines.art">forked-felines.art</a></td></tr>
       <tr><th scope="row">Drops</th><td>Media-first artifacts using the OP_DROP carrier</td><td><a href="https://github.com/bitcoinuniverseio/drops-protocol-docs">drops-protocol-docs</a></td></tr>
     </tbody>
